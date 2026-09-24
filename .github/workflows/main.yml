@@ -2,8 +2,10 @@ name: Actualizar Reporte IoT
 
 on:
   schedule:
-    # Se ejecuta a las 14:00, 20:00 y 02:00 UTC (8 AM, 2 PM, 8 PM CST)
-    - cron: '0 7,14,20 * * *'
+    # Se ejecuta a las 8:00 AM, 2:00 PM y 8:00 PM (hora CDM8
+    - cron: '0 2,14,20 * * *'
+    # Se ejecuta a la 1:15 AM (hora CDMX / 7:15 AM UTC)
+    - cron: '8 7 * * *'
   workflow_dispatch: # Permite ejecutarlo manualmente con un botón
 
 jobs:
