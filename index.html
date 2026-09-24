@@ -14,24 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-24 18:03:26
+<p><strong>Última actualización:</strong> 2026-09-24 22:46:42
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Aquí tienes el análisis de los datos de hardware IoT procesados:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos de los sensores meteorológicos y ambientales. A continuación, presento los resultados estructurados:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>22 de septiembre de 2026</strong>, alcanzando un pico máximo de temperatura de <strong>27.40 °C</strong> en el <code>temp_sensor1</code> a las 17:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong>, registrando la temperatura mínima más baja del periodo con <strong>13.64 °C</strong> en el <code>temp_sensor3</code> a las 13:00 UTC.</li>
+<li><strong>Día más caluroso:</strong> <strong>22 de septiembre de 2026</strong> (Registró la temperatura máxima absoluta en el sensor 1 con <strong>27.40 °C</strong> a las 17:00 UTC, además de mantener consistentemente las temperaturas más altas del periodo en la franja vespertina).</li>
+<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong> (Registró la temperatura mínima del periodo en el sensor 3 con <strong>13.64 °C</strong> a las 13:00 UTC y promedios generales más bajos durante la madrugada y mañana).</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja horaria vespertina, específicamente <strong>entre las 17:00 y las 19:00 UTC</strong>, destacando:
-*   <strong>Radiación UV Máxima:</strong> <code>3.18</code> (registrada a las 18:00 UTC del 20 de septiembre).
-*   <strong>Radiación IR Máxima:</strong> <code>7,744.96</code> (registrada a las 18:00 UTC del 20 de septiembre).
-*   <strong>Radiación VIS Máxima:</strong> <code>852.67</code> (registrada a las 18:00 UTC del 20 de septiembre).</p>
-<h3>3. Fallas en Sensores</h3>
-<p>Se detectaron anomalías críticas y lecturas fuera de rango (hardware fault / corrupción de datos) en los siguientes componentes:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes. Arroja valores negativos imposibles y erráticos (ej. <code>-529.20</code>, <code>-999.90</code>) durante gran parte del ciclo nocturno y madrugadas, lo que indica un cortocircuito, pérdida de calibración o fallo en el ADC del módulo de humedad.
-*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Funcionan correctamente y muestran una correlación lógica entre ellos (el sensor 1 es el más expuesto y el 3 el más fresco), sin saltos abruptos de temperatura que sugieran fallas físicas, más allá de la variación térmica ambiental normal.</p>
+<hr />
+<h3>2. Horas de mayor radiación</h3>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente en la ventana central del día, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong>. 
+*   <em>Ejemplo pico:</em> El 20 de septiembre a las 18:00 UTC se registró el valor máximo de radiación infrarroja con <strong>7,744.96 W/m²</strong> y radiación UV con <strong>3.18</strong>.</p>
+<hr />
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas y fallas intermitentes en la telemetría:
+*   <strong>Sensor de Humedad (Falla Crítica / Saturación por Software o Hardware):</strong> Presenta múltiples lecturas con valores negativos totalmente anómalos e imposibles físicamente, destacando el código de error o límite de buffer <strong><code>-999.9</code></strong> y <strong><code>-798.33</code></strong> repetidos en varios registros (ej. 20 de Septiembre de 01:00 a 11:00 UTC). Esto indica un fallo en el circuito de lectura del higrómetro o un desbordamiento en la conversión analógica-digital (ADC).
+*   <strong>Sensores de Temperatura (Sensor 1, 2 y 3):</strong> Funcionan correctamente y muestran una correlación lógica y estable entre ellos (el sensor 1 siempre ligeramente por encima del 2 y 3 debido a la ubicación o exposición). No muestran fallas de lecturas nulas o erráticas.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
