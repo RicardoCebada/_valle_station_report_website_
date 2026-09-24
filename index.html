@@ -14,24 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-24 07:23:36
+<p><strong>Última actualización:</strong> 2026-09-24 12:42:10
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Aquí tienes el análisis de los datos del hardware IoT:</p>
+<p>Como analista de hardware IoT, he procesado el lote de datos correspondiente al periodo analizado (18 al 24 de septiembre de 2026). A continuación presento el reporte técnico:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>22 de septiembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>27.40 °C</strong> en el sensor 1 a las 17:00).</li>
-<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong> (Registró la temperatura mínima absoluta del periodo con <strong>13.64 °C</strong> en el sensor 3 a las 13:00).</li>
+<li><strong>Día más caluroso:</strong> <strong>22 de septiembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo a las 17:00 UTC, alcanzando un valor de <strong>27.40 °C</strong> en el <code>temp_sensor1</code> (y 27.15 °C en el <code>temp_sensor2</code>).</li>
+<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo a las 12:00 UTC, descendiendo hasta los <strong>13.75 °C</strong> en el <code>temp_sensor3</code> (y un promedio general en el sensor 1 de 15.07 °C).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía y la tarde, siendo <strong>las 18:00 UTC</strong> la hora de mayor intensidad energética (coincidiendo con el cenit solar de la zona):
-* <strong>Radiación Visible (VIS):</strong> Picos cercanos a <strong>852.67 W/m²</strong> (18:00).
-* <strong>Radiación Infrarroja (IR):</strong> Picos de hasta <strong>7,744.96 W/m²</strong> (18:00).
-* <strong>Radiación Ultravioleta (UV):</strong> Picos máximos de <strong>3.18</strong> (18:00).</p>
+<p>Los picos de radiación solar (Visible, Infrarroja y UV) se concentran consistentemente en la franja vespertina:
+*   <strong>Radiación UV y Visible:</strong> El punto máximo ocurre entre las <strong>18:00 UTC y las 19:00 UTC</strong> (con registros que superan los <strong>3.18 W/m² en UV</strong> y hasta <strong>852.6 W/m² en luz visible</strong> el 20 de septiembre).
+*   <strong>Radiación Infrarroja (IR):</strong> Sigue la misma ventana térmica, alcanzando su cenit absoluto a las <strong>18:00 UTC</strong> con valores cercanos a los <strong>7,744 W/m²</strong>.</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas que apuntan a <strong>fallas de hardware</strong> en al menos uno de los componentes:
-* <strong>Sensor de Humedad:</strong> Presenta lecturas erróneas recurrentes y fuera de rango físico (valores negativos extremos como <strong><code>-999.9</code></strong> y <strong><code>-330.5</code></strong>), lo que indica un fallo por saturación, daño en el transductor o pérdida de calibración del sensor de humedad relativa.
-* <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan correctamente y muestran una correlación lógica entre ellos, aunque el <em>Sensor 3</em> consistentemente reporta entre 1 °C y 2 °C menos que el <em>Sensor 1</em>, sugiriendo una ligera desviación de calibración o diferencia en el coeficiente térmico de ubicación.</p>
+<p>El análisis de integridad de datos revela anomalías críticas (hardware faults / descalibración):
+*   <strong>Falla en Sensor de Humedad:</strong> El campo <code>humedad</code> presenta múltiples lecturas con <strong>valores negativos extremos y fijos</strong> (por ejemplo, <code>-999.9</code> y <code>-330.5</code>). Esto indica un error de lectura por saturación del ADC (Conversor Analógico-Digital), un cortocircuito en la circuitería del higrómetro o la pérdida total de comunicación con el transductor de humedad relativa.
+*   <strong>Deriva térmica entre sensores:</strong> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) muestran un delta constante de aproximadamente 1 °C a 2 °C entre ellos bajo las mismas condiciones ambientales. Aunque no están completamente abiertos, el <code>temp_sensor3</code> muestra una subestimación sistemática, lo que sugiere un problema de contacto térmico en su encapsulado (posible degradación de pasta térmica o mala soldadura en la placa).</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
