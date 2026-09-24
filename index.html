@@ -14,23 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-24 12:42:10
+<p><strong>Última actualización:</strong> 2026-09-24 18:03:26
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de datos correspondiente al periodo analizado (18 al 24 de septiembre de 2026). A continuación presento el reporte técnico:</p>
-<h3>1. Día más caluroso y más frío</h3>
+<p>Aquí tienes el análisis de los datos de hardware IoT procesados:</p>
+<h3>1. Día Más Caluroso y Más Frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>22 de septiembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo a las 17:00 UTC, alcanzando un valor de <strong>27.40 °C</strong> en el <code>temp_sensor1</code> (y 27.15 °C en el <code>temp_sensor2</code>).</li>
-<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo a las 12:00 UTC, descendiendo hasta los <strong>13.75 °C</strong> en el <code>temp_sensor3</code> (y un promedio general en el sensor 1 de 15.07 °C).</li>
+<li><strong>Día más caluroso:</strong> <strong>22 de septiembre de 2026</strong>, alcanzando un pico máximo de temperatura de <strong>27.40 °C</strong> en el <code>temp_sensor1</code> a las 17:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong>, registrando la temperatura mínima más baja del periodo con <strong>13.64 °C</strong> en el <code>temp_sensor3</code> a las 13:00 UTC.</li>
 </ul>
-<h3>2. Horas de mayor radiación</h3>
-<p>Los picos de radiación solar (Visible, Infrarroja y UV) se concentran consistentemente en la franja vespertina:
-*   <strong>Radiación UV y Visible:</strong> El punto máximo ocurre entre las <strong>18:00 UTC y las 19:00 UTC</strong> (con registros que superan los <strong>3.18 W/m² en UV</strong> y hasta <strong>852.6 W/m² en luz visible</strong> el 20 de septiembre).
-*   <strong>Radiación Infrarroja (IR):</strong> Sigue la misma ventana térmica, alcanzando su cenit absoluto a las <strong>18:00 UTC</strong> con valores cercanos a los <strong>7,744 W/m²</strong>.</p>
-<h3>3. Falla en sensores</h3>
-<p>El análisis de integridad de datos revela anomalías críticas (hardware faults / descalibración):
-*   <strong>Falla en Sensor de Humedad:</strong> El campo <code>humedad</code> presenta múltiples lecturas con <strong>valores negativos extremos y fijos</strong> (por ejemplo, <code>-999.9</code> y <code>-330.5</code>). Esto indica un error de lectura por saturación del ADC (Conversor Analógico-Digital), un cortocircuito en la circuitería del higrómetro o la pérdida total de comunicación con el transductor de humedad relativa.
-*   <strong>Deriva térmica entre sensores:</strong> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) muestran un delta constante de aproximadamente 1 °C a 2 °C entre ellos bajo las mismas condiciones ambientales. Aunque no están completamente abiertos, el <code>temp_sensor3</code> muestra una subestimación sistemática, lo que sugiere un problema de contacto térmico en su encapsulado (posible degradación de pasta térmica o mala soldadura en la placa).</p>
+<h3>2. Horas de Mayor Radiación</h3>
+<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja horaria vespertina, específicamente <strong>entre las 17:00 y las 19:00 UTC</strong>, destacando:
+*   <strong>Radiación UV Máxima:</strong> <code>3.18</code> (registrada a las 18:00 UTC del 20 de septiembre).
+*   <strong>Radiación IR Máxima:</strong> <code>7,744.96</code> (registrada a las 18:00 UTC del 20 de septiembre).
+*   <strong>Radiación VIS Máxima:</strong> <code>852.67</code> (registrada a las 18:00 UTC del 20 de septiembre).</p>
+<h3>3. Fallas en Sensores</h3>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango (hardware fault / corrupción de datos) en los siguientes componentes:
+*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes. Arroja valores negativos imposibles y erráticos (ej. <code>-529.20</code>, <code>-999.90</code>) durante gran parte del ciclo nocturno y madrugadas, lo que indica un cortocircuito, pérdida de calibración o fallo en el ADC del módulo de humedad.
+*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Funcionan correctamente y muestran una correlación lógica entre ellos (el sensor 1 es el más expuesto y el 3 el más fresco), sin saltos abruptos de temperatura que sugieran fallas físicas, más allá de la variación térmica ambiental normal.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
