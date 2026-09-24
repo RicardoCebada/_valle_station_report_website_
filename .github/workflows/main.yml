@@ -1,0 +1,41 @@
+name: Actualizar Reporte IoT
+
+on:
+  schedule:
+    # Se ejecuta a las 14:00, 20:00 y 02:00 UTC (8 AM, 2 PM, 8 PM CST)
+    - cron: '0 2,14,20 * * *'
+  workflow_dispatch: # Permite ejecutarlo manualmente con un botón
+
+jobs:
+  generar_reporte:
+    runs-on: ubuntu-latest
+    # Da permisos a GitHub Actions para subir archivos al repositorio
+    permissions:
+      contents: write
+
+    steps:
+    - name: Clonar el repositorio
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Instalar dependencias
+      run: pip install -r requirements.txt
+
+    - name: Ejecutar Agente de IA
+      env:
+        THINGSPEAK_CHANNEL_ID: ${{ secrets.THINGSPEAK_CHANNEL_ID }}
+        THINGSPEAK_READ_KEY: ${{ secrets.THINGSPEAK_READ_KEY }}
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      run: python main.py
+
+    - name: Hacer commit y subir el index.html y gráficos
+      run: |
+        git config --global user.name "Agente IoT Bot"
+        git config --global user.email "bot@ejemplo.com"
+        git add index.html grafico_temperaturas.png grafico_humedad.png
+        git commit -m "📊 Reporte automático actualizado" || exit 0
+        git push
