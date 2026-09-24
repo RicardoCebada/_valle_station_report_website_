@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reporte Meteorológico Tláhuac-Chalco</title>
+        <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 2rem; color: #333; background-color: #f9f9f9; }
+            .container { background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+            img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; margin-top: 1rem; }
+            h1, h2, h3 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
+<p><strong>Última actualización:</strong> 2026-09-24 07:23:36
+<strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
+<hr />
+<p>Aquí tienes el análisis de los datos del hardware IoT:</p>
+<h3>1. Día más caluroso y más frío</h3>
+<ul>
+<li><strong>Día más caluroso:</strong> <strong>22 de septiembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>27.40 °C</strong> en el sensor 1 a las 17:00).</li>
+<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong> (Registró la temperatura mínima absoluta del periodo con <strong>13.64 °C</strong> en el sensor 3 a las 13:00).</li>
+</ul>
+<h3>2. Horas de mayor radiación</h3>
+<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía y la tarde, siendo <strong>las 18:00 UTC</strong> la hora de mayor intensidad energética (coincidiendo con el cenit solar de la zona):
+* <strong>Radiación Visible (VIS):</strong> Picos cercanos a <strong>852.67 W/m²</strong> (18:00).
+* <strong>Radiación Infrarroja (IR):</strong> Picos de hasta <strong>7,744.96 W/m²</strong> (18:00).
+* <strong>Radiación Ultravioleta (UV):</strong> Picos máximos de <strong>3.18</strong> (18:00).</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas que apuntan a <strong>fallas de hardware</strong> en al menos uno de los componentes:
+* <strong>Sensor de Humedad:</strong> Presenta lecturas erróneas recurrentes y fuera de rango físico (valores negativos extremos como <strong><code>-999.9</code></strong> y <strong><code>-330.5</code></strong>), lo que indica un fallo por saturación, daño en el transductor o pérdida de calibración del sensor de humedad relativa.
+* <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan correctamente y muestran una correlación lógica entre ellos, aunque el <em>Sensor 3</em> consistentemente reporta entre 1 °C y 2 °C menos que el <em>Sensor 1</em>, sugiriendo una ligera desviación de calibración o diferencia en el coeficiente térmico de ubicación.</p>
+<h2>Análisis Gráfico de Tendencias</h2>
+<p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
+<p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
+        </div>
+    </body>
+    </html>
