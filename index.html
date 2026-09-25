@@ -14,22 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-25 06:46:13
+<p><strong>Última actualización:</strong> 2026-09-25 12:43:23
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado. A continuación, presento los resultados clave:</p>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado correspondiente al periodo de monitoreo. A continuación, presento el resumen ejecutivo:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>22 de septiembre de 2026</strong>. Se registró la temperatura máxima global del periodo en el <em>sensor_1</em> con <strong>27.40 °C</strong> (a las 17:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong>. Se registró la temperatura mínima del periodo en el <em>sensor_3</em> con <strong>13.64 °C</strong> (a las 13:00 UTC), manteniendo un promedio general bajo durante toda su jornada diurna.</li>
+<li><strong>Día más caluroso:</strong> <strong>21 de septiembre de 2026</strong>. Se registró la temperatura máxima del periodo en el sensor principal (<code>temp_sensor1</code>) alcanzando los <strong>26.79 °C</strong> a las 18:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong>. Se registró la temperatura mínima general del sistema en el <code>temp_sensor3</code> descendiendo hasta los <strong>13.64 °C</strong> a las 13:00 UTC (y un promedio general muy bajo durante toda la mañana de ese día).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (visible, infrarroja y UV) se concentran consistentemente en la franja horaria de <strong>18:00 a 19:00 UTC</strong>. 
-* <em>Ejemplo destacado (20 de septiembre):</em> A las 18:00 UTC se registró el pico máximo de radiación infrarroja con <strong>7,744.96 W/m²</strong> y radiación UV con <strong>3.18</strong>.</p>
-<h3>3. Falla en sensores (Anomalías detectadas)</h3>
-<p>Se detectó una falla crítica e intermitente en el <strong>sensor de humedad</strong>, la cual se manifiesta mediante lecturas fuera de rango físico (valores negativos extremos imposibles para humedad relativa):
-* El valor anómalo estándar registrado por el firmware ante fallas es <strong><code>-999.9</code></strong> (presente de forma reiterada los días 20, 21, 23 y 25 de septiembre).
-* Se observan caídas abruptas similares en otros registros negativos (ej. <code>-469.85</code>, <code>-795.57</code>, <code>-867.44</code>), lo que indica un problema en el circuito de adquisición de humedad (posible fallo en el sensor DHT/SHT o pérdida de calibración en el pin analógico/digital).</p>
+<p>Los picos máximos de radiación ocurren consistentemente en la franja vespertina, entre las <strong>17:00 y las 19:00 UTC</strong> (coincidiendo con las horas de mayor insolación cenital/tarde en la ubicación del dispositivo). Los valores peak registrados fueron:
+*   <strong>Radiación Visible (<code>radiacion_vis</code>):</strong> ~852.68 W/m² (registrada a las 18:00 UTC del 20 de septiembre).
+*   <strong>Radiación Infrarroja (<code>radiacion_ir</code>):</strong> ~7,744.96 W/m² (registrada a las 18:00 UTC del 20 de septiembre).
+*   <strong>Radiación Ultravioleta (<code>radiacion_uv</code>):</strong> ~3.19 UV Index (registrada a las 18:00 UTC del 20 de septiembre).</p>
+<h3>3. Fallas detectadas en sensores</h3>
+<p>Se identificaron anomalías críticas e inconsistencias en la telemetría que apuntan a fallas de hardware o corrupción de datos:
+*   <strong>Sensor de Humedad (Falla Crítica / Rango Fuera de Escala):</strong> El sensor de humedad presenta fallas recurrentes entregando valores negativos imposibles (como <strong><code>-999.9</code></strong>, <strong><code>-795.5</code></strong>, <strong><code>-469.8</code></strong>, etc.). Esto indica que el sensor sufre de errores de lectura por saturación, pérdida de comunicación I2C/analógica o desconexión intermitente durante las madrugadas y mañanas de varios días analizados.
+*   <strong>Deriva térmica entre sensores:</strong> Los sensores <code>temp_sensor1</code>, <code>temp_sensor2</code> y <code>temp_sensor3</code> operan de manera coherente entre ellos (guardando un gradiente térmico lógico de ~1°C a 2°C de diferencia), descartando fallas graves en el bus de temperatura, a excepción de los picos donde la humedad falla estrepitosamente.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
