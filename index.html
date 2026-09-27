@@ -14,22 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-27 07:14:49
+<p><strong>Última actualización:</strong> 2026-09-27 12:58:09
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado. A continuación, presento el reporte técnico basado en las lecturas de los sensores:</p>
-<h3>1. Día más caluroso y día más frío</h3>
+<p>Como analista de hardware IoT procesando el lote de datos (período del 21 al 27 de septiembre de 2026), presento el informe técnico solicitado:</p>
+<h3>1. Día Más Caluroso y Día Más Frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>21 de septiembre de 2026</strong>. Se registró la temperatura máxima del periodo analizado a las 18:00 UTC, alcanzando un promedio de <strong>26.79 °C</strong> en el sensor principal (<code>temp_sensor1</code>) y picos de radiación infrarroja elevados.</li>
-<li><strong>Día más frío:</strong> <strong>24 de septiembre de 2026</strong> (con extensiones similares el 23). Las temperaturas más bajas se registraron en las horas matutinas (11:00 UTC), con mínimos descendiendo hasta los <strong>14.92 °C</strong> en el <code>temp_sensor1</code> y <strong>13.62 °C</strong> en el <code>temp_sensor3</code>.</li>
+<li><strong>Día Más Caluroso:</strong> <strong>23 de septiembre de 2026</strong>. Se registró la temperatura máxima absoluta del período en la hora <code>20:00:00Z</code> con un pico en el <code>temp_sensor1</code> de <strong>27.62 °C</strong> (y valores sostenidos por encima de 27 °C durante la tarde).</li>
+<li><strong>Día Más Frío:</strong> <strong>23 de septiembre de 2026</strong> (en su ciclo matutino) y <strong>24 de septiembre de 2026</strong>. Las temperaturas mínimas globales se registraron en la franja matutina de estos días, alcanzando el <code>temp_sensor3</code> un mínimo de <strong>13.62 °C</strong> a las <code>11:00:00Z</code> del 24 de septiembre.</li>
 </ul>
-<h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (visible, infrarroja y UV) siguen una campana solar estándar con un desfase térmico mínimo, concentrándose consistentemente entre las <strong>17:00 UTC y las 19:00 UTC</strong>. 
-*   <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong> (del 21 y 24 de septiembre), con valores que superan los <strong>789 W/m²</strong> en radiación visible (<code>radiacion_vis</code>), más de <strong>7,315 W/m²</strong> en infrarrojo (<code>radiacion_ir</code>) y hasta <strong>3.00</strong> en índice UV (<code>radiacion_uv</code>).</p>
-<h3>3. Fallas detectadas en sensores</h3>
-<p>Se identificaron anomalías críticas e intermitencias ("valores basura" o códigos de error por hardware) en el subsistema de medición:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes de lectura. Se observan valores físicamente imposibles como <strong><code>-999.9</code></strong> (código típico de desconexión o timeout del sensor) y números negativos erráticos (ej. <code>-84.99</code>, <code>-981.26</code>) de manera constante, especialmente a partir del 22 de septiembre.
-*   <strong>Sensores de Temperatura (<code>sensor1</code>, <code>sensor2</code>, <code>sensor3</code>):</strong> Funcionan de manera coherente entre ellos (guardan una correlación lógica de gradiente térmico), pero muestran un desfase sistemático donde el <code>temp_sensor3</code> lee consistentemente entre 1 °C y 1.5 °C por debajo de los otros dos, lo que sugiere un problema de calibración o una ubicación con menor exposición térmica.</p>
+<h3>2. Horas de Mayor Radiación</h3>
+<p>Los picos máximos de radiación ocurren consistentemente en la franja vespertina del horario solar:
+*   <strong>Radiación Infrarroja (IR) y Visible (VIS):</strong> El punto máximo se registra entre las <strong>17:00:00Z y las 18:00:00Z</strong>, alcanzando valores extremos de hasta <strong>6,973 W/m² en IR</strong> y <strong>789.13 W/m² en VIS</strong> (ej. 24 de septiembre).
+*   <strong>Radiación Ultravioleta (UV):</strong> Los niveles máximos de rayos UV siguen el mismo comportamiento, registrando su cénit entre las <strong>17:00:00Z y las 18:00:00Z</strong>, con un pico máximo de <strong>2.85 UV</strong> (24 y 25 de septiembre).</p>
+<h3>3. Falla en Sensores</h3>
+<p>Se detectaron anomalías críticas y corrupción de datos ("glitches") asociadas a fallas de lectura o en el bus de comunicación:
+*   <strong>Sensor de Humedad:</strong> Presenta fallas recurrentes y severas. Se observan valores negativos imposibles para la humedad relativa (ej. <code>-84.99</code>, <code>-52.52</code>, <code>-427.5</code>) y un código de error constante o valor centinela de <strong><code>-999.9</code></strong>, lo que indica que el sensor se desconecta, satura o arroja errores de lectura nulos durante lapsos prolongados (especialmente visibles del 23 al 27 de septiembre).
+*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan de manera estable y coherente entre ellos (con una gradiente lógica donde el sensor 1 &gt; sensor 2 &gt; sensor 3), sin mostrar fallas de lectura abruptas en este set de datos.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
