@@ -14,24 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-27 17:58:10
+<p><strong>Última actualización:</strong> 2026-09-27 22:38:14
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado. A continuación, presento el resumen estructurado:</p>
+<p>Como analista de hardware IoT procesando el lote de datos proporcionado, aquí tienes el informe técnico resumido:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>23 de septiembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>27.62 °C</strong> en el sensor 1 a las 20:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>26 de septiembre de 2026</strong> (Registró la temperatura mínima más baja del periodo en las horas nocturnas/matutinas, descendiendo hasta los <strong>13.99 °C</strong> en el sensor 3).</li>
+<li><strong>Día más caluroso:</strong> <strong>22 y 24 de septiembre de 2026</strong> (Empatados con una temperatura máxima registrada de <strong>27.40 °C</strong> en el <code>temp_sensor1</code> a las 17:00).</li>
+<li><strong>Día más frío:</strong> <strong>24 de septiembre de 2026</strong> (Registró la temperatura mínima más baja de todo el periodo, alcanzando los <strong>13.54 °C</strong> en el <code>temp_sensor3</code> a las 13:00).</li>
 </ul>
-<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja horaria vespertina:
-*   <strong>Horario pico:</strong> Entre las <strong>17:00 y las 18:00 UTC</strong> (con un máximo absoluto registrado a las 18:00 UTC del 24 de septiembre: <em>Radiación Vis: 789.13 lm/m², Ir: 6973.61 W/m², UV: 2.85</em>).</p>
-<hr />
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de forma consistente en la franja horaria central de la tarde:
+* <strong>Ventana de radiación pico:</strong> Entre las <strong>17:00 UTC y las 18:00 UTC</strong>.
+* El valor máximo absoluto se registró el <strong>24 de septiembre a las 18:00 UTC</strong>, con picos de:
+  * Radiación IR: <code>6973.61 W/m²</code>
+  * Radiación Vis: <code>789.13 W/m²</code>
+  * Radiación UV: <code>2.85</code></p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y fallas intermitentes en la telemetría:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves de lectura, arrojando valores negativos constantes e imposibles en la física ambiental (ej. <code>-999.9%</code> y <code>-685.7%</code>). Esto indica un error de desbordamiento (overflow), desconexión física del transductor o corrupción en el firmware de conversión analógica-digital (ADC).
-*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan correctamente y muestran una correlación lógica entre ellos (el sensor 1 consistentemente más alto por exposición y el 3 más bajo), sin embargo, sirven como referencia cruzada para validar que el fallo de humedad es aislado al componente correspondiente.</p>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango que evidencian fallas en el hardware:
+* <strong>Falla en Sensor de Humedad (Lecturas Negativas / NaNs):</strong> El sensor de humedad presenta fallas intermitentes graves. Se observa la inyección de valores negativos erróneos imposibles físicamente (ej. <code>-999.9%</code>, <code>-981.26%</code>, <code>-427.5%</code>) comenzando el 22 de septiembre a las 20:00 y repitiéndose de forma sistemática durante las madrugadas y mañanas de los días siguientes. Esto apunta a un fallo en el circuito de acondicionamiento de señal del sensor o pérdida de comunicación I2C/analógica.
+* <strong>Desviación térmica entre sensores:</strong> El <code>temp_sensor1</code>, <code>temp_sensor2</code> y <code>temp_sensor3</code> muestran una jerarquía lógica constante (sensor 1 &gt; sensor 2 &gt; sensor 3), pero el <code>sensor 3</code> registra constantemente una caída de temperatura de ~1.5 °C a 2 °C respecto al sensor principal, lo que podría indicar un descalibramiento o un mal acoplamiento térmico en su ubicación física.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
