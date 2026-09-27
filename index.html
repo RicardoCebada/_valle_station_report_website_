@@ -14,24 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-26 22:14:27
+<p><strong>Última actualización:</strong> 2026-09-27 07:14:49
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de datos proporcionado y aquí tienes el diagnóstico correspondiente:</p>
-<h3>1. Día más caluroso y más frío</h3>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado. A continuación, presento el reporte técnico basado en las lecturas de los sensores:</p>
+<h3>1. Día más caluroso y día más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>22 de septiembre de 2026</strong> (registró la temperatura máxima absoluta del periodo con <strong>27.40 °C</strong> en el sensor 1 a las 17:00).</li>
-<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong> (registró la temperatura mínima absoluta con <strong>13.77 °C</strong> en el sensor 3 a las 11:00).</li>
+<li><strong>Día más caluroso:</strong> <strong>21 de septiembre de 2026</strong>. Se registró la temperatura máxima del periodo analizado a las 18:00 UTC, alcanzando un promedio de <strong>26.79 °C</strong> en el sensor principal (<code>temp_sensor1</code>) y picos de radiación infrarroja elevados.</li>
+<li><strong>Día más frío:</strong> <strong>24 de septiembre de 2026</strong> (con extensiones similares el 23). Las temperaturas más bajas se registraron en las horas matutinas (11:00 UTC), con mínimos descendiendo hasta los <strong>14.92 °C</strong> en el <code>temp_sensor1</code> y <strong>13.62 °C</strong> en el <code>temp_sensor3</code>.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (visible, infrarroja y UV) se concentran consistentemente en la franja del mediodía hacia la tarde:
-*   <strong>Radiación Visible e IR:</strong> El pico máximo se alcanza entre las <strong>17:00 y las 18:00 UTC</strong> (llegando a superar los 816 W/m² en visible y los 7,315 W/m² en infrarrojo).
-*   <strong>Radiación UV:</strong> Su valor máximo absoluto se registra a las <strong>18:00 UTC</strong> (con un pico de <strong>3.00 UV</strong>).</p>
-<h3>3. Fallas en sensores</h3>
-<p>Se detectaron anomalías críticas e intermitencias ("glitches") en los datos telemétricos:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y lecturas fuera de rango (valores negativos extremos como <code>-999.9</code> y <code>-508.2</code>). Esto indica posibles errores de lectura en el bus de datos, saturación del sensor por condensación o desconexión física intermitente.
-*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Muestran una correlación lógica y estable entre sí (el sensor 1 consistentemente más alto y el 3 más bajo debido a su ubicación física), <strong>sin fallas críticas reportadas</strong> en su escala de temperatura.
-*   <strong>Sensores de Radiación:</strong> Operan dentro de los rangos esperados (ciclos diurnos/nocturnos correctos con valores en cero o cercanos a cero durante la noche).</p>
+<p>Los niveles máximos de radiación (visible, infrarroja y UV) siguen una campana solar estándar con un desfase térmico mínimo, concentrándose consistentemente entre las <strong>17:00 UTC y las 19:00 UTC</strong>. 
+*   <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong> (del 21 y 24 de septiembre), con valores que superan los <strong>789 W/m²</strong> en radiación visible (<code>radiacion_vis</code>), más de <strong>7,315 W/m²</strong> en infrarrojo (<code>radiacion_ir</code>) y hasta <strong>3.00</strong> en índice UV (<code>radiacion_uv</code>).</p>
+<h3>3. Fallas detectadas en sensores</h3>
+<p>Se identificaron anomalías críticas e intermitencias ("valores basura" o códigos de error por hardware) en el subsistema de medición:
+*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes de lectura. Se observan valores físicamente imposibles como <strong><code>-999.9</code></strong> (código típico de desconexión o timeout del sensor) y números negativos erráticos (ej. <code>-84.99</code>, <code>-981.26</code>) de manera constante, especialmente a partir del 22 de septiembre.
+*   <strong>Sensores de Temperatura (<code>sensor1</code>, <code>sensor2</code>, <code>sensor3</code>):</strong> Funcionan de manera coherente entre ellos (guardan una correlación lógica de gradiente térmico), pero muestran un desfase sistemático donde el <code>temp_sensor3</code> lee consistentemente entre 1 °C y 1.5 °C por debajo de los otros dos, lo que sugiere un problema de calibración o una ubicación con menor exposición térmica.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
