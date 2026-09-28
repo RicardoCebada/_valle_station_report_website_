@@ -14,26 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-28 15:18:32
+<p><strong>Última actualización:</strong> 2026-09-28 20:18:56
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos de los registros de telemetría y presento los resultados a continuación:</p>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo del conjunto de registros. A continuación, presento el análisis técnico basado en las lecturas de los sensores:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>24 de septiembre de 2026</strong> (Se registró la temperatura máxima global del periodo en <code>temp_sensor1</code> con <strong>26.8°C</strong> a las 18:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>23 de septiembre de 2026</strong> (Se registró la temperatura mínima global del periodo en <code>temp_sensor3</code> con <strong>13.64°C</strong> a las 13:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>2026-09-24</strong> (Registró los picos máximos de temperatura en <code>temp_sensor1</code> alcanzando los <strong>28.52 °C</strong> en radiación UV máxima, con promedios horarios estables superiores a los 26.8 °C durante la tarde).</li>
+<li><strong>Día más frío:</strong> <strong>2026-09-23</strong> (Presentó las temperaturas mínimas globales del periodo, descendiendo en <code>temp_sensor3</code> hasta los <strong>13.64 °C</strong> durante la madrugada).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja horaria de la tarde, específicamente entre las <strong>17:00 UTC y las 19:00 UTC</strong>. 
-* <em>Ejemplo peak (24 de Septiembre):</em>
-  * Radiación VIS: 789.13 lm/m² (18:00 UTC)
-  * Radiación IR: 6973.61 W/m² (18:00 UTC)
-  * Radiación UV: 2.85 W/m² (18:00 UTC)</p>
-<h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y fallas intermitentes en la telemetría:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y lecturas fuera de rango (valores negativos fijos cercanos a <code>-999.9</code> o fluctuando erráticamente en <code>-500</code> / <code>-700</code>). Esto indica un posible fallo en el circuito de adquisición del sensor o pérdida de calibración/comunicación en el bus de datos.
-*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan correctamente con una gradiente lógica coherente (el sensor 1 más alto y el sensor 3 más bajo), sin picos de ruido extraños.
-*   <strong>Sensores de Radiación:</strong> Operan de manera estable, mostrando valores en cero o base durante la noche y curvas campana normales durante las horas solar-efectivas.</p>
+<p>Los niveles de radiación (Visible, Infrarroja y UV) muestran un comportamiento cenital estándar. Las horas críticas de mayor energía incidente se concentran en la franja del mediodía y la tarde:
+*   <strong>Radiación UV e IR:</strong> El pico máximo de radiación ocurre sistemáticamente entre las <strong>17:00:00Z y las 19:00:00Z</strong> (con valores máximos puntuales de IR de hasta <code>6973.6</code> y UV de <code>2.85</code> el día 24).
+*   <strong>Radiación Visible:</strong> Su valor más alto registrado es de <strong>789.13 lm/m²</strong> a las <strong>18:00:00Z</strong>.</p>
+<h3>3. Falla en sensores (Anomalías detectadas)</h3>
+<p>Se han detectado fallas críticas de lectura (posible corrupción de buffer, pérdida de calibración o desconexión intermitente del ADC) en los siguientes registros:
+*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes al arrojar valores negativos anómalos imposibles (como <strong><code>-999.9</code></strong>, <strong><code>-889.9</code></strong>, <strong><code>-579.3</code></strong> y <strong><code>-164.0</code></strong>). Esto indica que el sensor de humedad relativa está sufriendo un desbordamiento de búfer o un fallo físico de hardware en los pines de comunicación durante varios ciclos horarios.
+*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>2</code>, <code>3</code>):</strong> Mantienen una correlación lógica interna (el sensor 3 siempre es ligeramente más frío que el 1 y 2 por ubicación física), pero muestran pequeños <em>gaps</em> de ruido eléctrico que coinciden con los momentos de máxima saturación por radiación IR.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
