@@ -14,23 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-28 20:18:56
+<p><strong>Última actualización:</strong> 2026-09-29 07:35:50
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo del conjunto de registros. A continuación, presento el análisis técnico basado en las lecturas de los sensores:</p>
-<h3>1. Día más caluroso y más frío</h3>
+<p>Como analista de hardware IoT procesando el conjunto de datos proporcionado, aquí tienes el informe estructurado:</p>
+<h3>1. Día Más Caluroso y Más Frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>2026-09-24</strong> (Registró los picos máximos de temperatura en <code>temp_sensor1</code> alcanzando los <strong>28.52 °C</strong> en radiación UV máxima, con promedios horarios estables superiores a los 26.8 °C durante la tarde).</li>
-<li><strong>Día más frío:</strong> <strong>2026-09-23</strong> (Presentó las temperaturas mínimas globales del periodo, descendiendo en <code>temp_sensor3</code> hasta los <strong>13.64 °C</strong> durante la madrugada).</li>
+<li><strong>Día Más Caluroso:</strong> <strong>24 de septiembre de 2026</strong> (Registró las temperaturas máximas más altas, alcanzando picos de <code>27.62 °C</code> en el <code>temp_sensor1</code> durante las horas clave y promedios vespertinos elevados).</li>
+<li><strong>Día Más Frío:</strong> <strong>27 de septiembre de 2026</strong> (Las temperaturas mínimas descendieron consistentemente hasta los <code>13.54 °C</code> en los sensores secundarios/terciarios durante las madrugadas).</li>
 </ul>
-<h3>2. Horas de mayor radiación</h3>
-<p>Los niveles de radiación (Visible, Infrarroja y UV) muestran un comportamiento cenital estándar. Las horas críticas de mayor energía incidente se concentran en la franja del mediodía y la tarde:
-*   <strong>Radiación UV e IR:</strong> El pico máximo de radiación ocurre sistemáticamente entre las <strong>17:00:00Z y las 19:00:00Z</strong> (con valores máximos puntuales de IR de hasta <code>6973.6</code> y UV de <code>2.85</code> el día 24).
-*   <strong>Radiación Visible:</strong> Su valor más alto registrado es de <strong>789.13 lm/m²</strong> a las <strong>18:00:00Z</strong>.</p>
-<h3>3. Falla en sensores (Anomalías detectadas)</h3>
-<p>Se han detectado fallas críticas de lectura (posible corrupción de buffer, pérdida de calibración o desconexión intermitente del ADC) en los siguientes registros:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes al arrojar valores negativos anómalos imposibles (como <strong><code>-999.9</code></strong>, <strong><code>-889.9</code></strong>, <strong><code>-579.3</code></strong> y <strong><code>-164.0</code></strong>). Esto indica que el sensor de humedad relativa está sufriendo un desbordamiento de búfer o un fallo físico de hardware en los pines de comunicación durante varios ciclos horarios.
-*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>2</code>, <code>3</code>):</strong> Mantienen una correlación lógica interna (el sensor 3 siempre es ligeramente más frío que el 1 y 2 por ubicación física), pero muestran pequeños <em>gaps</em> de ruido eléctrico que coinciden con los momentos de máxima saturación por radiación IR.</p>
+<h3>2. Horas de Mayor Radiación</h3>
+<p>Los niveles máximos de energía solar se concentran consistentemente en la franja horaria vespertina de <strong>17:00 a 18:00 UTC</strong>, registrando los siguientes picos máximos:
+*   <strong>Radiación Infrarroja (IR):</strong> Hasta <code>6,987.78</code> unidades (25 de septiembre a las 17:00 UTC).
+*   <strong>Radiación Visible (VIS):</strong> Hasta <code>789.35</code> unidades (25 de septiembre a las 17:00 UTC).
+*   <strong>Radiación Ultravioleta (UV):</strong> Hasta <code>2.85</code> índice UV (24 y 25 de septiembre).</p>
+<h3>3. Fallas en Sensores (Anomalías Detectadas)</h3>
+<p>Se detectaron fallas críticas y lecturas erróneas (valores fuera de rango o hardcoded failures) en el <strong>sensor de humedad</strong>:
+*   <strong>Lecturas negativas anómalas:</strong> El sensor de humedad reporta frecuentemente valores imposibles como <code>-999.9</code> (código común de error/desconexión o timeout en hardware), así como caídas abruptas a <code>-944.91</code>, <code>-529.26</code> y <code>-268.26</code>.
+*   <strong>Intermitencia:</strong> Estas fallas se concentran fuertemente a partir del 24 de septiembre (madrugada/mañana), lo que sugiere un problema intermitente en el bus de comunicación (I2C/SPI) o un fallo en la etapa de alimentación del módulo de humedad ambiental.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
