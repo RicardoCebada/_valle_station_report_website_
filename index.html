@@ -14,24 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-30 07:35:54
+<p><strong>Última actualización:</strong> 2026-09-30 13:35:11
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos de telemetría ambiental (registros correspondientes al periodo evaluado). A continuación, presento el informe estructurado:</p>
-<h3>1. Día más caluroso y día más frío</h3>
+<p>Como analista de hardware IoT, he procesado el lote de datos proporcionado y aquí tienes el diagnóstico correspondiente:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>29 de septiembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo en el <code>temp_sensor1</code> alcanzando los <strong>26.99 °C</strong> a las 18:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>25 de septiembre de 2026</strong>. Se registró la temperatura mínima del periodo en el <code>temp_sensor3</code> descendiendo hasta los <strong>14.65 °C</strong> a las 12:00 UTC.</li>
+<li><strong>Día más caluroso:</strong> <strong>29 de septiembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>26.99°C</strong> en el <em>temp_sensor1</em> a las 18:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>26 de septiembre de 2026</strong> (Registró la temperatura mínima absoluta del periodo con <strong>13.88°C</strong> en el <em>temp_sensor3</em> a las 12:00 UTC).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación ocurren consistentemente en la franja horaria del mediodía solar local (<strong>entre las 17:00 y las 18:00 UTC</strong>), coincidiendo con la mayor incidencia cenital. Los valores máximos promedio registrados en esta ventana fueron:
-*   <strong>Radiación Infrarroja (IR):</strong> ~6,987.78 W/m² (Pico máximo el 25 de septiembre a las 17:00 UTC).
-*   <strong>Radiación Visible (VIS):</strong> ~789.35 W/m² (Pico máximo el 25 de septiembre a las 17:00 UTC).
-*   <strong>Radiación Ultravioleta (UV):</strong> ~2.85 índice UV (Pico máximo el 24 y 25 de septiembre).</p>
-<h3>3. Falla en sensores</h3>
-<p>El análisis de integridad de datos revela anomalías críticas y fallas intermitentes en los nodos de medición:
-*   <strong>Sensor de Humedad (Falla Crítica / Degradación):</strong> Presenta lecturas inválidas recurrentes y físicamente imposibles, como valores negativos extremos (<strong><code>-999.9</code></strong>, <strong><code>-529.26</code></strong>, <strong><code>-816.7</code></strong>) entre el 25 y el 30 de septiembre. Esto indica un <strong>cortocircuito, pérdida de calibración o fallo en el ADC (Conversor Analógico-Digital)</strong> del módulo higrométrico.
-*   <strong>Sensores de Temperatura (Desviación Térmica):</strong> Aunque operan dentro de rangos lógicos, se observa una discrepancia constante y lineal entre los tres sensores (<code>temp_sensor1</code> &gt; <code>temp_sensor2</code> &gt; <code>temp_sensor3</code>), con una diferencia aproximada de 1.5 °C a 2 °C entre el sensor 1 y el sensor 3 bajo las mismas condiciones ambientales, lo que apunta a un <strong>problema de ubicación, exposición a radiación solar directa o falta de calibración</strong> en el bus térmico.</p>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren consistentemente en la franja vespertina entre las <strong>16:00 y las 18:00 UTC</strong>, destacando el <strong>25 de septiembre a las 17:00 UTC</strong> con los valores más altos:
+*   <strong>Radiación Visible:</strong> 789.35
+*   <strong>Radiación IR:</strong> 6,987.78
+*   <strong>Radiación UV:</strong> 2.85</p>
+<h3>3. Fallas en sensores</h3>
+<p>Se detectaron anomalías críticas de hardware (posible corrupción de firmware, pérdida de calibración o fallo físico en el ADC):
+*   <strong>Sensor de Humedad:</strong> Presenta <strong>fallas recurrentes y severas</strong>, arrojando valores negativos imposibles y erróneos como <code>-999.9</code> (código típico de lectura nula o fuera de rango), además de picos anómalos como <code>-529.26</code>, <code>-725.13</code> y <code>-422.33</code> durante varios días consecutivos. Requiere reemplazo o revisión de su circuitería.
+*   <strong>Sensores de Temperatura (Sensor 1, 2 y 3):</strong> Funcionan de manera estable y coherente entre sí (con una lógica térmica descendente lógica: Sensor 1 &gt; Sensor 2 &gt; Sensor 3), <strong>sin fallas críticas reportadas</strong> en este periodo.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
