@@ -14,31 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-09-30 18:39:05
+<p><strong>Última actualización:</strong> 2026-09-30 23:16:22
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<h3>Análisis de Datos de Hardware IoT (Septiembre - Octubre 2026)</h3>
-<h4>1. Día más caluroso y más frío</h4>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado (25 de septiembre al 30 de septiembre de 2026). A continuación, presento el informe técnico:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>29 de septiembre de 2026</strong><ul>
-<li><em>Temperatura máxima registrada:</em> <strong>26.99 °C</strong> (a las 18:00 UTC en el <code>temp_sensor1</code>).</li>
+<li><strong>Día más caluroso:</strong> <strong>25 de septiembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo en el <code>temp_sensor1</code> con <strong>26.57 °C</strong> a las 18:00 UTC (con valores mantenidos por encima de los 26 °C durante gran parte de la tarde).</li>
+<li><strong>Día más frío:</strong> <strong>26 de septiembre de 2026</strong> (en cuanto a registros mínimos sostenidos) y con la temperatura más baja registrada en el <code>temp_sensor3</code> alcanzando los <strong>13.88 °C</strong> a las 12:00 UTC.</li>
 </ul>
-</li>
-<li><strong>Día más frío:</strong> <strong>26 de septiembre de 2026</strong><ul>
-<li><em>Temperatura mínima registrada:</em> <strong>13.88 °C</strong> (a las 12:00 UTC en el <code>temp_sensor3</code>).</li>
-</ul>
-</li>
-</ul>
-<h4>2. Horas de mayor radiación</h4>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren consistentemente entre las <strong>17:00 UTC y las 18:00 UTC</strong> de cada día. 
-*   <em>Pico máximo global registrado:</em> 
-    *   <strong>Radiación IR:</strong> 6,987.78 W/m² (25 de septiembre a las 17:00 UTC)
-    *   <strong>Radiación Vis:</strong> 789.35 W/m² (25 de septiembre a las 17:00 UTC)
-    *   <strong>Radiación UV:</strong> 2.85 (25 de septiembre a las 17:00 UTC)</p>
-<h4>3. Falla en sensores</h4>
-<p>Se detectaron anomalías críticas y lecturas fuera de rango que evidencian fallas en el hardware:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y constantes de calibración o lectura, arrojando valores negativos imposibles (ej. <code>-999.9%</code>, <code>-529.26%</code>, <code>-816.7%</code>) de manera intermitente durante todo el periodo analizado.
-*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Funcionan correctamente y muestran una correlación lógica entre ellos (siendo el sensor 1 el más cálido y el sensor 3 el más frío), sin lecturas negativas o erráticas extremas.</p>
+<h3>2. Horas de mayor radiación</h3>
+<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía y primeras horas de la tarde, coincidiendo con la máxima exposición solar:
+* <strong>Radiación Visible (VIS):</strong> Pico máximo de <strong>789.35</strong> a las <strong>17:00 UTC</strong> (25 de Septiembre).
+* <strong>Radiación Infrarroja (IR):</strong> Pico máximo de <strong>6,987.78</strong> a las <strong>17:00 UTC</strong> (25 de Septiembre).
+* <strong>Radiación Ultravioleta (UV):</strong> Pico máximo de <strong>2.85</strong> a las <strong>17:00 UTC</strong> (25 de Septiembre).</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectó una <strong>anomalía crítica y sistemática</strong> en el sistema de medición:
+* <strong>Sensor de Humedad:</strong> Presenta fallas graves de lectura, arrojando valores negativos constantes e imposibles para la física ambiental (ej. <strong><code>-999.9</code></strong>, así como caídas súbitas a <code>-422.3</code>, <code>-725.1</code>, etc.). Esto indica una desconexión física del transductor, un desbordamiento de búfer (overflow) en el firmware o un fallo en el canal ADC (Conversor Analógico-Digital) del nodo IoT encargado de la humedad relativa.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
