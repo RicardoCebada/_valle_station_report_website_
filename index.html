@@ -14,24 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-01 07:54:29
+<p><strong>Última actualización:</strong> 2026-10-01 14:24:46
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente a los registros del sistema. A continuación, presento el análisis estructurado:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<h3>Reporte de Diagnóstico IoT (Periodo: Septiembre - Octubre 2026)</h3>
+<p>Basado en el procesamiento de las series temporales de telemetría, presento el análisis técnico de los datos:</p>
+<h4>1. Días más caluroso y más frío</h4>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>26 de septiembre de 2026</strong> (Registró temperaturas máximas que alcanzaron los <strong>26.57 °C</strong> en el sensor 1).</li>
-<li><strong>Día más frío:</strong> <strong>1 de octubre de 2026</strong> (Registró las temperaturas mínimas más bajas del periodo, descendiendo hasta los <strong>13.88 °C</strong> en el sensor 3).</li>
+<li><strong>Día más caluroso:</strong> <strong>29 de septiembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado alcanzando los <strong>$26.99^\circ\text{C}$</strong> a las 18:00 UTC en el <code>temp_sensor1</code>.</li>
+<li><strong>Día más frío:</strong> <strong>26 de septiembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo descendiendo hasta los <strong>$13.88^\circ\text{C}$</strong> a las 12:00 UTC en el <code>temp_sensor3</code>.</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja horaria del mediodía y la tarde, siendo la hora de mayor intensidad a las <strong>17:00 UTC</strong>:
-*   <strong>Radiación Visible (vis):</strong> ~789.35 (pico máximo registrado a las 17:00 del 25 de septiembre).
-*   <strong>Radiación Infrarroja (ir):</strong> ~6,987.78 (pico máximo a las 17:00 del 25 de septiembre).
-*   <strong>Radiación UV:</strong> ~2.85 (pico máximo a las 17:00 del 25 de septiembre).</p>
-<h3>3. Fallas en Sensores Detectadas</h3>
-<p>Se identificaron anomalías críticas y valores fuera de rango ("glitches" de hardware o errores de lectura/calibración) en los siguientes componentes:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas críticas recurrentes. Se aprecian múltiples lecturas con valores negativos imposibles y erróneos (ej. <strong><code>-999.9</code></strong>, <strong><code>-58.96</code></strong>, <strong><code>-962.62</code></strong>), lo que indica un fallo en el transductor de humedad o pérdida de comunicación en el bus de datos analógicos/digitales durante las madrugadas.
-*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan de manera coherente entre sí (con variaciones lógicas de gradiente térmico), descartando fallas graves en este apartado, aunque se recomienda re-calibrar el <code>temp_sensor3</code> ya que siempre reporta ~1°C por debajo de los otros dos.</p>
+<h4>2. Horas de mayor radiación</h4>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja horaria del mediodía solar hacia la tarde:
+*   <strong>Radiación UV y IR:</strong> El pico máximo se concentra entre las <strong>17:00 UTC y las 18:00 UTC</strong> (ej. 26 de sept a las 17:00 UTC con un pico de radiación IR de $6,784.36\text{ W/m}^2$ y UV de $2.77$).
+*   <strong>Radiación Visible (Vis):</strong> Su ventana de mayor intensidad se registra entre las <strong>16:00 UTC y las 18:00 UTC</strong>, alcanzando valores máximos de hasta $775\text{ W/m}^2$.</p>
+<h4>3. Fallas en sensores (Anomalías detectadas)</h4>
+<p>Se identificaron fallas críticas en los nodos de adquisición de datos:
+*   <strong>Falla Crítica en Sensor de Humedad:</strong> El sensor presenta un fallo sistemático de hardware/calibración que arroja valores estables de <strong>$-999.9$</strong> de forma intermitente durante varios días (especialmente notables del 26 al 27 de septiembre). Esto indica saturación por desbordamiento de búfer (<em>buffer overflow</em>), desconexión física del transductor o una lectura de código de error no manejada (-999.9 es un valor centinela típico de error).
+*   <strong>Desviación Térmica:</strong> Se observa una discrepancia constante de aprox. <strong>$1.5^\circ\text{C}$ a $2.0^\circ\text{C}$</strong> entre el <code>temp_sensor1</code> (más alto) y el <code>temp_sensor3</code> (más bajo) en todas las muestras. Si bien puede deberse a la ubicación física, sugiere la necesidad de una recalibración por deriva (<em>drift</em>) en el bus térmico.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
