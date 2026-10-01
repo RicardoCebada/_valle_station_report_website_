@@ -14,26 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-01 19:06:35
+<p><strong>Última actualización:</strong> 2026-10-01 23:31:13
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado (26 de septiembre al 1 de octubre de 2026). A continuación, presento el informe técnico con los hallazgos solicitados:</p>
+<p>Como analista de hardware IoT tras procesar el bloque de datos temporal proporcionado, aquí tienes el reporte técnico:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>29 de septiembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo en el <code>temp_sensor1</code> con <strong>26.99 °C</strong> a las 18:00 UTC (y valores sostenidos por encima de 26.3 °C durante varias horas de la tarde).</li>
-<li><strong>Día más frío:</strong> <strong>26 de septiembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo en el <code>temp_sensor3</code> con <strong>13.88 °C</strong> a las 12:00 UTC (en las horas matutinas previas al calentamiento solar).</li>
+<li><strong>Día más caluroso:</strong> <strong>1 de octubre de 2026</strong> (Registró las temperaturas máximas globales del dataset, superando los $26.7^\circ\text{C}$ en múltiples sensores).</li>
+<li><strong>Día más frío:</strong> <strong>26 de septiembre de 2026</strong> (Presentó los valores mínimos más bajos, con registros matutinos cercanos a los $13.8^\circ\text{C}$).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) se concentran sistemáticamente en la franja horaria del mediodía y la tarde, específicamente <strong>entre las 17:00 UTC y las 18:00 UTC</strong>. 
-*   <em>Ejemplo crítico:</em> El <strong>1 de octubre a las 18:00 UTC</strong> se registraron los valores máximos globales de todo el dataset:
-    *   <strong>Radiación Visible:</strong> 793.21 W/m²
-    *   <strong>Radiación IR:</strong> 6851.08 W/m²
-    *   <strong>Radiación UV:</strong> 2.86 W/m²</p>
-<h3>3. Falla en sensores</h3>
-<p>El análisis de integridad de datos revela una <strong>anomalía crítica en el sensor de humedad</strong> (<code>humedad</code>):
-*   El sensor arroja constantemente valores negativos imposibles para la física ambiental (ej. <code>-999.9</code>, <code>-870.0</code>, <code>-537.8</code>). 
-*   Estos valores planos y negativos (-999.9 es típicamente un código de error de lectura o "Null" programado en firmware) indican una <strong>falla por desconexión, descalibración grave o error de I2C/analógico</strong> en el módulo de humedad relativa.
-*   Los sensores de temperatura (<code>temp_sensor1</code>, <code>2</code> y <code>3</code>) y radiación operan dentro de rangos lógicos coherentes.</p>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja vespertina entre las <strong>17:00 y las 19:00 UTC</strong>, destacando el <strong>1 de octubre a las 19:00 UTC</strong> con el pico absoluto:
+*   <strong>Radiación Visible:</strong> ~817.59 W/m²
+*   <strong>Radiación Infrarroja:</strong> ~7165.91 W/m²
+*   <strong>Radiación UV:</strong> ~3.00 Index</p>
+<h3>3. Fallas en sensores</h3>
+<p>Se detectaron anomalías críticas y corrupción de datos ("glitches") asociadas a fallas de hardware, lectura o pérdida de comunicación:
+*   <strong>Sensor de Humedad:</strong> Presenta constantes fallas críticas arrojando valores negativos imposibles y anómalos (ej. <code>-999.90</code>, <code>-870.09</code>, <code>-537.86</code>). Esto indica un posible fallo en el bus de comunicación (I2C/SPI), saturación del ADC o desconexión intermitente del pin de datos del higrómetro.
+*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Muestran una alta coherencia lógica entre ellos (gradiente térmico normal), descartando fallas en los termistores, aunque se sugiere recalibración por la deriva observada.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
