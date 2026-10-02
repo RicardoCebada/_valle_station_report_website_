@@ -14,23 +14,30 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-02 13:47:51
+<p><strong>Última actualización:</strong> 2026-10-02 18:46:12
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado (correspondiente a una ventana de muestreo entre el 26 de septiembre y el 2 de octubre de 2026). A continuación, presento el informe técnico:</p>
-<h3>1. Día más caluroso y más frío</h3>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al período simulado. A continuación, presento los resultados clave:</p>
+<h3>1. Día Más Caluroso y Más Frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>1 de octubre de 2026</strong>. Se registró la temperatura máxima del periodo, alcanzando los <strong>27.77 °C</strong> en el <code>temp_sensor1</code> a las 19:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>27 de septiembre de 2026</strong>. Se registró la temperatura mínima general del sistema, descendiendo hasta los <strong>13.98 °C</strong> en el <code>temp_sensor3</code> a las 12:00 UTC.</li>
+<li><strong>Día más caluroso:</strong> <strong>2026-09-29</strong> (registró un pico máximo de temperatura en el <code>temp_sensor1</code> de <strong>26.99 °C</strong> a las 18:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>2026-09-27</strong> (registró el valor mínimo de temperatura más bajo del periodo en el <code>temp_sensor3</code> con <strong>13.98 °C</strong> a las 12:00 UTC).</li>
 </ul>
-<h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (Visible, Infrarroja y Ultravioleta) siguen el ciclo solar habitual del dispositivo, concentrándose consistentemente en la franja del mediodía y la tarde temprana:
-*   <strong>Radiación Visible e IR:</strong> El pico máximo de intensidad se registró entre las <strong>17:00 y las 19:00 UTC</strong>, destacando el 1 de octubre a las 19:00 UTC con <strong>817.59 nits/lux</strong> (vis) y <strong>7,165.91 W/m²</strong> (IR).
-*   <strong>Radiación UV:</strong> Los valores más altos de índice UV se registraron en la misma ventana, específicamente entre las <strong>17:00 y las 20:00 UTC</strong>, alcanzando un máximo de <strong>2.99 UV</strong> el 1 de octubre a las 19:00 UTC.</p>
-<h3>3. Fallas detectadas en sensores</h3>
-<p>Se identificaron anomalías críticas asociadas con lecturas fuera de rango (posibles fallas de calibración, corrupción de trama I2C/SPI o desconexión temporal del transductor):
-*   <strong>Sensor de Humedad:</strong> Presenta <strong>fallas intermitentes masivas</strong>. Muestra constantemente valores negativos fijos e imposibles físicamente como <code>-999.9</code> (código típico de error por sensor abierto o timeout de lectura), además de otras lecturas erráticas como <code>-499.2</code> o <code>-627.6</code>.
-*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Funcionan de manera estable y coherente entre sí (con gradientes térmicos lógicos de ~1-2 °C de diferencia según su ubicación física), <strong>sin mostrar fallas críticas de lectura</strong> en este periodo.</p>
+<h3>2. Horas de Mayor Radiación</h3>
+<p>Los niveles de radiación (Visible, Infrarroja y UV) alcanzan su punto máximo coincidiendo con las horas de mayor insolación solar del día (mediodía/tarde solar):
+*   <strong>Franja horaria crítica:</strong> Entre las <strong>17:00 UTC y las 19:00 UTC</strong>.
+*   <strong>Pico máximo registrado:</strong> El <strong>2026-10-01 a las 19:00 UTC</strong>, alcanzando:
+    *   Radiación Visible: <code>817.59</code>
+    *   Radiación IR: <code>7165.91</code>
+    *   Radiación UV: <code>2.99</code></p>
+<h3>3. Diagnóstico de Fallas en Sensores</h3>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango en las métricas reportadas:</p>
+<ul>
+<li><strong>Falla en Sensor de Humedad (Lecturas fantasma / Overflow):</strong> 
+    El sensor de humedad presenta constantes fallas de calibración o lecturas erróneas severas, arrojando valores negativos imposibles para la física ambiental (ej. <code>-999.9</code>, <code>-961.9</code>, <code>-816.7</code>). Esto apunta a un posible problema de <em>timeout</em> en el bus de comunicación, un valor por defecto (fallback) por pérdida de I2C/SPI o degradación del elemento capacitivo del sensor.</li>
+<li><strong>Estabilidad en Sensores de Temperatura y Radiación:</strong> 
+    Los sensores de temperatura (<code>temp_sensor1</code>, <code>2</code> y <code>3</code>) y los piranómetros/radiómetros muestran una progresión lógica y coherente día a día, sin saltos abruptos o datos congelados, descartando fallas en estos circuitos durante el periodo analizado.</li>
+</ul>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
