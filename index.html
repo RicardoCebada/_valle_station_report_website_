@@ -14,22 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-03 17:40:16
+<p><strong>Última actualización:</strong> 2026-10-03 22:29:24
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo analizado (28 de septiembre al 3 de octubre de 2026 dentro de los datos proporcionados). A continuación, presento el informe técnico:</p>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado y aquí tienes el diagnóstico correspondiente:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>1 de octubre de 2026</strong>, registrando una temperatura máxima pico de <strong>26.99 °C</strong> a las 19:00 UTC (con un promedio general elevado durante toda la tarde).</li>
-<li><strong>Día más frío:</strong> <strong>3 de octubre de 2026</strong>, con una temperatura mínima que descendió hasta los <strong>14.39 °C</strong> a las 10:00 UTC en el sensor de referencia.</li>
+<li><strong>Día más caluroso:</strong> <strong>1 de octubre de 2026</strong>. Se registró la temperatura máxima del periodo en el sensor principal con <strong>26.77 °C</strong> (a las 19:00 UTC), manteniendo un promedio general elevado durante toda la tarde.</li>
+<li><strong>Día más frío:</strong> <strong>3 de octubre de 2026</strong>. Las temperaturas descendieron significativamente, alcanzando un mínimo en el sensor 3 de <strong>14.39 °C</strong> (a las 10:00 UTC) y promedios matutinos muy bajos.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren consistentemente en la franja horaria del mediodía solar y la tarde, específicamente entre las <strong>17:00 y las 19:00 UTC</strong>. 
-* <em>Pico máximo registrado:</em> <strong>1 de octubre a las 19:00 UTC</strong> con una radiación visible de <code>817.59</code>, radiación IR de <code>7165.91</code> y radiación UV de <code>2.99</code>.</p>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente en la franja vespertina:
+*   <strong>Radiación Visible e IR:</strong> El pico máximo se registra entre las <strong>17:00 y las 19:00 UTC</strong> (destacando el 1 de octubre a las 19:00 UTC con más de 817 W/m² en visible y 7,165 W/m² en IR).
+*   <strong>Radiación UV:</strong> Alcanza su nivel más alto en la misma ventana horaria, entre las <strong>18:00 y las 19:00 UTC</strong>, registrando un valor máximo de <strong>2.99 UV</strong> el 1 de octubre.</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y fallas intermitentes en los componentes de medición:
-* <strong>Sensor de Humedad:</strong> Presenta una falla masiva de calibración o lectura errónea, arrojando constantemente valores atípicos negativos imposibles (frecuentemente <code>-999.9%</code>), lo que indica un desbordamiento de búfer, pérdida de comunicación con el transductor o un pin analógico en corto durante largos periodos.
-* <strong>Sensores de Temperatura (1, 2 y 3):</strong> Aunque operan dentro de rangos lógicos, se aprecian ligeros desvíos térmicos constantes entre ellos (el <em>Sensor 1</em> suele marcar ~0.5°C a 1°C por encima del <em>Sensor 3</em>), sugiriendo una degradación térmica o falta de calibración en campo.</p>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango que evidencian fallas de hardware en el sistema:
+*   <strong>Sensor de Humedad:</strong> Presenta una <strong>falla masiva y recurrente</strong> (probable error de calibración, corrupción de trama o desconexión del ADC/bus I2C). Se registran valores imposibles y constantes de <strong><code>-999.9</code></strong> durante la mayor parte del día, además de picos negativos abruptos (ej. <code>-942</code> o <code>-505</code>), lo que indica que el sensor está defectuoso o enviando códigos de error de fábrica (<code>NULL</code> / buffer overflow).
+*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Aunque operan dentro de rangos lógicos, muestran una desviación térmica constante y jerárquica (Sensor 1 &gt; Sensor 2 &gt; Sensor 3), lo que podría indicar un problema de ubicación o degradación en la pasta térmica de los transductores secundarios.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
