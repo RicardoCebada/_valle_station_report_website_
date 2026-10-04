@@ -14,22 +14,25 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-04 07:30:26
+<p><strong>Última actualización:</strong> 2026-10-04 13:09:06
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT procesando el lote de datos proporcionado, aquí tienes el resumen técnico:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Como analista de hardware IoT procesando el dataset de los sensores ambientales (del 28 de septiembre al 4 de octubre de 2026), aquí tienes el informe detallado:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>1 de octubre de 2026</strong> (Registró las temperaturas máximas sostenidas en los sensores, alcanzando un pico de <strong>26.77 °C</strong> en el sensor 1 a las 19:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>3 de octubre de 2026</strong> (Las temperaturas descendieron consistentemente, registrando mínimos de hasta <strong>14.39 °C</strong> en el sensor 3).</li>
+<li><strong>Día más caluroso:</strong> <strong>1 de octubre de 2026</strong>. Se registró la temperatura máxima del periodo en el sensor principal (<code>temp_sensor1</code>) alcanzando los <strong>26.77 °C</strong> a las 19:00 UTC (con valores mantenidos por encima de los 26 °C durante gran parte de la tarde).</li>
+<li><strong>Día más frío:</strong> <strong>3 de octubre de 2026</strong>. Los registros térmicos descendieron notablemente, marcando la temperatura mínima del periodo en el <code>temp_sensor3</code> con <strong>14.39 °C</strong> a las 10:00 UTC.</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los niveles máximos de energía solar (Visible, Infrarroja y UV) se concentran invariablemente en la franja vespertina, específicamente entre las <strong>17:00 y las 19:00 UTC</strong>. 
-*   <em>Pico máximo registrado:</em> <strong>1 de octubre a las 19:00 UTC</strong> con una radiación visible de <code>817.59</code>, radiación IR de <code>7165.91</code> y radiación UV de <code>2.99</code>.</p>
-<h3>3. Falla en Sensores</h3>
-<p>Se detectaron anomalías críticas consistentes con fallas de hardware y lecturas fuera de rango (<em>outliers</em>):
-*   <strong>Sensor de Humedad:</strong> Presenta una falla sistemática recurrente. Arroja valores negativos absurdos (principalmente <code>-999.9</code> o caídas repentinas a <code>-537</code>, <code>-853</code>, etc.), lo que indica un <strong>cortocircuito, pérdida de calibración o fallo en el bus de comunicación</strong> del sensor higrométrico.
-*   <strong>Sensores de Temperatura (Sensor 1, 2 y 3):</strong> Funcionan correctamente entre sí (mantienen una lógica térmica coherente donde el sensor 1 es más cálido y el 3 más frío), pero muestran picos térmicos atípicos en horas nocturnas (ej. 28 de septiembre a las 21:00 UTC), sugiriendo posibles <strong>interferencias electromagnéticas (EMI)</strong> en el cableado o exposición directa a fuentes de calor residuales del gabinete del dispositivo IoT.</p>
+<h3>2. Horas de mayor radiación</h3>
+<p>Los picos máximos de radiación (visible, infrarroja y ultravioleta) se concentran consistentemente en la franja vespertina del hemisferio o zona horaria registrada, específicamente <strong>entre las 17:00 y las 19:00 UTC</strong>. 
+*   <em>Pico máximo absoluto:</em> Ocurrió el <strong>1 de octubre a las 19:00 UTC</strong>, registrando:
+    *   Radiación Vis: <code>817.59</code>
+    *   Radiación IR: <code>7165.91</code>
+    *   Radiación UV: <code>2.99</code></p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas y fallas intermitentes en la telemetría:
+*   <strong>Falla en el sensor de humedad:</strong> El campo <code>"humedad"</code> presenta fallas de lectura masivas, reportando valores negativos constantes e irreales como <code>-999.9</code> (código típico de sensor desconectado, timeout o error de lectura I2C/analógica) y otras caídas abruptas a <code>-537.8</code> o <code>-850.8</code>. Solo funciona de manera estable en momentos puntuales de alta temperatura (ej. tardes del 29 de septiembre y 1 de octubre).
+*   <strong>Desviación térmica:</strong> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) muestran una jerarquía consistente pero con una diferencia fija de ~1 °C entre el sensor 1 y el sensor 3, lo que sugiere que podrían requerir una calibración por deriva en campo.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
