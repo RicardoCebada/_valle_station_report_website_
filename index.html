@@ -14,26 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-09 23:38:38
+<p><strong>Última actualización:</strong> 2026-10-10 07:49:10
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado los datos de telemetría recopilados. A continuación, presento el informe con los hallazgos clave:</p>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado (muestra representativa del periodo de 2 meses). A continuación, presento el diagnóstico técnico:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>07 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>25.70 °C</strong> en el sensor principal a las 17:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>05 de octubre de 2026</strong> (Registró la temperatura mínima más baja del dataset, descendiendo hasta los <strong>13.34 °C</strong> en el <code>temp_sensor3</code> a las 10:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>07 de octubre de 2026</strong>. Se registró la temperatura máxima global del periodo en el sensor 1, alcanzando los <strong>25.7 °C</strong> a las 17:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>05 de octubre de 2026</strong>. Se registró la temperatura mínima global del periodo en el sensor 3, descendiendo hasta los <strong>13.3 °C</strong> a las 10:00 UTC.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de forma consistente en la franja vespertina:
-* <strong>Ventana de mayor radiación:</strong> Entre las <strong>16:00 UTC y las 18:00 UTC</strong>.
-* <strong>Pico máximo:</strong> Registrado el <strong>07 de octubre a las 17:00 UTC</strong>, alcanzando los valores más altos de energía:
-  * Radiación Infrarroja (IR): <strong>5,690.61 W/m²</strong>
-  * Radiación Visible (VIS): <strong>690.96 W/m²</strong>
-  * Radiación UV: <strong>2.32 índice UV</strong></p>
-<h3>3. Fallas en sensores</h3>
-<p>El análisis de integridad de datos evidencia anomalías críticas en el hardware:
-* <strong>Falla en el sensor de Humedad:</strong> Presenta fallas recurrentes de lectura (posible corto circuito o desconexión del ADC), arrojando valores atípicos y físicamente imposibles como <strong><code>-999.9</code></strong> de forma intermitente a lo largo de todo el registro. Asimismo, muestra caídas abruptas a números negativos extremos (ej. <code>-416.25</code>, <code>-963.24</code>).
-* <strong>Estabilidad térmica:</strong> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) operan correctamente y muestran una correlación lógica entre ellos (con una diferencia promedio de ~1 °C entre niveles), descartando fallas en la red de termistores.</p>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente en la franja vespertina:
+*   <strong>Radiación UV máxima:</strong> Entre las <strong>17:00 y las 18:00 UTC</strong>, alcanzando picos de hasta <strong>2.32 mW/cm²</strong>.
+*   <strong>Radiación IR y Visible:</strong> Máximos absolutos registrados a las <strong>17:00 UTC</strong> (con valores de IR superiores a <strong>5,690 W/m²</strong> y Visibles cercanos a <strong>691 W/m²</strong>).</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas e intermitencias en la telemetría que apuntan a fallas de hardware:
+*   <strong>Sensor de Humedad (Falla Crítica / Fuera de Rango):</strong> Presenta fallas recurrentes de lectura enviando el código de error <code>-999.9</code> (y variantes negativas extremas como <code>-451.17</code>, <code>-743.3</code> o <code>-962.6</code>) durante horarios nocturnos y matutinos. Esto indica un <strong>cortocircuito, pérdida de alimentación o saturación por condensación/rocío</strong> en el transductor de humedad.
+*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan correctamente y muestran una correlación térmica lógica (Sensor 1 &gt; Sensor 2 &gt; Sensor 3 según su ubicación física), sin datos congelados ni valores fuera de escala física.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
