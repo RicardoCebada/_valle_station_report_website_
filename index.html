@@ -14,25 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-12 08:10:40
+<p><strong>Última actualización:</strong> 2026-10-12 16:40:51
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de datos correspondiente al periodo (6 de octubre al 12 de octubre de 2026 dentro del registro provisto). A continuación, presento el análisis estructurado:</p>
+<p>Aquí tienes el análisis de los datos de los sensores IoT procesados:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>11 de octubre de 2026</strong>. Se registraron los picos máximos de temperatura en todos los sensores, alcanzando hasta <strong>25.97 °C</strong> en el <code>temp_sensor1</code> a las 19:00 UTC y valores sostenidos por encima de los 25 °C durante gran parte de la tarde.</li>
-<li><strong>Día más frío:</strong> <strong>11 de octubre de 2026 (madrugada/mañana)</strong> / <strong>9 de octubre</strong>. Si bien el día 11 tuvo picos altos, sus horas matutinas experimentaron las temperaturas mínimas absolutas más bajas de toda la serie, descendiendo hasta los <strong>12.96 °C</strong> en el <code>temp_sensor3</code> a las 12:00 UTC.</li>
+<li><strong>Día más caluroso:</strong> <strong>11 de octubre de 2026</strong> (Registró la temperatura máxima general del periodo con <strong>25.97 °C</strong> en el sensor 1 a las 19:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>11 de octubre de 2026</strong> (También registró la temperatura mínima general con <strong>12.96 °C</strong> en el sensor 3 a las 12:00 UTC, lo que muestra una alta oscilación térmica).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja horaria vespertina, específicamente <strong>entre las 17:00 y las 19:00 UTC</strong>. 
-* El pico máximo global ocurrió el <strong>11 de octubre a las 19:00 UTC</strong>, registrando:
-  * <strong>Radiación VIS:</strong> 815.39 lm/m² (aprox.)
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) se concentran sistemáticamente en la franja vespertina, entre las <strong>17:00 UTC y las 19:00 UTC</strong> (coordinado con el cénit solar local).
+* <em>Pico máximo registrado:</em> A las <strong>19:00 UTC</strong> del 11 de octubre, alcanzando:
   * <strong>Radiación IR:</strong> 7,183.27 W/m²
-  * <strong>Radiación UV:</strong> 2.98 índice UV</p>
+  * <strong>Radiación VIS:</strong> 815.39 W/m²
+  * <strong>Radiación UV:</strong> 2.98 W/m²</p>
 <h3>3. Fallas en sensores</h3>
-<p>Se detectaron anomalías críticas y comportamientos erráticos en la telemetría que apuntan a fallas de hardware:
-* <strong>Sensor de Humedad (<code>humedad</code>):</strong> Presenta una <strong>falla masiva y recurrente</strong> caracterizada por valores negativos absurdos, principalmente <code>-999.9</code> (código estándar de lectura nula o error de bus I2C/ADC) y otras caídas anómalas como <code>-488.1</code>, <code>-870.3</code> y <code>-734.7</code>. Esto indica un fallo intermitente en el sensor de humedad relativa o en su circuitería de alimentación.
-* <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Funcionan de manera coherente entre sí (manteniendo el gradiente térmico lógico donde el sensor 1 &gt; sensor 2 &gt; sensor 3), <strong>sin fallas críticas de lectura</strong>, descartando cortos en las termoresistencias o termistores analizados.</p>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango en el <strong>sensor de humedad</strong>:
+* <strong>Lecturas de error (-999.9):</strong> El sensor de humedad presenta múltiples fallas donde emite un valor constante de <code>-999.9</code> (código típico de desconexión, timeout o fallo de lectura I2C/SPI), especialmente predominante durante las madrugadas y mañanas de los días 7 al 12 de octubre.
+* <strong>Valores negativos anómalos:</strong> En varios momentos (ej. 7 de octubre a las 07:00, 08:00 y 23:00 UTC; 11 y 12 de octubre), la humedad arroja cifras negativas aleatorias (como <code>-453.73</code>, <code>-870.34</code> o <code>-701.99</code>), lo que indica un <strong>fallo de calibración o corrupción en el conversor analógico-digital (ADC)</strong> del módulo higrométrico.
+* Los sensores de temperatura (1, 2 y 3) y radiación operan dentro de parámetros lógicos y estables.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
