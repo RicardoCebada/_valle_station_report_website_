@@ -14,22 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-12 21:54:28
+<p><strong>Última actualización:</strong> 2026-10-13 08:36:38
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de datos proporcionado. A continuación, presento el reporte técnico correspondiente:</p>
+<p>Como analista de hardware IoT, he procesado el lote de datos proporcionado y aquí tienes el diagnóstico correspondiente:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>12 de octubre de 2026</strong> (Registró los picos máximos de temperatura, superando los $26.0°C$ en múltiples sensores durante la tarde).</li>
-<li><strong>Día más frío:</strong> <strong>7 de octubre de 2026</strong> (Presentó las temperaturas mínimas registradas en el periodo, descendiendo hasta los $13.5°C$ en las mediciones del sensor 3).</li>
+<li><strong>Día más caluroso:</strong> <strong>11 de octubre de 2026</strong>. Se registró la temperatura máxima del periodo con <strong>25.97 °C</strong> en el sensor principal a las 19:00 UTC (y máximas sostenidas por encima de los 25 °C durante gran parte de la tarde).</li>
+<li><strong>Día más frío:</strong> <strong>11 de octubre de 2026</strong> (en su ciclo matutino) / <strong>12 de octubre de 2026</strong>. Las temperaturas mínimas absolutas descendieron hasta los <strong>13.03 °C</strong> registrados por el sensor 3 durante las primeras horas del día 11.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (visible, infrarroja y UV) se concentran invariablemente en la franja horaria vespertina de <strong>17:00 UTC a 19:00 UTC</strong>, destacando especialmente las <strong>17:00 UTC y 19:00 UTC</strong> como los momentos de mayor incidencia energética solar.</p>
-<h3>3. Diagnóstico de fallas en sensores</h3>
-<ul>
-<li><strong>Sensor de Humedad:</strong> Se detecta una <strong>falla crítica o desconexión</strong> intermitente. El sensor arroja lecturas anómalas recurrentes con valores negativos extremos (ej. <code>-999.9</code> y <code>-453.7</code>), lo cual indica un código de error de hardware por desbordamiento de búfer o pérdida de calibración del transductor.</li>
-<li><strong>Sensores de Temperatura (1, 2 y 3):</strong> Operan de manera estable y coherente entre sí, manteniendo una lógica térmica descendente acorde a su jerarquía física, sin mostrar valores atípicos.</li>
-</ul>
+<p>Los picos máximos de radiación (tanto visible como infrarroja y ultravioleta) se concentran consistentemente en la franja horaria de la tarde:
+*   <strong>Radiación VIS, IR y UV:</strong> El pico máximo de energía solar se registró entre las <strong>17:00 UTC y las 19:00 UTC</strong> (destacando el 11 de octubre a las 19:00 UTC con un récord de radiación IR de 7,183.27 y UV de 2.98).</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango que evidencian fallas en el hardware:
+*   <strong>Sensor de Humedad:</strong> Presenta una <strong>falla masiva y sistemática</strong>. En múltiples registros (especialmente durante las madrugadas y mañanas de los días 8, 9, 10, 11 y 13 de octubre), arroja valores absurdos y negativos como <strong><code>-999.9</code></strong>, además de picos erráticos de <code>-776.25</code>, <code>-813.54</code> y <code>-572.42</code>. Esto indica un cortocircuito, desconexión del pin analógico/digital o un desbordamiento de búfer en el firmware del sensor de humedad.
+*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan correctamente y muestran una correlación lógica entre ellos (el sensor 3 siempre marca ligeramente menos por ubicación física), sin embargo, requieren calibración ya que operan en un rango muy estrecho.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
