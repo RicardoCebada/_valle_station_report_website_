@@ -14,21 +14,25 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-15 17:55:24
+<p><strong>Última actualización:</strong> 2026-10-15 22:44:19
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Aquí tienes el análisis de los datos del hardware IoT:</p>
+<p>Como analista de hardware IoT, he procesado el lote de datos correspondiente al periodo analizado. A continuación, presento el informe técnico con los hallazgos solicitados:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>13 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>27.32 °C</strong> en el sensor 1 a las 17:00).</li>
-<li><strong>Día más frío:</strong> <strong>11 de octubre de 2026</strong> (Registró la temperatura mínima absoluta del periodo con <strong>13.03 °C</strong> en el sensor 3 a las 11:00).</li>
+<li><strong>Día más caluroso:</strong> <strong>13 de octubre de 2026</strong> (Se registraron las temperaturas máximas pico más altas en los sensores, alcanzando hasta <code>27.32 °C</code> en el sensor 1).</li>
+<li><strong>Día más frío:</strong> <strong>11 de octubre de 2026</strong> (Se registraron los valores mínimos más bajos del periodo en las horas matutinas, descendiendo hasta <code>13.03 °C</code> en el sensor 3).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren consistentemente en la franja vespertina entre las <strong>17:00 y las 19:00 UTC</strong>, alcanzando su punto culmine a las <strong>19:00 UTC</strong> (con valores que superan los 815 W/m² en luz visible y los 7,214 W/m² en radiación IR).</p>
-<h3>3. Fallas en sensores</h3>
-<p>Se detectaron anomalías críticas asociadas a fallas de lectura o desbordamiento de búfer en los datos:
-* <strong>Sensor de Humedad:</strong> Presenta múltiples lecturas con el valor anómalo y constante de <strong><code>-999.9</code></strong> (así como valores negativos erróneos como <code>-250.07</code>, <code>-572.42</code>, <code>-835.06</code>, etc.), lo que indica un fallo intermitente o pérdida de comunicación en el circuito del higrómetro.
-* <strong>Sensores de Temperatura (1, 2 y 3):</strong> Aunque operan dentro de rangos lógicos, se observa una deriva sistemática donde el <em>Sensor 3</em> marca constantemente entre 1 °C y 2 °C por debajo del <em>Sensor 1</em>, lo que sugiere un posible descalibramiento o mala ubicación térmica del hardware.</p>
+<p>Los niveles máximos de radiación (visible, infrarroja y ultravioleta) se concentran consistentemente en la franja horaria vespertina:
+*   <strong>Pico principal:</strong> Entre las <strong>17:00:00Z y las 19:00:00Z</strong>.
+*   <em>Valores máximos observados:</em> 
+    *   Radiación IR superior a <code>7,214 W/m²</code> (aprox. 19:00Z).
+    *   Radiación UV superior a <code>2.98 Índices UV</code>.</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas y corrupción de datos ("glitches") en el bus de telemetría y lecturas de los transductores:
+*   <strong>Sensor de Humedad (Falla Crítica / Fuera de Rango):</strong> Presenta fallas recurrentes de lectura con valores imposibles fijos en <strong><code>-999.9</code></strong>, además de caídas repentinas a valores negativos extremos (ej. <code>-250.0</code>, <code>-572.4</code>, <code>-981.2</code>). Esto indica un error de desbordamiento de búfer (<em>buffer overflow</em>), pérdida de calibración del ADC o desconexión intermitente del sensor higrométrico.
+*   <strong>Estabilidad Térmica:</strong> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) operan de manera coherente entre sí (con gradientes lógicos de 1 a 2 grados de diferencia), descartando fallas físicas en los mismos, aunque dependen de la correcta alimentación del nodo principal.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
