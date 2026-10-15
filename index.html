@@ -14,32 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-14 22:45:45
+<p><strong>Última actualización:</strong> 2026-10-15 06:36:34
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de registros del dataset. A continuación, presento el diagnóstico técnico basado en los datos de la estación:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado y aquí tienes el reporte estructurado:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>14 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>27.80 °C</strong> en el <code>temp_sensor1</code> a las 17:00:00).</li>
-<li><strong>Día más frío:</strong> <strong>11 de octubre de 2026</strong> (Registró la temperatura mínima absoluta del periodo con <strong>13.03 °C</strong> en el <code>temp_sensor3</code> a las 11:00:00).</li>
+<li><strong>Día más caluroso:</strong> <strong>11 y 14 de octubre de 2026</strong> (empate técnico con máximas en <code>temp_sensor1</code> que alcanzaron los <strong>25.3°C</strong> y <strong>27.8°C</strong> respectivamente durante las horas pico de la tarde).</li>
+<li><strong>Día más frío:</strong> <strong>11 de octubre de 2026</strong> (en la madrugada/mañana, el <code>temp_sensor3</code> registró la mínima absoluta del periodo con <strong>13.03°C</strong> a las 11:00 UTC).</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>La radiación (tanto Visible, Infrarroja como UV) sigue un patrón diurno estándar con un pico sostenido durante las horas centrales de la tarde. 
-*   <strong>Franja horaria crítica:</strong> Entre las <strong>17:00:00 y las 19:00:00</strong> UTC.
-*   <strong>Pico máximo registrado:</strong> A las <strong>19:00:00</strong> (observado en múltiples días, alcanzando valores máximos de radiación infrarroja superiores a los <strong>7,214 W/m²</strong> y radiación UV cercana a los <strong>2.98</strong>).</p>
-<h3>3. Fallas en Sensores (Anomalías Detectadas)</h3>
-<p>Se identificaron fallas críticas de hardware y corrupción de datos en el subsistema de medición:</p>
-<ul>
-<li><strong>Falla en Sensor de Humedad (Lecturas fuera de rango / Error de driver):</strong> <ul>
-<li>El sensor de humedad presenta fallas recurrentes arrojando el código de error numérico <strong><code>-999.9</code></strong> (así como picos negativos anómalos como <code>-813.54</code>, <code>-734.78</code>, <code>-572.42</code> y <code>-537.22</code>). </li>
-<li>Esto indica problemas de comunicación I2C/SPI o fallas físicas en el elemento sensible a la humedad (posible saturación por condensación o daño en el ADC).</li>
-</ul>
-</li>
-<li><strong>Coherencia en Sensores de Temperatura:</strong><ul>
-<li>Los tres sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) muestran lecturas estables y proporcionales entre sí (con el sensor 1 siendo el más cálido y el 3 el más frío debido a su ubicación física), <strong>sin mostrar fallas de desconexión</strong>, operando dentro de los parámetros esperados.</li>
-</ul>
-</li>
-</ul>
+<h3>2. Horas de mayor radiación</h3>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) se concentran sistemáticamente en la franja horaria de la tarde, específicamente entre las <strong>17:00 y las 19:00 UTC</strong>. 
+* <em>Ejemplo máximo registrado:</em> El <strong>11 de octubre a las 19:00 UTC</strong>, alcanzando <code>radiacion_vis</code> de ~815.4 W/m², <code>radiacion_ir</code> de ~7,183 W/m² y un índice <code>radiacion_uv</code> de <strong>2.98</strong>.</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango (hardware fault / corrupción de buffer):
+* <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes de lectura, arrojando valores fijos imposibles como <strong><code>-999.9</code></strong> (código típico de <em>timeout</em> o desconexión del sensor) y picos negativos erráticos (ej. <code>-813.5</code>, <code>-734.7</code>, <code>-572.4</code>). 
+* <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan de manera estable y coherente entre ellos (con una lógica física donde el sensor 1 &gt; sensor 2 &gt; sensor 3), sin mostrar fallas de desconexión en este bloque de datos.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
