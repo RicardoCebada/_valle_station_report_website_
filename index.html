@@ -14,25 +14,25 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-17 16:42:53
+<p><strong>Última actualización:</strong> 2026-10-17 21:48:52
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT procesando este periodo de datos, aquí tienes el informe técnico basado en las lecturas de los sensores:</p>
+<p>Como analista de hardware IoT, he procesado el lote de registros del sistema meteorológico. A continuación, presento el reporte técnico:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>13 de octubre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>27.32 °C</strong> en el <code>temp_sensor1</code> a las 17:00 UTC (con máximas sostenidas por encima de los 27 °C durante varias horas de la tarde).</li>
-<li><strong>Día más frío:</strong> <strong>13 de octubre de 2026</strong> (en su ciclo matutino) / <strong>16 de octubre</strong>. El registro más bajo se obtuvo el día 13 a las 13:00 UTC con <strong>13.41 °C</strong> en el <code>temp_sensor3</code> (y valles similares de ~13.6°C el día 15), reflejando una alta amplitud térmica en esas jornadas.</li>
+<li><strong>Día más caluroso:</strong> <strong>17 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo analizado, alcanzando <strong>27.97 °C</strong> en el sensor 1 a las 17:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>13 de octubre de 2026</strong> (Registró la temperatura mínima más baja del periodo, descendiendo hasta <strong>13.41 °C</strong> en el sensor 3 durante la madrugada).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja central del día, específicamente <strong>entre las 17:00 y las 19:00 UTC</strong>. 
-*   <strong>Pico máximo registrado:</strong> A las <strong>19:00 UTC del 13 de octubre</strong>, con valores extremos de:
-    *   Radiación IR: <code>7214.50 W/m²</code>
-    *   Radiación Vis: <code>811.52 W/m²</code>
-    *   Radiación UV: <code>2.98</code></p>
-<h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y fallas intermitentes en la telemetría:
-*   <strong>Sensor de Humedad:</strong> Presenta <strong>fallas críticas de lectura (valores negativos imposibles)</strong>. Se registran constantes caídas a <code>-999.9</code> (código típico de búfer vacío, timeout o desconexión del sensor) y otros valores negativos erróneos como <code>-827.49</code>, <code>-698.07</code> o <code>-537.22</code>. Esto indica un fallo en el hardware del sensor de humedad o problemas en el bus de comunicación I2C/SPI.
-*   <strong>Desviación térmica:</strong> El <code>temp_sensor3</code> muestra consistentemente lecturas entre 1 °C y 1.5 °C por debajo del <code>temp_sensor1</code>. Aunque esto podría deberse a la ubicación física del sensor (sombra vs. exposición), requiere una <strong>recalibración por deriva térmica</strong>.</p>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la ventana de <strong>17:00 a 19:00 UTC</strong> (mediodía solar local). 
+*   <em>Ejemplo crítico:</em> El 13 de octubre a las <strong>19:00 UTC</strong> se registraron los valores máximos históricos del set de datos:
+    *   Radiación IR: <strong>7,214.5 W/m²</strong>
+    *   Radiación Vis: <strong>811.5 W/m²</strong>
+    *   Radiación UV: <strong>2.98 W/m²</strong></p>
+<h3>3. Diagnóstico de fallas en sensores (Anomalías detectadas)</h3>
+<p>Se identificaron fallas críticas de hardware y corrupción de datos en la telemetría:
+*   <strong>Falla en el Sensor de Humedad (Lecturas fuera de rango / NaN lógicos):</strong> El canal de humedad presenta múltiples fallas intermitentes donde arroja valores físicamente imposibles como <code>-999.9</code> (código típico de búfer vacío o sensor desconectado) y valores negativos erráticos (<code>-31.7</code>, <code>-537.2</code>, <code>-869.4</code>). Esto indica un problema en el bus de comunicación (posiblemente I2C/SPI) o degradación del elemento sensitivo del higrómetro.
+*   <strong>Deriva térmica (<code>temp_sensor1</code> vs <code>temp_sensor3</code>):</strong> Se observa un desfase constante de ~2 °C entre el sensor 1 y el sensor 3. Aunque siguen la misma tendencia, el sensor 3 muestra una atenuación que podría deberse a un mal acoplamiento térmico en la tornillería del encapsulado o degradación de la pasta térmica.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
