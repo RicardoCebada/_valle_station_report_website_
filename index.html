@@ -14,32 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-18 16:59:27
+<p><strong>Última actualización:</strong> 2026-10-18 21:59:21
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado (que abarca del 13 al 18 de octubre de 2026). A continuación, presento el resumen técnico:</p>
+<p>Como analista de hardware IoT, he procesado los datos provistos (correspondientes a una ventana operativa entre el 13 y el 18 de octubre de 2026). A continuación, presento los hallazgos clave:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>17 de octubre de 2026</strong><ul>
-<li><em>Temperatura máxima registrada:</em> <strong>27.97 °C</strong> (alcanzada a las 17:00 UTC en el <code>temp_sensor1</code>).</li>
-</ul>
-</li>
-<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong><ul>
-<li><em>Temperatura mínima registrada:</em> <strong>12.67 °C</strong> (alcanzada a las 12:00 UTC en el <code>temp_sensor3</code>).</li>
-</ul>
-</li>
+<li><strong>Día más caluroso:</strong> <strong>14 de octubre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>27.81 °C</strong> en el <code>temp_sensor1</code> a las 17:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong>. Se registró la temperatura mínima absoluta de todo el conjunto de datos, descendiendo hasta los <strong>12.67 °C</strong> en el <code>temp_sensor3</code> a las 12:00 UTC.</li>
 </ul>
 <hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos de radiación ocurren consistentemente en la franja vespertina del horario solar local, centrados entre las <strong>17:00 y las 19:00 UTC</strong>. Durante estas horas se registran los valores máximos para las tres variables de radiación:
-*   <strong>Radiación Visible (vis):</strong> Hasta <code>811.52 W/m²</code>
-*   <strong>Radiación Infrarroja (ir):</strong> Hasta <code>7,214.50 W/m²</code>
-*   <strong>Radiación Ultravioleta (uv):</strong> Hasta <code>2.98 Índice UV</code></p>
+<p>Los picos máximos de radiación (visible, infrarroja y ultravioleta) se concentran consistentemente en la franja vespertina:
+* <strong>Radiación Visible (VIS):</strong> Pico máximo entre las <strong>18:00 y las 19:00 UTC</strong> (valores superiores a <strong>811 W/m²</strong>).
+* <strong>Radiación Infrarroja (IR):</strong> Pico máximo a las <strong>19:00 UTC</strong> (llegando hasta los <strong>7,214.5 W/m²</strong>).
+* <strong>Radiación Ultravioleta (UV):</strong> Pico máximo a las <strong>19:00 UTC</strong> (alcanzando los <strong>2.98 índice UV</strong>).</p>
 <hr />
 <h3>3. Falla en sensores</h3>
-<p>Se han detectado anomalías críticas y comportamientos erráticos en el hardware de adquisición de datos:
-*   <strong>Falla Crítica en Sensor de Humedad (Lecturas bajo cero/inválidas):</strong> El sensor de humedad presenta fallas recurrentes de calibración o lecturas de error de tipo <em>hard-fault</em>, arrojando valores anómalos constantes como <code>-999.9</code> (código típico de desconexión o timeout I2C/SPI), así como picos negativos aleatorios (<code>-53.0</code>, <code>-181.6</code>, <code>-835.0</code>, etc.) que están fuera del rango físico posible (0-100%).
-*   <strong>Deriva térmica coherente:</strong> Los sensores de temperatura (<code>sensor1</code>, <code>sensor2</code> y <code>sensor3</code>) muestran lecturas consistentes entre sí (con gradientes lógicos de descenso del sensor 1 al 3), lo que indica que <strong>no hay fallas en los termistores</strong>, operando correctamente a pesar de los picos térmicos ambientales.</p>
+<p>Se detectaron anomalías críticas y corrupción de datos ("valores basura") en el bus de la <strong>humedad</strong>, lo que indica fallas intermitentes de lectura o problemas de comunicación en el sensor higrométrico:
+* <strong>Lecturas negativas extremas (Outliers):</strong> El sensor reporta frecuentemente valores imposibles como <code>-999.9</code> (código típico de error/desconexión de sensor), además de picos erróneos como <code>-53.01</code>, <code>-371.83</code>, <code>-835.06</code> y <code>-981.57</code>.
+* <strong>Diagnóstico técnico:</strong> El hardware del sensor de humedad presenta fallas de circuitería (posible saturación por condensación nocturna o pérdida de calibración) o fallas en el convertidor analógico-digital (ADC). Los sensores de temperatura y radiación operan dentro de rangos nominales estables.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
