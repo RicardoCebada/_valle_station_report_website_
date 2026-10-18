@@ -14,25 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-17 21:48:52
+<p><strong>Última actualización:</strong> 2026-10-18 06:42:50
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de registros del sistema meteorológico. A continuación, presento el reporte técnico:</p>
+<p>Como analista de hardware IoT, he procesado el registro de telemetría provisto. A continuación, presento el reporte estructurado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>17 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo analizado, alcanzando <strong>27.97 °C</strong> en el sensor 1 a las 17:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>13 de octubre de 2026</strong> (Registró la temperatura mínima más baja del periodo, descendiendo hasta <strong>13.41 °C</strong> en el sensor 3 durante la madrugada).</li>
+<li><strong>Día más caluroso:</strong> <strong>13 de octubre de 2026</strong>. Se registró la temperatura máxima global del periodo analizado en el <code>temp_sensor1</code> con <strong>27.32 °C</strong> a las 17:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>13 de octubre de 2026</strong> (en su ciclo matutino/madrugada) / <strong>16 de octubre de 2026</strong>. El punto de menor temperatura se registró el 13 de octubre a las 13:00 UTC con <strong>14.78 °C</strong> en el <code>temp_sensor1</code> (y valores mínimos absolutos en el sensor 3 de <strong>13.41 °C</strong>).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la ventana de <strong>17:00 a 19:00 UTC</strong> (mediodía solar local). 
-*   <em>Ejemplo crítico:</em> El 13 de octubre a las <strong>19:00 UTC</strong> se registraron los valores máximos históricos del set de datos:
-    *   Radiación IR: <strong>7,214.5 W/m²</strong>
-    *   Radiación Vis: <strong>811.5 W/m²</strong>
-    *   Radiación UV: <strong>2.98 W/m²</strong></p>
-<h3>3. Diagnóstico de fallas en sensores (Anomalías detectadas)</h3>
-<p>Se identificaron fallas críticas de hardware y corrupción de datos en la telemetría:
-*   <strong>Falla en el Sensor de Humedad (Lecturas fuera de rango / NaN lógicos):</strong> El canal de humedad presenta múltiples fallas intermitentes donde arroja valores físicamente imposibles como <code>-999.9</code> (código típico de búfer vacío o sensor desconectado) y valores negativos erráticos (<code>-31.7</code>, <code>-537.2</code>, <code>-869.4</code>). Esto indica un problema en el bus de comunicación (posiblemente I2C/SPI) o degradación del elemento sensitivo del higrómetro.
-*   <strong>Deriva térmica (<code>temp_sensor1</code> vs <code>temp_sensor3</code>):</strong> Se observa un desfase constante de ~2 °C entre el sensor 1 y el sensor 3. Aunque siguen la misma tendencia, el sensor 3 muestra una atenuación que podría deberse a un mal acoplamiento térmico en la tornillería del encapsulado o degradación de la pasta térmica.</p>
+<p>La radiación solar (tanto visible, infrarroja como UV) alcanza sus picos máximos en la franja vespertina central:
+*   <strong>Hora pico:</strong> Entre las <strong>18:00 UTC y las 19:00 UTC</strong> de cada día.
+*   <strong>Valores máximos registrados:</strong> 
+    *   Radiación IR: <strong>7,214.50 W/m²</strong> (19:00 UTC del 13 de Oct).
+    *   Radiación Visible: <strong>811.52 lux/units</strong> (19:00 UTC del 13 de Oct).
+    *   Radiación UV: <strong>2.98</strong> (19:00 UTC del 13 de Oct).</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas y corrupción de datos en el subsistema de medición, específicamente en el <strong>sensor de humedad</strong>:
+*   <strong>Lecturas imposibles (Out-of-Range):</strong> El campo <code>humedad</code> presenta constantemente valores negativos erróneos como <strong><code>-999.9</code></strong>, así como caídas abruptas a <code>-53.0</code>, <code>-537.2</code>, <code>-835.0</code> y <code>-981.2</code>. 
+*   <strong>Diagnóstico:</strong> Estos valores fijos y negativos indican una <strong>falla de calibración, pérdida de comunicación I2C/analógica o fallo en el firmware</strong> del sensor higrómetro, requiriendo mantenimiento físico o reemplazo del módulo. Los sensores de temperatura y radiación operan dentro de rangos nominales coherentes.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
