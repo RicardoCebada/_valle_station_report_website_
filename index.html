@@ -14,24 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-20 06:47:08
+<p><strong>Última actualización:</strong> 2026-10-20 12:40:33
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de registros térmicos y radiométricos correspondientes al período analizado. A continuación, presento el informe técnico:</p>
+<p>Como analista de hardware IoT, he procesado los datos provistos. A continuación, presento los resultados estructurados:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>17 de octubre de 2026</strong>. Se registró la temperatura máxima absoluta del período en la hora 17:00 UTC, con un pico de <strong>27.97 °C</strong> en el <code>temp_sensor1</code> (y valores sostenidos por encima de los 27 °C en el resto de los sensores).</li>
-<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong>. Se registró la temperatura mínima absoluta del período en la hora 12:00 UTC, descendiendo hasta los <strong>13.96 °C</strong> en el <code>temp_sensor1</code> y un mínimo de <strong>12.67 °C</strong> en el <code>temp_sensor3</code>.</li>
+<li><strong>Día más caluroso:</strong> <strong>17 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>27.97 °C</strong> en el <em>temp_sensor1</em> a las 17:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong> (Registró la temperatura mínima del periodo con <strong>12.67 °C</strong> en el <em>temp_sensor3</em> a las 12:00 UTC).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de energía (visible, infrarroja y ultravioleta) se concentran consistentemente en la franja vespertina del hemisferio de medición:
-*   <strong>Pico de Radiación Visible:</strong> Entre las <strong>17:00 y las 18:00 UTC</strong>, alcanzando valores máximos de hasta <strong>762.93 W/m²</strong>.
-*   <strong>Pico de Radiación Infrarroja (IR):</strong> Entre las <strong>17:00 y las 19:00 UTC</strong>, con un registro máximo de <strong>6,640.30 W/m²</strong>.
-*   <strong>Pico de Radiación UV:</strong> Entre las <strong>17:00 y las 18:00 UTC</strong>, registrando un índice máximo de <strong>2.71</strong>.</p>
-<h3>3. Falla en sensores</h3>
-<p>Se detectó una anomalía crítica e intermitente en el subsistema de medición ambiental:
-*   <strong>Sensor afectado:</strong> <code>humedad</code>.
-*   <strong>Diagnóstico:</strong> El sensor reporta lecturas con <strong>valores negativos extremos y atípicos</strong> (principalmente <code>-999.90</code>, además de caídas puntuales a <code>-31.7</code>, <code>-181.6</code>, <code>-541.5</code>, entre otros). Estos datos fuera de rango lógico (0% a 100% RH) evidencian un fallo de hardware, posiblemente un error de lectura en el conversor analógico-digital (ADC), un falso contacto en el bus de datos o la saturación/daño físico del elemento sensing capacitivo.</p>
+<p>Los niveles máximos de radiación (tanto visible, infrarroja como UV) se concentran consistentemente en la franja horaria de la tarde, específicamente <strong>entre las 16:00 y las 18:00 UTC</strong>.
+* <em>Pico máximo registrado:</em> A las <strong>17:00 UTC</strong> (con picos de Radiación IR superiores a <strong>6477 W/m²</strong> y Radiación UV de hasta <strong>2.66</strong>).</p>
+<h3>3. Fallas en sensores</h3>
+<p>Se detectaron anomalías críticas que apuntan a <strong>fallas de hardware o corrupción en la transmisión de datos</strong>:
+* <strong>Sensor de Humedad:</strong> Presenta múltiples lecturas con <strong>valores negativos imposibles</strong> (por ejemplo, caídas abruptas a <code>-31.7</code>, <code>-999.9</code> y hasta <code>-962.6</code>). Esto indica un fallo en la calibración del transductor, saturación del circuito analógico-digital (ADC) o pérdida de comunicación I2C/SPI en el módulo higrométrico.
+* <strong>Sensores de Temperatura (<em>temp_sensor1</em>, <em>temp_sensor2</em>, <em>temp_sensor3</em>):</strong> Operan de manera coherente entre ellos (guardando una jerarquía lógica de temperatura), pero la presencia de datos faltantes y los errores en el bus de humedad sugieren problemas intermitentes en la fuente de alimentación del nodo IoT o interferencia electromagnética (EMI) afectando las líneas de señales analógicas.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
