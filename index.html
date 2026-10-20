@@ -14,26 +14,43 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-20 18:10:25
+<p><strong>Última actualización:</strong> 2026-10-20 22:45:29
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo analizado. A continuación, presento el reporte técnico basado en las lecturas de los sensores:</p>
+<p>Como analista de hardware IoT procesando el conjunto de datos proporcionado (que abarca del 15 al 20 de octubre de 2026), aquí tienes el reporte estructurado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>17 de octubre de 2026</strong> (Se registró la temperatura máxima absoluta del periodo en el <code>temp_sensor1</code> alcanzando los <strong>27.97 °C</strong> a las 17:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong> (Se registró la temperatura mínima general del sistema en el <code>temp_sensor3</code> descendiendo hasta los <strong>12.67 °C</strong> a las 12:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>20 de octubre de 2026</strong>. <ul>
+<li><em>Motivo:</em> Presentó las temperaturas máximas más altas registradas en la estación, alcanzando un pico de <strong>27.77 °C</strong> en el sensor principal a las 18:00 UTC, con múltiples horas manteniendo promedios superiores a los 26 °C.</li>
 </ul>
+</li>
+<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong>. <ul>
+<li><em>Motivo:</em> Registró las mínimas más bajas del periodo, descendiendo hasta los <strong>13.53 °C</strong> en el sensor 3 durante las horas de la mañana (10:00 UTC).</li>
+</ul>
+</li>
+</ul>
+<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (visible, infrarroja y ultravioleta) ocurren de forma consistente durante las horas centrales de la tarde, coincidiendo con la máxima exposición solar:
-*   <strong>Franja horaria crítica:</strong> Entre las <strong>17:00 y las 18:00 UTC</strong>.
-*   <em>Valores máximos registrados:</em> 
-    *   Radiación Visible: ~777.9 W/m²
-    *   Radiación Infrarroja (IR): ~6,827.0 W/m²
-    *   Radiación UV: ~2.80 Índice UV</p>
-<h3>3. Diagnóstico de fallas en sensores</h3>
-<p>Se han detectado anomalías críticas en la telemetría que evidentan fallas de hardware y/o corrupción de datos:
-*   <strong>Sensor de Humedad (Falla Crítica / Fuera de Rango):</strong> Presenta múltiples lecturas con valores negativos físicamente imposibles (ej. <strong><code>-999.9</code></strong>, <strong><code>-145.14</code></strong>, <strong><code>-835.06</code></strong>). Esto indica un desbordamiento de búfer (<em>buffer overflow</em>), un cortocircuito en el circuito de lectura analógica o pérdida de calibración del transductor de humedad.
-*   <strong>Discrepancia Térmica:</strong> Los sensores <code>temp_sensor1</code>, <code>temp_sensor2</code> y <code>temp_sensor3</code> muestran una jerarquía constante pero es notable que el sensor 1 siempre reporta una temperatura ligeramente superior a los demás, lo que podría sugerir un problema menor de disipación térmica interna en el encapsulado del nodo IoT o la necesidad de una recalibración por <em>drift</em> (deriva).</p>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren consistentemente en la franja vespertina del mediodía solar:
+*   <strong>Hora pico principal:</strong> <strong>18:00 UTC</strong> (coincidiendo con las 18:00 del 20 de octubre).
+*   <strong>Ventana de radiación crítica:</strong> Entre las <strong>17:00 UTC y las 19:00 UTC</strong> de cada día. 
+*   <em>Valores máximos observados:</em> 
+    *   <strong>Radiación Vis:</strong> ~783.6 W/m²
+    *   <strong>Radiación IR:</strong> ~6895.0 W/m²
+    *   <strong>Radiación UV:</strong> ~2.80 unidades</p>
+<hr />
+<h3>3. Falla en sensores</h3>
+<p>El análisis de telemetría revela anomalías críticas y fallas de hardware intermitentes:</p>
+<ul>
+<li><strong>Sensor de Humedad (Falla Crítica de Rango / Lectura fantasma):</strong> <ul>
+<li>Presenta múltiples lecturas con valores negativos anómalos imposibles en meteorología física, destacando el código de error estándar del firmware <strong><code>-999.9</code></strong> (p.ej., los días 15, 16, 19 y 20). Esto indica pérdida de comunicación con el elemento sensible, fallas en el ADC (conversor analógico-digital) o desconexión del bus I2C/SPI. También se aprecian picos negativos aleatorios (como <code>-840.04</code>, <code>-579.19</code> o <code>-181.68</code>).</li>
+</ul>
+</li>
+<li><strong>Sensores de Temperatura (Desviación Consistente):</strong><ul>
+<li>Los tres sensores térmicos funcionan de manera correcta en cuanto a su tendencia, pero presentan un <strong>sesgo (offset) calibrado</strong> predecible: <code>temp_sensor1</code> marca sistemáticamente ~0.5°C a 1°C por encima de <code>temp_sensor2</code>, y este a su vez por encima de <code>temp_sensor3</code>. No se reportan fallas totales de desconexión (ninguno marca 0 o NaN absoluto), pero el sensor 3 sufre una ligera atenuación en sus valores mínimos durante las madrugadas.</li>
+</ul>
+</li>
+</ul>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
