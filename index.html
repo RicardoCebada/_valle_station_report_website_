@@ -14,26 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-22 12:55:35
+<p><strong>Última actualización:</strong> 2026-10-22 18:12:18
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo analizado. A continuación, presento los resultados clave:</p>
+<p>Basado en el análisis de los datos telemétricos procesados (correspondientes al periodo de octubre a noviembre de 2026), aquí tienes el reporte del hardware IoT:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>20 de octubre de 2026</strong>. Se registró la temperatura máxima del periodo con <strong>27.77 °C</strong> en el <code>temp_sensor1</code> (alcanzando picos similares el 17 de octubre).</li>
-<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong>. Se registró la temperatura mínima absoluta de <strong>12.67 °C</strong> en el <code>temp_sensor3</code> durante las horas de menor radiación.</li>
+<li><strong>Día más caluroso:</strong> <strong>22 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>28.45 °C</strong> a las 18:00 UTC en el <code>temp_sensor1</code>).</li>
+<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong> (Registró la temperatura mínima absoluta con <strong>12.67 °C</strong> a las 12:00 UTC en el <code>temp_sensor3</code>).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de energía solar se concentran consistentemente en la franja vespertina:
-*   <strong>Ventana de mayor radiación:</strong> Entre las <strong>16:00 UTC y las 19:00 UTC</strong>.
-*   <strong>Pico máximo:</strong> Ocurrió el <strong>20 de octubre a las 18:00 UTC</strong>, alcanzando:
-    *   Radiación Infrarroja (IR): <strong>6895.05</strong>
-    *   Radiación Visible (Vis): <strong>783.64</strong>
-    *   Radiación UV: <strong>2.80</strong></p>
-<h3>3. Fallas en sensores</h3>
-<p>Se detectaron anomalías críticas y lecturas fuera de rango (<em>outliers</em>) asociadas a fallas de hardware, específicamente en el <strong>sensor de humedad</strong>:
-*   <strong>Lecturas negativas anómalas:</strong> El sensor de humedad reporta repetidamente valores imposibles como <code>-725.85</code>, <code>-999.90</code> y <code>-371.83</code>. Esto indica un <strong>fallo por desbordamiento de búfer (buffer overflow), pérdida de comunicación I2C/SPI o corrupción de la trama de datos</strong> en el firmware del nodo IoT.
-*   <strong>Estabilidad térmica:</strong> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) operan de manera coherente y sin saltos abruptos, manteniendo una lógica física esperada entre ellos (el sensor 1 consistentemente más cálido que el 3). No se reportan fallas en los módulos ópticos (UV/Vis/IR).</p>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja horaria de la tarde, siendo la hora pico exacta:
+*   <strong>Hora de mayor radiación:</strong> <strong>18:00 UTC</strong> (con máximos que alcanzan hasta <code>792.71</code> en radiación visible, <code>7008.0</code> en infrarroja y <code>2.85</code> en UV).</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango (outliers) que evidencian fallas en el hardware:
+*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes, arrojando valores negativos imposibles para la física ambiental (ej. <code>-907.48</code>, <code>-999.90</code>, <code>-725.72</code>). Esto indica un error de lectura en el conversor ADC, pérdida de calibración o fallo en el bus de comunicación del sensor de humedad.
+*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Aunque operan correctamente la mayor parte del tiempo, muestran una jerarquía lineal estricta (<code>sensor1 &gt; sensor2 &gt; sensor3</code>) que se mantiene incluso en los mínimos, lo que podría sugerir un desvío por falta de calibración en los transductores de temperatura.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
