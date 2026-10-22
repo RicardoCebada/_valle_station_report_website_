@@ -14,23 +14,32 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-21 22:51:17
+<p><strong>Última actualización:</strong> 2026-10-22 06:44:21
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo analizado. A continuación, presento el informe con los hallazgos clave:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente a las mediciones de los sensores (nota: el dataset abarca un periodo específico de octubre de 2026 en la muestra proporcionada). </p>
+<p>A continuación, presento el informe técnico solicitado:</p>
+<h3>1. Día más caluroso y más frío</h3>
+<p>Basado en los registros de temperatura máxima y mínima de los sensores:
+*   <strong>Día más caluroso:</strong> <strong>20 de octubre de 2026</strong> (Se registraron los picos máximos de temperatura, alcanzando hasta <strong>27.77 °C</strong> en el <code>temp_sensor1</code> a las 18:00 UTC).
+*   <strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong> (Se registraron las temperaturas más bajas del periodo, descendiendo hasta los <strong>13.39 °C</strong> en el <code>temp_sensor1</code> a las 13:00 UTC).</p>
+<hr />
+<h3>2. Horas de mayor radiación</h3>
+<p>Analizando los picos simultáneos de radiación Visible (vis), Infrarroja (ir) y Ultravioleta (uv), la ventana horaria con mayor intensidad energética solar ocurre consistentemente al mediodía solar ampliado:
+*   <strong>Franja horaria crítica:</strong> Entre las <strong>17:00 UTC y las 20:00 UTC</strong>.
+*   <strong>Pico máximo absoluto:</strong> Registrado el <strong>20 de octubre a las 18:00 UTC</strong>, con valores máximos de:
+    *   Radiación IR: <code>6895.05</code>
+    *   Radiación Vis: <code>783.64</code>
+    *   Radiación UV: <code>2.80</code></p>
+<hr />
+<h3>3. Falla en sensores</h3>
+<p>El análisis de integridad de datos revela anomalías críticas compatibles con <strong>fallas de hardware, desconexiones o corrupción de búfer</strong> en los siguientes componentes:</p>
 <ul>
-<li><strong>Día Más Caluroso:</strong> <strong>20 de octubre de 2026</strong> (Registró las temperaturas máximas más altas, alcanzando un pico de <strong>27.77 °C</strong> en el sensor 1 a las 18:00 UTC).</li>
-<li><strong>Día Más Frío:</strong> <strong>18 de octubre de 2026</strong> (Presentó las marcas térmicas más bajas del periodo, descendiendo hasta los <strong>13.53 °C</strong> a las 10:00 UTC).</li>
+<li><strong>Sensor de Humedad (Falla Crítica / Rango Fuera de Escala):</strong> 
+    Se detectaron múltiples lecturas con valores negativos imposibles para la humedad relativa (ej. <code>-725.85</code>, <code>-999.90</code>, <code>-853.44</code>). El valor <code>-999.90</code> actúa claramente como un código de error (<em>hardcoded error flag</em>) del firmware cuando el sensor pierde comunicación o sufre un corto.</li>
+<li><strong>Discrepancia Térmica (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> 
+    Los tres sensores mantienen una jerarquía lógica constante (el sensor 1 es siempre el más cálido y el 3 el más frío), lo que indica una correcta calibración relativa, pero la persistencia de los errores en el bus de humedad sugiere un problema en el módulo integrado (probablemente un sensor ambiental tipo DHT22 o BME280 cuyo pin de humedad o conversor ADC interno está fallando).</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los niveles máximos de radiación (tanto visible, infrarroja como UV) se concentran consistentemente en la franja vespertina:
-*   <strong>Pico principal:</strong> Entre las <strong>17:00 UTC y las 19:00 UTC</strong>.
-*   <em>Dato destacado:</em> El valor máximo absoluto de radiación infrarroja se registró el <strong>20 de octubre a las 18:00 UTC</strong> con <strong>6895.05 W/m²</strong> (y un pico UV de <strong>2.80</strong>).</p>
-<h3>3. Fallas en Sensores</h3>
-<p>Se detectaron anomalías críticas y lecturas fuera de rango (outliers por fallas de hardware, desconexión del bus o corrupción de datos) en el <strong>sensor de humedad</strong>:
-*   <strong>Lecturas negativas anómalas:</strong> El sensor reportó valores físicos imposibles para la humedad relativa, como <code>-800.11</code>, <code>-999.9</code> y <code>-113.73</code>. 
-*   <strong>Diagnóstico:</strong> Estos valores constantes cercanos a <code>-999.9</code> indican un <strong>código de error por fallo de lectura (timeout o NaN)</strong> programado en el firmware del nodo IoT o un cortocircuito intermitente en el transductor de humedad. Los sensores de temperatura (<code>temp_sensor1</code>, <code>2 y 3</code>) operaron dentro de rangos coherentes.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
