@@ -14,22 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-22 18:12:18
+<p><strong>Última actualización:</strong> 2026-10-22 22:50:04
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Basado en el análisis de los datos telemétricos procesados (correspondientes al periodo de octubre a noviembre de 2026), aquí tienes el reporte del hardware IoT:</p>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado. A continuación, presento el reporte técnico con los hallazgos solicitados:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>22 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>28.45 °C</strong> a las 18:00 UTC en el <code>temp_sensor1</code>).</li>
-<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong> (Registró la temperatura mínima absoluta con <strong>12.67 °C</strong> a las 12:00 UTC en el <code>temp_sensor3</code>).</li>
+<li><strong>Día más caluroso:</strong> <strong>22 de octubre de 2026</strong>. Se registró la temperatura máxima absoluta en el <code>temp_sensor1</code> alcanzando los <strong>28.17 °C</strong> a las 18:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong>. Se registró la temperatura mínima absoluta en el <code>temp_sensor3</code> descendiendo hasta los <strong>12.06 °C</strong> a las 13:00 UTC.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja horaria de la tarde, siendo la hora pico exacta:
-*   <strong>Hora de mayor radiación:</strong> <strong>18:00 UTC</strong> (con máximos que alcanzan hasta <code>792.71</code> en radiación visible, <code>7008.0</code> en infrarroja y <code>2.85</code> en UV).</p>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) se concentran consistentemente en la franja vespertina:
+*   <strong>Radiación Visible e IR:</strong> El pico máximo ocurre entre las <strong>17:00 y las 18:00 UTC</strong>, alcanzando valores de hasta ~783 W/m² en luz visible y ~6,895 W/m² en infrarrojo (registrado el 20 de octubre).
+*   <strong>Radiación UV:</strong> El pico máximo se registra entre las <strong>17:00 y las 19:00 UTC</strong>, con valores superiores a los <strong>2.8 índice UV</strong>.</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y lecturas fuera de rango (outliers) que evidencian fallas en el hardware:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes, arrojando valores negativos imposibles para la física ambiental (ej. <code>-907.48</code>, <code>-999.90</code>, <code>-725.72</code>). Esto indica un error de lectura en el conversor ADC, pérdida de calibración o fallo en el bus de comunicación del sensor de humedad.
-*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Aunque operan correctamente la mayor parte del tiempo, muestran una jerarquía lineal estricta (<code>sensor1 &gt; sensor2 &gt; sensor3</code>) que se mantiene incluso en los mínimos, lo que podría sugerir un desvío por falta de calibración en los transductores de temperatura.</p>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango (posibles fallas de hardware, desconexiones o corrupción de búfer) en el <strong>sensor de humedad</strong>:
+*   <strong>Valores negativos anómalos:</strong> El sensor reporta repetidamente valores imposibles para la humedad relativa (ej. <code>-725.72%</code>, <code>-999.90%</code>, <code>-371.83%</code>). 
+*   <strong>Patrón de fallo:</strong> Estos errores se concentran principalmente en las mediciones nocturnas y de madrugada (desde el 19 de octubre en adelante), lo que sugiere un problema en la etapa de alimentación o en el conversor ADC del módulo de humedad ambiental durante los descensos de temperatura. Los sensores térmicos (<code>temp_sensor 1, 2 y 3</code>) y los piranómetros operan dentro de parámetros nominales estables.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
