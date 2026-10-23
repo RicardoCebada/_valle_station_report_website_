@@ -14,30 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-23 06:38:55
+<p><strong>Última actualización:</strong> 2026-10-23 12:34:24
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo (octubre de 2026). A continuación, presento el informe con los hallazgos solicitados:</p>
+<p>Aquí tienes el análisis de los datos de hardware IoT procesados:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>22 de octubre de 2026</strong><ul>
-<li><em>Evidencia:</em> Se registró la temperatura máxima absoluta del periodo analizado en <code>temp_sensor1</code> con <strong>28.17 °C</strong> a las 18:00 UTC.</li>
-</ul>
-</li>
-<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong><ul>
-<li><em>Evidencia:</em> Se registró la temperatura mínima absoluta del periodo en <code>temp_sensor3</code> con <strong>12.67 °C</strong> a las 12:00 UTC.</li>
-</ul>
-</li>
+<li><strong>Día más caluroso:</strong> <strong>20 de octubre de 2026</strong> (Registró la temperatura máxima del periodo con <strong>27.77 °C</strong> en el sensor principal a las 18:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>18 de octubre de 2026</strong> (Registró la temperatura mínima del periodo con <strong>13.96 °C</strong> en el sensor principal a las 12:00 UTC).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía y primeras horas de la tarde (hora solar pico). Los valores máximos registrados fueron:
-*   <strong>Radiación Visible (<code>radiacion_vis</code>):</strong> Pico máximo de <strong>783.64 lux/unidades</strong> a las <strong>18:00 UTC</strong> (del 20 de octubre).
-*   <strong>Radiación Infrarroja (<code>radiacion_ir</code>):</strong> Pico máximo de <strong>6,895.05</strong> a las <strong>18:00 UTC</strong> (del 20 de octubre).
-*   <strong>Radiación Ultravioleta (<code>radiacion_uv</code>):</strong> Pico máximo de <strong>2.80 índice UV</strong> a las <strong>18:00 UTC</strong> (del 20 de octubre).</p>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente en la franja horaria vespertina:
+* <strong>Radiación UV e IR:</strong> El pico máximo se concentra entre las <strong>17:00 UTC y las 19:00 UTC</strong>, alcanzando valores superiores a los 6,800 W/m² en infrarrojo y más de 2.8 en UV.
+* <strong>Radiación Visible:</strong> Su valor más alto se registra ligeramente antes, manteniéndose fuerte entre las <strong>17:00 UTC y las 20:00 UTC</strong> (pico de ~783 W/m²).</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y lecturas fuera de rango que evidencian fallas en los componentes de medición:
-*   <strong>Falla en el sensor de Humedad (Lecturas negativas anómalas):</strong> El sensor de humedad presenta fallas intermitentes graves reportando valores negativos físicamente imposibles para esteidades atmosféricas (ej. <code>-725.72</code>, <code>-999.9</code> y <code>-371.8</code>). Esto indica un error de lectura en el conversor A/D, un cortocircuito parcial o pérdida de calibración del sensor capacitivo.
-*   <strong>Desviación térmica entre sensores (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Existe una caída de temperatura constante y lineal entre el sensor 1 y el sensor 3 de aproximadamente <strong>1.5 °C a 2 °C</strong> bajo las mismas condiciones temporales. Esto sugiere problemas de ubicación, exposición a microclimas o degradación en el termistor del <em>Sensor 3</em>.</p>
+<p>Se detectaron anomalías críticas e intermitencias que apuntan a fallas de hardware en el sistema:
+* <strong>Sensor de Humedad (Falla Crítica):</strong> Presenta múltiples lecturas con <strong>valores negativos anómalos</strong> (ej. <code>-725.72</code>, <code>-999.90</code>, <code>-853.44</code>), lo cual indica saturación del ADC, pérdida de calibración o un error de lectura/comunicación en el bus de datos del sensor ambiental.
+* <strong>Discrepancia Térmica:</strong> Los sensores <code>temp_sensor1</code>, <code>temp_sensor2</code> y <code>temp_sensor3</code> muestran una gradiente consistente, pero se recomienda revisar el aislamiento térmico del <code>sensor1</code>, ya que registra picos muy elevados durante las horas de mayor radiación solar, lo que podría sugerir un error por <em>efecto de isla de calor</em> en la tornillería o carcasa del dispositivo.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
