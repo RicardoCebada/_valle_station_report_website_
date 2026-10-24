@@ -14,21 +14,33 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-24 11:57:04
+<p><strong>Última actualización:</strong> 2026-10-24 17:03:25
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado y analizado el lote de datos correspondiente al periodo (octubre - noviembre de 2026). A continuación, presento el reporte estructurado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>20 de octubre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo a las 18:00 UTC, alcanzando los <strong>27.77 °C</strong> en el <code>temp_sensor1</code>.</li>
-<li><strong>Día más frío:</strong> <strong>19 de octubre de 2026</strong>. El punto de menor temperatura se registró a las 06:00 UTC, descendiendo hasta los <strong>14.56 °C</strong> en el <code>temp_sensor3</code>.</li>
+<li><strong>Día más caluroso:</strong> <strong>20 de octubre de 2026</strong>. Se registró la temperatura máxima global del periodo analizado, alcanzando los <strong>27.78 °C</strong> en el sensor principal a las 18:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>20 de octubre de 2026</strong> (en la franja matutina) y <strong>24 de octubre de 2026</strong>. Se registraron temperaturas mínimas descendiendo hasta los <strong>13.40 °C</strong> a las 13:00 UTC y promedios matutinos cercanos a <strong>13.86 °C</strong>.</li>
 </ul>
+<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) siguen un patrón diurno consistente, concentrándose en la franja horaria de <strong>17:00 a 20:00 UTC</strong> (pico máximo absoluto registrado a las 18:00 UTC del 20 de octubre con 783.64 W/m² en <code>radiacion_vis</code> y 6895.05 W/m² en <code>radiacion_ir</code>).</p>
+<p>Los picos máximos de radiación (visible, infrarroja y ultravioleta) ocurren consistentemente en la franja vespertina:</p>
+<ul>
+<li><strong>Ventana horaria de mayor radiación:</strong> Entre las <strong>16:00 UTC y las 19:00 UTC</strong> (pico absoluto centrado a las <strong>18:00 UTC</strong>).</li>
+<li><em>Valores máximos registrados:</em><ul>
+<li><strong>Radiación IR:</strong> Hasta <code>6895.05 W/m²</code> (20 de octubre a las 18:00 UTC).</li>
+<li><strong>Radiación Visible:</strong> Hasta <code>783.64 W/m²</code> (20 de octubre a las 18:00 UTC).</li>
+<li><strong>Radiación UV:</strong> Hasta <code>2.81</code> (20 de octubre a las 18:00 UTC).</li>
+</ul>
+</li>
+</ul>
+<hr />
 <h3>3. Falla en sensores</h3>
-<p>Se han detectado anomalías críticas e inconsistencias físicas que delatan fallas en los componentes de medición:
-*   <strong>Sensor de Humedad (Falla Crítica / Fuera de Rango):</strong> Se observan lecturas erróneas con valores negativos imposibles meteorológicamente (ej. <code>-999.9%</code>, <code>-697.64%</code>, <code>-853.44%</code>) durante las madrugadas del 19, 21 y 22 de octubre. Esto indica un desbordamiento de búfer, fallo en el conversor ADC o pérdida de calibración del sensor higrométrico.
-*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Mantienen una jerarquía lógica coherente (<code>sensor1</code> &gt; <code>sensor2</code> &gt; <code>sensor3</code>), lo que descarta errores graves de lectura, aunque presentan alta sensibilidad al ruido eléctrico en ciertos periodos de transición térmica.</p>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango que evidencian fallas en el hardware:</p>
+<ul>
+<li><strong>Sensor de Humedad (Falla intermitente / Saturación de lectura):</strong> Presenta valores negativos masivos y físicamente imposibles (ej. <code>-999.9</code> y <code>-724.4</code>). Esto indica un error de lectura por desconexión del pin analógico/digital, desbordamiento de búfer o fallo en el circuito integrado del sensor (posiblemente un DHT22 o BME280 defectuoso).</li>
+<li><strong>Sensor de Temperatura 3 (Desviación de calibración):</strong> El <code>temp_sensor3</code> reporta constantemente valores entre <strong>0.5 °C y 1.2 °C por debajo</strong> de <code>temp_sensor1</code> y <code>temp_sensor2</code> en todas las muestras horarias. Sugiere degradación del termistor, mala ubicación térmica o pérdida de calibración de fábrica.</li>
+</ul>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
