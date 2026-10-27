@@ -14,24 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-27 13:07:55
+<p><strong>Última actualización:</strong> 2026-10-27 19:02:14
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Aquí tienes el reporte del análisis de hardware IoT basado en los registros proporcionados:</p>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al período registrado. A continuación, presento el informe técnico con los hallazgos solicitados:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>23 de octubre de 2026</strong> (alcanzó una temperatura máxima de <code>27.38 °C</code> en el sensor 1 a las 18:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>27 de octubre de 2026</strong> (descendió hasta una temperatura mínima de <code>11.69 °C</code> en el sensor 3 a las 13:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>22 de octubre de 2026</strong>. Se registró la temperatura máxima global del periodo en el <code>temp_sensor1</code> con un pico de <strong>28.17 °C</strong> a las 18:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>27 de octubre de 2026</strong>. Se registró la temperatura mínima global en el <code>temp_sensor3</code> con un valor de <strong>11.90 °C</strong> a las 12:00 UTC (y valles cercanos a los 12.2 °C - 12.4 °C durante la madrugada/mañana).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación solar se registran sistemáticamente en la franja vespertina, específicamente <strong>entre las 17:00 y las 18:00 UTC</strong>, donde convergen los valores máximos de:
-*   <strong>Radiación VIS:</strong> Hasta <code>754.92 W/m²</code>
-*   <strong>Radiación IR:</strong> Hasta <code>6584.38 W/m²</code>
-*   <strong>Radiación UV:</strong> Hasta <code>2.67</code></p>
-<h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas (valores fuera de rango físico lógico) asociadas a fallas de lectura o corrupción de datos:
-*   <strong>Sensor de Humedad (Falla Crítica / Offset fijo):</strong> Presenta múltiples lecturas con valores negativos anómalos imposibles en la atmósfera, destacando un fallo sistemático donde el sensor arroja exactamente <strong><code>-999.9</code></strong> de forma repetitiva (visible claramente entre el 25 y el 27 de octubre), además de picos erráticos como <code>-724.4</code> y <code>-311.3</code>. Esto indica un problema de desbordamiento de búfer, pérdida de calibración o fallo en el ADC del módulo de humedad.
-*   <strong>Sensores de Temperatura (Discrepancia):</strong> Aunque operan dentro de rangos normales, se observa una diferencia constante de ~1 °C a 2 °C entre el <code>temp_sensor1</code> y el <code>temp_sensor3</code>, lo que sugiere un posible desvío (<em>drift</em>) en la calibración de fábrica del sensor 3.</p>
+<p>Los niveles máximos de energía (Radiación Visible, Infrarroja y UV) siguen un patrón diurno claro, concentrándose consistentemente en la franja horaria del mediodía y la tarde:
+*   <strong>Pico de mayor radiación:</strong> Entre las <strong>17:00 y las 18:00 UTC</strong>.
+*   <em>Valores máximos observados:</em>
+    *   <strong>Radiación Vis:</strong> ~758.14 W/m²
+    *   <strong>Radiación IR:</strong> ~6608.27 W/m²
+    *   <strong>Radiación UV:</strong> ~2.69 índice UV</p>
+<h3>3. Fallas en sensores (Anomalías detectadas)</h3>
+<p>Se identificaron fallas críticas de lectura (datos corruptos o fuera de rango) en la telemetría:
+*   <strong>Sensor de Humedad:</strong> Presenta múltiples anomalías con valores negativos extremos físicamente imposibles para la humedad relativa (ej. <code>-230.92%</code>, <code>-609.51%</code>, y fallas persistentes donde la lectura se congela o satura exactamente en <strong><code>-999.9%</code></strong> durante los días 25, 26 y 27 de octubre). Esto indica un posible fallo en el ADC (conversor analógico-digital), pérdida de calibración o desconexión intermitente del bus de datos del sensor ambiental.
+*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionamiento estable y coherente entre sí (con la lógica física esperada donde el Sensor 1 &gt; Sensor 2 &gt; Sensor 3 debido a la ubicación o altura), sin saltos abruptos o datos nulos, descartando fallas graves en este bus térmico.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
