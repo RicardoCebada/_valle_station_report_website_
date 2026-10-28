@@ -14,24 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-28 13:57:26
+<p><strong>Última actualización:</strong> 2026-10-28 19:10:53
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo analizado. A continuación, presento el informe técnico con los hallazgos solicitados:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Aquí tienes el análisis de los datos de los sensores IoT (correspondientes al periodo del 23 al 28 de octubre de 2026):</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>27 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>27.38 °C</strong> en el <em>Sensor 1</em> a las 18:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>28 de octubre de 2026</strong> (Registró la temperatura mínima absoluta del periodo con <strong>11.54 °C</strong> en el <em>Sensor 3</em> a las 12:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>27 de octubre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>26.29 °C</strong> en el sensor principal a las 18:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>28 de octubre de 2026</strong> (Registró la temperatura mínima más baja del periodo con <strong>12.84 °C</strong> a las 12:00 UTC).</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los picos máximos de radiación en el sistema ocurren consistentemente durante la franja vespertina, entre las <strong>17:00 y las 19:00 UTC</strong> (coincidiendo con las horas de mayor insolación directa del ciclo diario):
-*   <strong>Radiación Infrarroja (IR):</strong> Hasta <code>6,608.27</code> unidades.
-*   <strong>Radiación Visible (Vis):</strong> Hasta <code>758.14</code> unidades.
-*   <strong>Radiación Ultravioleta (UV):</strong> Hasta <code>2.69</code> unidades.</p>
-<h3>3. Fallas en Sensores Detectadas</h3>
-<p>Se identificaron anomalías críticas e intermitencias en la telemetría atribuibles a fallas de hardware, corrupción de datos o desconexiones:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes. Se registran múltiples valores negativos fuera de escala física real (como <code>-999.90</code>, <code>-702.48</code>, <code>-609.51</code> y <code>-311.38</code>), lo que indica un posible cortocircuito, pérdida de calibración o fallo en el ADC (Conversor Analógico-Digital) del nodo sensor.
-*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Aunque operan dentro de rangos lógicos, muestran una degradación térmica coherente, pero se recomienda revisar las soldaduras del <em>Sensor 3</em> debido a desviaciones sistemáticas a la baja en comparación con el <em>Sensor 1</em>.</p>
+<h3>2. Horas de mayor radiación</h3>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de forma consistente <strong>entre las 18:00 y las 19:00 UTC</strong>, coincidiendo con las horas de mayor incidencia solar del día. 
+* <em>Ejemplo máximo:</em> El 27 y 28 de octubre a las 19:00 UTC se alcanzaron los valores pico de Radiación UV (~2.70) y Radiación IR (~6,603 W/m²).</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron múltiples anomalías críticas y lecturas fuera de rango (hardware fallando o pérdida de calibración):
+* <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes con valores negativos físicamente imposibles, como <code>-609.5%</code>, <code>-999.9%</code> (código de error común por desconexión) y <code>-702.4%</code>. Esto ocurre en varios registros, especialmente los días 24, 25, 26, 27 y 28 de octubre.
+* <strong>Sensores de Temperatura (1, 2 y 3):</strong> Mantienen una correlación lógica entre ellos, descartando fallas graves internas, aunque dependen de la estabilidad del bus de datos. No obstante, el <strong>Sensor 3</strong> consistentemente marca entre 1.5 °C y 2 °C menos que el Sensor 1, lo que sugiere un posible desvío en su calibración o un posicionamiento con corrientes de aire distintas.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
