@@ -14,24 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-10-29 23:41:05
+<p><strong>Última actualización:</strong> 2026-10-30 07:49:52
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de registros correspondientes al período analizado. A continuación, presento los resultados clave solicitados:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Basado en el procesamiento de los datos telemétricos del hardware IoT, aquí tienes el informe analítico:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>27 de octubre de 2026</strong>. Se registró la temperatura máxima global del periodo en el <code>temp_sensor1</code> con <strong>26.29 °C</strong> a las 18:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>27 de octubre de 2026</strong> (en la madrugada) / <strong>28 de octubre</strong> al mediodía. El registro más bajo se obtuvo en el <code>temp_sensor3</code> con <strong>11.90 °C</strong> (a las 12:00 UTC del 27 de octubre). <em>Nota: Aunque el día 27 alberga el pico de calor, también presenta las mínimas más prolongadas de la serie matutina.</em></li>
+<li><strong>Día más caluroso:</strong> <strong>27 de octubre de 2026</strong> (Se registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>26.29 °C</strong> en el sensor 1 a las 18:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>25 de octubre de 2026</strong> (Se registró la temperatura mínima absoluta del periodo, descendiendo hasta los <strong>13.39 °C</strong> en el sensor 3 a las 12:00 UTC).</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los picos de radiación ocurren consistentemente en la franja central del día, coincidiendo con el cenit solar. Los valores máximos registrados fueron:
-*   <strong>Radiación Visible (<code>radiacion_vis</code>):</strong> Pico máximo de <strong>769.03 W/m²</strong> registrado a las <strong>18:00 UTC</strong>.
-*   <strong>Radiación Infrarroja (<code>radiacion_ir</code>):</strong> Pico máximo de <strong>6,680.50 W/m²</strong> a las <strong>18:00 UTC</strong>.
-*   <strong>Radiación Ultravioleta (<code>radiacion_uv</code>):</strong> Pico máximo de <strong>2.75</strong> a las <strong>18:00 UTC</strong>.</p>
-<h3>3. Falla en Sensores</h3>
-<p>Se detectaron anomalías críticas y comportamientos erráticos en el <strong>Sensor de Humedad</strong>:
-*   <strong>Lecturas negativas anómalas (Fuera de rango 0-100%):</strong> El sensor arroja constantemente valores negativos imposibles para la humedad relativa, tales como <code>-609.51</code>, <code>-702.48</code> y el código de error estándar de hardware <code>-999.90</code>.
-*   <strong>Intermitencia:</strong> Estas lecturas erróneas ocurren principalmente durante los ciclos nocturnos y madrugadas (ej. días 25, 26 y 27 de octubre), lo que indica una posible falla en el circuito de muestreo analógico-digital del módulo o problemas de condensación nocturna afectando el elemento sensible.</p>
+<h3>2. Horas de mayor radiación</h3>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja vespertina:
+*   <strong>Horas pico:</strong> Entre las <strong>17:00 y las 19:00 UTC</strong>, destacando las <strong>18:00 UTC</strong> como el momento de máxima insolación general.
+*   <em>Valores máximos registrados a las 18:00 UTC:</em>
+    *   Radiación Visible: ~769 W/m²
+    *   Radiación Infrarroja (IR): ~6,680 W/m²
+    *   Radiación Ultravioleta (UV): ~2.75 Índice UV</p>
+<h3>3. Fallas detectadas en sensores</h3>
+<p>Se identificaron anomalías críticas en la telemetría que sugieren fallas de hardware o corrupción de datos:
+*   <strong>Sensor de Humedad (Falla grave por valores fuera de rango):</strong> Presenta múltiples lecturas con números negativos anómalos (ej. <code>-609.5%</code>, <code>-999.9%</code> y <code>-702.4%</code>). Esto indica un error de lectura física, saturación del ADC (conversor analógico-digital) o desconexión intermitente del bus de datos del higrómetro.
+*   <strong>Sensores de Temperatura (Desviación térmica):</strong> Existe una constante de gradiente térmico coherente (<code>Sensor 1 &gt; Sensor 2 &gt; Sensor 3</code>), lo cual es normal por la ubicación física. Sin embargo, no se aprecian fallas críticas de desconexión (ninguno marca 0 °C o -273 °C), operando dentro de rangos lógicos a pesar del ruido ambiental.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
