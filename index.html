@@ -14,27 +14,25 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-02 16:59:12
+<p><strong>Última actualización:</strong> 2026-11-02 22:30:23
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Aquí tienes el informe de análisis de hardware IoT basado en los registros procesados:</p>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado correspondiente al periodo de estudio. A continuación, presento el reporte técnico:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> 31 de octubre de 2026 (Se registró la temperatura máxima global del periodo en <code>temp_sensor1</code> alcanzando los <strong>27.19 °C</strong> a las 20:00 UTC).</li>
-<li><strong>Día más frío:</strong> 28 de octubre de 2026 (Se registró la temperatura mínima global del periodo en <code>temp_sensor3</code> cayendo hasta los <strong>11.54 °C</strong> a las 12:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>31 de octubre de 2026</strong> (Registró la temperatura máxima del periodo analizado con <strong>27.19 °C</strong> en el sensor 1 a las 20:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>29 de octubre de 2026</strong> (Registró la temperatura mínima del periodo en las horas matutinas con <strong>12.25 °C</strong> en el sensor 3 a las 13:00 UTC).</li>
 </ul>
 <hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de forma consistente en la franja horaria central del día, específicamente <strong>entre las 17:00 y las 19:00 UTC</strong> (con un pico máximo absoluto a las <strong>18:00 UTC</strong>). 
-* <em>Ejemplo (28 de Octubre):</em>
-  * Radiación Vis: ~751.37 W/m²
-  * Radiación IR: ~6543.76 W/m²
-  * Radiación UV: ~2.66</p>
+<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja horaria vespertina:
+*   <strong>Pico máximo:</strong> Entre las <strong>17:00 UTC y las 19:00 UTC</strong>.
+*   <em>Ejemplo destacado:</em> El 28 de octubre a las 18:00 UTC se registró el pico máximo de radiación infrarroja con <strong>6543.76 W/m²</strong> y radiación UV de <strong>2.66</strong>.</p>
 <hr />
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas e intermitencias en el <strong>Sensor de Humedad</strong>:
-* <strong>Lecturas fuera de rango (Valores negativos anómalos):</strong> El sensor arroja frecuentemente valores como <code>-999.9</code>, <code>-701.8</code>, <code>-441.1</code>, entre otros. Esto indica un error de lectura por hardware desconectado, descalibrado o un código de error no manejado por el firmware (NaN/Null simulado).
-* <em>Nota:</em> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) y presión operan dentro de rangos físicos estables y coherentes.</p>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango que evidencian fallas en el hardware:
+*   <strong>Sensor de Humedad:</strong> Presenta fallas recurrentes de lectura con valores negativos absurdos (ej. <strong><code>-275.44</code></strong>, <strong><code>-472.22</code></strong>) y códigos de error de desconexión o desbordamiento fijos en <strong><code>-999.90</code></strong> (observado múltiples veces durante las madrugadas del 28, 29 y 31 de octubre). Esto indica un fallo en el transductor capacitivo de humedad o pérdida de comunicación I2C/ADC.
+*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan de manera estable y correlacionada, sin embargo, se observa un desfase térmico esperado debido a su ubicación física (el <em>sensor_sensor1</em> marca consistentemente ~1.5°C más que el <em>sensor3</em>). No muestran corrupción de datos, pero la precisión general depende de la calibración del bus.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
