@@ -14,26 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-01 23:11:40
+<p><strong>Última actualización:</strong> 2026-11-02 08:30:32
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de registros del dataset temporal (mostrando una muestra representativa de la ventana de análisis). A continuación, presento el informe técnico:</p>
-<h3>1. Día más caluroso y más frío</h3>
+<p>Como analista de hardware IoT, he procesado el lote de datos proporcionado y aquí tienes el reporte técnico solicitado:</p>
+<h3>1. Día Más Caluroso y Más Frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>31 de octubre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado alcanzando los <strong>$27.19^\circ\text{C}$</strong> (en <code>temp_sensor1</code> a las 20:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>28 de octubre de 2026</strong>. Presentó los registros mínimos más bajos durante las horas matutinas, con descensos que llegaron a los <strong>$11.54^\circ\text{C}$</strong> en el sensor de referencia más baja (<code>temp_sensor3</code> a las 12:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>31 de octubre de 2026</strong>. Se registró la temperatura máxima del periodo en el sensor principal (<code>temp_sensor1</code>) alcanzando los <strong>27.19 °C</strong> a las 20:00 UTC, con temperaturas sostenidas altas durante toda la franja nocturna.</li>
+<li><strong>Día más frío:</strong> <strong>28 de octubre de 2026</strong>. Se registró el punto mínimo de temperatura descendiendo hasta los <strong>11.54 °C</strong> en el <code>temp_sensor3</code> a las 12:00 UTC.</li>
 </ul>
-<h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de energía solar (radiación visible, infrarroja y UV) se concentran consistentemente en la franja vespertina:
-*   <strong>Pico máximo:</strong> Entre las <strong>17:00 y las 19:00 UTC</strong>.
-*   <em>Ejemplo destacado:</em> A las <strong>18:00 UTC</strong>, los sensores capturan los valores tope de irradiación:
-    *   <strong>Radiación Visible:</strong> ~769 W/m²
-    *   <strong>Radiación Infrarroja (IR):</strong> ~6,680 W/m²
-    *   <strong>Radiación UV:</strong> ~2.75 UV Index</p>
-<h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y comportamientos erráticos en la telemetría:
-*   <strong>Sensor de Humedad (Falla Crítica):</strong> Presenta lecturas inválidas recurrentes con valores constantes de <strong><code>-999.9</code></strong> (así como picos negativos anómalos de hasta <code>-884.14</code> y <code>-701.83</code>). Esto indica un <strong>fallo de hardware por saturación, desconexión del ADC o corrupción de trama</strong> en el módulo higrómetro.
-*   <strong>Sensores de Temperatura (Desviación):</strong> Se observa una jerarquía estable (<code>sensor1</code> &gt; <code>sensor2</code> &gt; <code>sensor3</code>), lo cual es normal por posicionamiento térmico, pero requiere calibración en campo ya que el <code>sensor3</code> subestima la temperatura ambiental real en aproximadamente <strong>$1.5^\circ\text{C}$ a $2.0^\circ\text{C}$</strong> frente al primario.</p>
+<h3>2. Horas de Mayor Radiación</h3>
+<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía solar hacia la tarde temprana (ventana de <strong>17:00 a 19:00 UTC</strong>):
+*   <strong>Radiación Visible (VIS):</strong> Picos máximos de hasta <strong>~769 W/m²</strong> (registrados a las 18:00 UTC).
+*   <strong>Radiación Infrarroja (IR):</strong> Picos máximos que superan los <strong>6,680 W/m²</strong> (registrados a las 18:00 UTC).
+*   <strong>Radiación Ultravioleta (UV):</strong> Picos máximos de <strong>2.75 UV Index</strong> (registrados a las 18:00 UTC).</p>
+<h3>3. Falla en Sensores</h3>
+<p>Se detectaron anomalías críticas e intermitencias físicas en la telemetría:
+*   <strong>Sensor de Humedad (Falla Crítica):</strong> Presenta lecturas erróneas con números negativos extremos (ej. <code>-999.9</code> o <code>-701.8</code>), lo que indica un <strong>cortocircuito, desconexión del pin analógico/digital o fallo en la lectura del ADC</strong> del sensor higrómetro.
+*   <strong>Desviación Térmica:</strong> Hay una delta constante y saludable de ~1 °C a 2 °C entre <code>temp_sensor1</code>, <code>temp_sensor2</code> y <code>temp_sensor3</code>, pero se recomienda recalibrar el <code>temp_sensor3</code> ya que muestra una caída sistemática más agresiva frente a los otros dos.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
