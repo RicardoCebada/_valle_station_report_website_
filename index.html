@@ -14,25 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-03 14:59:39
+<p><strong>Última actualización:</strong> 2026-11-03 20:19:37
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos meteorológicos proporcionado (que abarca desde el 29 de octubre hasta el 3 de noviembre de 2026). A continuación, presento el informe técnico con los hallazgos solicitados:</p>
+<p>Como analista de hardware IoT, he procesado el lote de datos correspondiente al periodo analizado. A continuación, presento el reporte técnico:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>31 de octubre de 2026</strong>. Se registró la temperatura máxima absoluta en el <code>temp_sensor1</code> alcanzando los <strong>27.19 °C</strong> a las 20:00 UTC (con valores sostenidos por encima de los 27 °C entre las 19:00 y las 20:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta en el <code>temp_sensor3</code> descendiendo hasta los <strong>10.92 °C</strong> a las 12:00 UTC, manteniéndose como el periodo con las medias térmicas más bajas del registro.</li>
+<li><strong>Día más caluroso:</strong> <strong>31 de octubre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>27.19 °C</strong> (medido en el sensor 1 a las 20:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo, descendiendo hasta los <strong>10.92 °C</strong> (medido en el sensor 3 a las 12:00 UTC).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación coinciden consistentemente en la franja vespertina, específicamente entre las <strong>17:00 y las 19:00 UTC</strong>. 
-* <strong>Radiación Visible (VIS):</strong> Picos máximos de hasta <strong>769.03 lm/m²</strong> (29 de octubre a las 18:00 UTC).
-* <strong>Radiación Infrarroja (IR):</strong> Picos extremos de hasta <strong>6,680.5 W/m²</strong> (29 de octubre a las 18:00 UTC).
-* <strong>Radiación Ultravioleta (UV):</strong> Picos máximos de hasta <strong>2.68 Índice UV</strong> (2 de noviembre a las 18:00 UTC).</p>
+<p>Los picos máximos de radiación (tanto visible, infrarroja como ultravioleta) ocurren de forma consistente en la franja vespertina, específicamente <strong>entre las 17:00 y las 19:00 UTC</strong>. 
+* <em>Ejemplo peak:</em> El 2 de noviembre a las 18:00 UTC se registraron los valores máximos globales (<code>radiacion_vis</code>: ~756.9 lm/m², <code>radiacion_ir</code>: ~6610.5 W/m² y <code>radiacion_uv</code>: ~2.68).</p>
 <h3>3. Falla en sensores</h3>
-<p>El análisis de integridad de los datos revela anomalías críticas y fallas de hardware intermitentes:
-* <strong>Sensor de Humedad (Falla Crítica):</strong> Presenta lecturas de <strong>valores negativos imposibles</strong> (por ejemplo, <code>-219.58</code>, <code>-757.73</code> y caídas abruptas al límite de <code>-999.9</code>). Esto indica un fallo en el circuito de acondicionamiento de señal, desbordamiento del buffer o pérdida de calibración del higrómetro, requiriendo reemplazo o reconfiguración del firmware.
-* <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Funcionan correctamente y muestran una correlación lógica y estable entre ellos (el sensor 1 consistentemente más alto y el sensor 3 más bajo, acorde a su posible ubicación física). No se aprecian valores atípicos (outliers) térmicos.
-* <strong>Sensores de Radiación y Presión:</strong> Operan dentro de rangos nominales normales y sin interrupciones en la transmisión de tramas de datos.</p>
+<p>Se han detectado anomalías críticas y lecturas fuera de rango que evidencian fallas en los componentes:
+* <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes con <strong>lecturas negativas imposibles</strong> (por ejemplo, valores de <code>-999.9</code> y saltos erráticos como <code>-757.7</code> o <code>-734.8</code>). Esto indica un fallo en la calibración del transductor, un cortocircuito parcial o pérdida de comunicación en el bus de datos del sensor ambiental.
+* <strong>Sensores de Temperatura (1, 2 y 3):</strong> Funcionan correctamente entre sí manteniendo una lógica térmica consistente (el sensor 1 consistentemente más alto que el 2 y este que el 3), sin mostrar valores congelados o erráticos, descartando fallas en este bloque.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
