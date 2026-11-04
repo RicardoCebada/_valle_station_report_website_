@@ -14,24 +14,28 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-04 08:13:33
+<p><strong>Última actualización:</strong> 2026-11-04 15:20:47
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT procesando el lote de telemetría, aquí tienes el resumen técnico basado en los datos proporcionados:</p>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado y aquí tienes el diagnóstico estructurado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>31 de octubre de 2026</strong> (Registró los picos máximos de temperatura en el <code>temp_sensor1</code> alcanzando los <strong>27.19 °C</strong> a las 20:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong> (Registró las temperaturas mínimas más bajas, descendiendo en el <code>temp_sensor3</code> hasta los <strong>10.92 °C</strong> a las 12:00 UTC y con un promedio general más bajo).</li>
+<li><strong>Día más caluroso:</strong> <strong>31 de octubre de 2026</strong> (Registró las temperaturas máximas más altas, alcanzando los <strong>27.20 °C</strong> en el <code>temp_sensor1</code> a las 20:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong> (Registró las temperaturas mínimas más bajas, descendiendo hasta los <strong>10.93 °C</strong> en el <code>temp_sensor3</code> a las 12:00 UTC).</li>
 </ul>
 <hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) se concentran invariablemente en la franja horaria central del día, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong>. 
-*   <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong> (con valores máximos de radiación IR superando los <code>6680 W/m²</code> y UV cercanos a <code>2.75</code>).</p>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente durante las horas centrales de la tarde, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong>. 
+* <em>Ejemplo máximo registrado:</em> A las 18:00 UTC del 2 de noviembre, la radiación infrarroja (<code>radiacion_ir</code>) alcanzó un pico de <strong>6,610.56 W/m²</strong> y la UV (<code>radiacion_uv</code>) llegó a <strong>2.68</strong>.</p>
 <hr />
-<h3>3. Fallas en sensores</h3>
-<p>Se detectaron anomalías críticas e incongruencias físicas en los registros que apuntan a fallas de hardware:
-*   <strong>Sensor de Humedad:</strong> Presenta lecturas erróneas con <strong>valores negativos extremos</strong> (ej. <code>-999.9</code>, <code>-776.5</code>, <code>-340.8</code>) durante las madrugadas de los días 30 y 31 de octubre, así como el 2 y 3 de noviembre. Esto indica un desbordamiento de búfer, pérdida de calibración o fallo en el circuito analógico/digital del higrómetro.
-*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Aunque no muestran valores negativos absurdos, mantienen una jerarquía estricta y constante (<code>sensor1</code> &gt; <code>sensor2</code> &gt; <code>sensor3</code>), lo que sugiere que operan correctamente, pero la humedad defectuosa apunta a un problema en la integridad del nodo central o en la fuente de alimentación del bus de sensores ambientales.</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas e incongruencias físicas en los datos que apuntan a fallas en el hardware:</p>
+<ul>
+<li><strong>Falla en el Sensor de Humedad (Lecturas negativas imposibles):</strong> 
+  El sensor de humedad presenta fallas graves de lectura o corrupción de datos (posiblemente un problema en el conversor ADC o fallo de alimentación intermitente), arrojando valores negativos extremos como <code>-999.9%</code>, <code>-776.5%</code> y <code>-340.8%</code> en repetidas ocasiones (por ejemplo, los días 30 y 31 de octubre). La humedad relativa física no puede ser negativa.</li>
+<li><strong>Descalibración térmica leve:</strong> 
+  Existe una diferencia constante y predecible entre los tres sensores de temperatura (<code>sensor1</code> &gt; <code>sensor2</code> &gt; <code>sensor3</code>), con una delta promedio de ~1.5 °C entre el sensor 1 y el 3. Si están en el mismo entorno, esto indica un problema de calibración o deriva térmica en al menos uno de los nodos.</li>
+</ul>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
