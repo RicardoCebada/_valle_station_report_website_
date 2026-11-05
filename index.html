@@ -14,22 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-05 15:22:22
+<p><strong>Última actualización:</strong> 2026-11-05 20:51:58
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado los registros meteorológicos correspondientes al periodo analizado (octubre y noviembre de 2026). A continuación, presento el informe técnico:</p>
-<h3>1. Días más calurosos y más fríos</h3>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos de los sensores meteorológicos y presento el informe técnico a continuación:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>31 de octubre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo, alcanzando los <strong>27.20 °C</strong> en el sensor principal (hora 20:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo, descendiendo hasta los <strong>10.93 °C</strong> en el sensor auxiliar 3 (hora 12:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>31 de octubre de 2026</strong>. Se registró la temperatura máxima del periodo analizado, alcanzando los <strong>27.19 °C</strong> en el sensor principal a las 20:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Se registró la temperatura mínima general del sistema, descendiendo hasta los <strong>10.92 °C</strong> en el <code>temp_sensor3</code> a las 12:00 UTC (con una media de sensores de ~12.2 °C).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (visible, infrarroja y ultravioleta) se concentran consistentemente en la franja vespertina, específicamente entre las <strong>17:00 y las 19:00 UTC</strong>. 
-* <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong>, con valores promedio de radiación infrarroja superiores a los <strong>6,600 W/m²</strong> y radiación UV cercana a <strong>2.68</strong>.</p>
+<p>Los picos máximos de radiación solar (tanto visible, infrarroja como UV) se concentran consistentemente en la franja vespertina entre las <strong>17:00 UTC y las 19:00 UTC</strong>. 
+*   <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong>, donde la radiación infrarroja superó los <code>6,610 W/m²</code>, la visible los <code>756 W/m²</code> y la UV alcanzó los <code>2.68</code>.</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectó una anomalía crítica y recurrente en el <strong>sensor de humedad</strong>:
-* <strong>Comportamiento anómalo:</strong> El registro de humedad presenta de forma intermitente valores negativos imposibles en la física ambiental (ej. <code>-999.9%</code>, <code>-357.7%</code>, <code>-720.4%</code>).
-* <strong>Diagnóstico:</strong> Estos datos fuera de rango (outliers) indican un <strong>fallo de lectura por desbordamiento de búfer, pérdida de calibración del ADC (conversor analógico-digital) o un cortocircuito intermitente</strong> en el circuito del higrómetro, requiriendo mantenimiento físico o reemplazo del módulo de humedad. Los sensores de temperatura y radiación operan dentro de parámetros normales.</p>
+<p>Se han detectado anomalías críticas y comportamientos fuera de rango en los registros:
+*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y lecturas espurias recurrentes (posible corrupción de trama o fallo en el ADC). Se registran valores físicamente imposibles como <strong><code>-999.9</code></strong> y picos negativos erráticos (ej. <code>-329.5</code>, <code>-888.0</code>, <code>-677.7</code>) en múltiples días (31 de Oct, 2, 3 y 5 de Nov).
+*   <strong>Sensores de Temperatura:</strong> Muestran una desviación consistente y lógica entre ellos (<code>sensor1</code> &gt; <code>sensor2</code> &gt; <code>sensor3</code>), lo cual es normal por su ubicación física, pero se recomienda calibración ya que el <code>sensor3</code> registra caídas muy agresivas en los días más fríos.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
