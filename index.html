@@ -14,24 +14,25 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-07 13:54:27
+<p><strong>Última actualización:</strong> 2026-11-07 18:22:58
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado (correspondiente al periodo de inicio de noviembre de 2026). A continuación, presento el diagnóstico técnico:</p>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al período de 2 meses provisto en la telemetría. A continuación, presento el informe técnico:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong>, registrando una temperatura máxima pico de <strong>27.26 °C</strong> a las 20:00 UTC en el sensor principal.</li>
-<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong> (con extensiones a la baja hacia el 6 y 7 de noviembre), registrando una temperatura mínima de <strong>10.92 °C</strong> en el sensor 3 y un promedio general más bajo durante las horas matutinas.</li>
+<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo en <code>temp_sensor1</code> alcanzando los <strong>27.26 °C</strong> a las 20:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Se registró la temperatura mínima global del periodo descendiendo hasta los <strong>10.92 °C</strong> en el <code>temp_sensor3</code> a las 12:00 UTC.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (visible, infrarroja y UV) se concentran consistentemente en la franja horaria vespertina de <strong>17:00 a 19:00 UTC</strong> (pico absoluto a las <strong>18:00 UTC</strong>). 
-*   <em>Radiación Vis:</em> ~756.9 W/m²
-*   <em>Radiación IR:</em> ~6,610.5 W/m²
-*   <em>Radiación UV:</em> ~2.68 Índice UV</p>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja horaria del mediodía solar hacia la tarde, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong>. 
+*   <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong>, con valores promedio globales de:
+    *   Radiación Visible: ~756.9 W/m²
+    *   Radiación IR: ~6610.5 W/m²
+    *   Radiación UV: ~2.68 Índice UV</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas en la telemetría asociadas a <strong>fallas en el sensor de humedad</strong>:
-*   <strong>Lecturas fuera de rango (Out-of-Range):</strong> El sensor de humedad registra frecuentemente valores negativos físicamente imposibles para esteidades ambientales, destacando caídas abruptas a <strong><code>-274.43</code></strong>, <strong><code>-677.73</code></strong> y el límite preconfigurado de saturación de error <strong><code>-999.9</code></strong> (visible de forma reiterada los días 2, 3, 5 y 7 de noviembre).
-*   <strong>Diagnóstico:</strong> Esto apunta a un <strong>error de lectura en el ADC (Conversor Analógico-Digital)</strong>, fallo en el bus de comunicación (I2C/SPI) del sensor higrométrico, o un problema de desbordamiento de búfer en el firmware del nodo IoT al procesar la señal del pin analógico. Los sensores de temperatura (<code>temp_sensor 1, 2 y 3</code>) y radiación operan dentro de parámetros nominales estables.</p>
+<p>Se detectó una anomalía crítica e intermitente en el <strong>sensor de humedad</strong>:
+*   <strong>Comportamiento de falla:</strong> El sensor arroja frecuentemente valores negativos absurdos, siendo el más repetitivo y anómalo <strong><code>-999.9</code></strong> (así como caídas bruscas a -350, -600 y -720).
+*   <strong>Diagnóstico:</strong> Esto indica un código de error por <strong>desconexión física, fallo en el conversor ADC (Conversor Analógico-Digital) o corrupción en el bus de comunicación</strong> (I2C/SPI) del módulo higrométrico, impidiendo la lectura correcta del entorno y devolviendo un <em>buffer</em> con valor de bandera de error. Los sensores de temperatura y radiación operan dentro de rangos nominales normales.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
