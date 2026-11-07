@@ -14,25 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-07 18:22:58
+<p><strong>Última actualización:</strong> 2026-11-07 23:10:23
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al período de 2 meses provisto en la telemetría. A continuación, presento el informe técnico:</p>
-<h3>1. Día más caluroso y más frío</h3>
+<p>Como analista de hardware IoT procesando este conjunto de datos (muestra representativa del periodo de 2 meses), presento el informe de diagnóstico:</p>
+<h3>1. Día más caluroso y día más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo en <code>temp_sensor1</code> alcanzando los <strong>27.26 °C</strong> a las 20:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Se registró la temperatura mínima global del periodo descendiendo hasta los <strong>10.92 °C</strong> en el <code>temp_sensor3</code> a las 12:00 UTC.</li>
+<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo en el <code>temp_sensor1</code> con <strong>27.26 °C</strong> a las 20:00 UTC, manteniendo promedios elevados y constantes por encima de los 26 °C durante toda la tarde.</li>
+<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Se registró la temperatura mínima global más baja en el <code>temp_sensor3</code> con <strong>10.92 °C</strong> a las 12:00 UTC, coincidiendo con una de las mediciones matutinas más bajas de todo el set de datos.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja horaria del mediodía solar hacia la tarde, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong>. 
-*   <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong>, con valores promedio globales de:
-    *   Radiación Visible: ~756.9 W/m²
-    *   Radiación IR: ~6610.5 W/m²
-    *   Radiación UV: ~2.68 Índice UV</p>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de forma consistente en la franja horaria vespertina, entre las <strong>17:00 UTC y las 19:00 UTC</strong>. 
+*   <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong>, alcanzando valores de hasta ~756 W/m² en radiación visible (<code>radiacion_vis</code>), ~6,610 W/m² en infrarrojo (<code>radiacion_ir</code>) y ~2.68 W/m² en UV (<code>radiacion_uv</code>).</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectó una anomalía crítica e intermitente en el <strong>sensor de humedad</strong>:
-*   <strong>Comportamiento de falla:</strong> El sensor arroja frecuentemente valores negativos absurdos, siendo el más repetitivo y anómalo <strong><code>-999.9</code></strong> (así como caídas bruscas a -350, -600 y -720).
-*   <strong>Diagnóstico:</strong> Esto indica un código de error por <strong>desconexión física, fallo en el conversor ADC (Conversor Analógico-Digital) o corrupción en el bus de comunicación</strong> (I2C/SPI) del módulo higrométrico, impidiendo la lectura correcta del entorno y devolviendo un <em>buffer</em> con valor de bandera de error. Los sensores de temperatura y radiación operan dentro de rangos nominales normales.</p>
+<p>Se detectaron anomalías críticas y comportamientos erráticos (posibles fallas de hardware, pérdida de calibración o corrupción de trama) en las mediciones:
+*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes con valores físicamente imposibles (lecturas en negativo como <code>-22.93</code>, <code>-357.76</code> y caídas abruptas a <code>-999.9</code>). Esto apunta a un cortocircuito, fallo en el ADC (conversor analógico-digital) o pérdida de comunicación I2C/SPI en el módulo higrómetro.
+*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Aunque muestran una correlación lógica entre sí, el <code>temp_sensor3</code> presenta consistentemente lecturas entre 1 °C y 2 °C por debajo del sensor principal, lo que sugiere un desfase por mala ubicación o degradación del termistor/sonda.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
