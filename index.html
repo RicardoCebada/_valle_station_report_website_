@@ -14,24 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-06 20:08:32
+<p><strong>Última actualización:</strong> 2026-11-07 07:54:21
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT tras procesar el conjunto de datos, aquí tienes el informe correspondiente:</p>
+<p>Como analista de hardware IoT procesando este lote de datos de sensores ambientales, aquí tienes el informe detallado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>27.26 °C</strong> en el <code>temp_sensor1</code> a las 20:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Presentó el registro térmico más bajo del conjunto de datos, descendiendo hasta los <strong>11.20 °C</strong> en el <code>temp_sensor3</code> a las 11:00 UTC (con una media general matutina rondando los 12 °C).</li>
+<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo en el <code>temp_sensor1</code> con <strong>27.26 °C</strong> a las 20:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong> (y con registros similares en la madrugada del 2 y 4). La temperatura más baja se registró en el <code>temp_sensor3</code> con <strong>10.92 °C</strong> a las 12:00 UTC.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de forma consistente <strong>entre las 17:00 y las 19:00 UTC</strong>, coincidiendo con la máxima exposición cenital/solar de la zona monitoreada. 
-* El pico máximo absoluto registrado se dio a las <strong>18:00 UTC</strong>, alcanzando valores cercanos a:
-  * <strong>Radiación IR:</strong> ~6,610 W/m² (Día 2)
-  * <strong>Radiación VIS:</strong> ~756 W/m² (Día 2)
-  * <strong>Radiación UV:</strong> ~2.68 Índice UV (Día 2)</p>
-<h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y lecturas fuera de rango (<em>outliers</em> físicos imposibles) asociadas a fallas de lectura o corrupción en el bus de datos, específicamente en el <strong>sensor de humedad</strong>:
-* Se registran múltiples valores negativos e incoherentes en la variable <code>humedad</code> (por ejemplo: <code>-274.43</code>, <code>-677.73</code>, e incluso lecturas estandarizadas de error de <code>-999.9</code>) durante las madrugadas de los días <strong>2, 3 y 5 de noviembre</strong>. Esto apunta a un fallo intermitente de calibración, pérdida de energía momentánea o condensación extrema afectando el transductor del higrómetro.</p>
+<p>Los picos de radiación ocurren consistentemente en la franja del mediodía y la tarde debido a la exposición solar directa. Los valores máximos se concentran en las siguientes horas:
+*   <strong>Radiación Visible e IR:</strong> El pico máximo ocurre entre las <strong>18:00 y las 19:00 UTC</strong> (llegando hasta ~756 W/m² en visible y ~6,610 W/m² en infrarrojo).
+*   <strong>Radiación UV:</strong> Alcanza su nivel máximo en la misma ventana horaria, entre las <strong>18:00 y las 19:00 UTC</strong>, con valores pico de hasta <strong>2.68 UV</strong>.</p>
+<h3>3. Fallas en sensores (Anomalías detectadas)</h3>
+<p>Se han detectado lecturas fuera de rango físico lógico que evidencian fallas intermitentes en la telemetría:
+*   <strong>Falla Crítica en Sensor de Humedad:</strong> El campo <code>humedad</code> presenta múltiples valores negativos extremos (ej. <strong><code>-274.43</code></strong>, <strong><code>-553.10</code></strong>, y caídas planas sostenidas a <strong><code>-999.90</code></strong> a partir del 7 de noviembre). Esto indica un cortocircuito, pérdida de calibración o fallo en el bus de lectura del higrómetro.
+*   <strong>Desviación Térmica:</strong> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) muestran un desfase constante de ~1.5°C a 2°C entre sí bajo las mismas condiciones ambientales (siendo el sensor 1 el más cálido y el sensor 3 el más frío), lo que sugiere una mala colocación del aislamiento térmico o degradación en las termoresistencias.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
