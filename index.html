@@ -14,22 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-07 23:10:23
+<p><strong>Última actualización:</strong> 2026-11-08 08:10:55
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT procesando este conjunto de datos (muestra representativa del periodo de 2 meses), presento el informe de diagnóstico:</p>
-<h3>1. Día más caluroso y día más frío</h3>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado y aquí tienes el reporte correspondiente:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo en el <code>temp_sensor1</code> con <strong>27.26 °C</strong> a las 20:00 UTC, manteniendo promedios elevados y constantes por encima de los 26 °C durante toda la tarde.</li>
-<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Se registró la temperatura mínima global más baja en el <code>temp_sensor3</code> con <strong>10.92 °C</strong> a las 12:00 UTC, coincidiendo con una de las mediciones matutinas más bajas de todo el set de datos.</li>
+<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo en la hora <code>20:00:00Z</code> con un pico de <strong>27.26 °C</strong> en el sensor principal (<code>temp_sensor1</code>) y promedios altos constantes durante la tarde.</li>
+<li><strong>Día más frío:</strong> <strong>3 de noviembre de 2026</strong>. Se registró la temperatura mínima global en la hora <code>12:00:00Z</code> descendiendo hasta los <strong>10.92 °C</strong> en el sensor 3 y con valores matutinos muy bajos generalizados.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de forma consistente en la franja horaria vespertina, entre las <strong>17:00 UTC y las 19:00 UTC</strong>. 
-*   <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong>, alcanzando valores de hasta ~756 W/m² en radiación visible (<code>radiacion_vis</code>), ~6,610 W/m² en infrarrojo (<code>radiacion_ir</code>) y ~2.68 W/m² en UV (<code>radiacion_uv</code>).</p>
+<p>Los niveles de radiación (Visible, Infrarroja y UV) siguen un ciclo diurno estándar, alcanzando su cenit e intensidad máxima de manera consistente entre las <strong>17:00:00Z y las 19:00:00Z</strong>. 
+* <em>Ejemplo pico (06 de Nov, 18:00:00Z):</em> <code>radiacion_vis</code> = 727.44 W/m², <code>radiacion_ir</code> = 6297.42 W/m² y <code>radiacion_uv</code> = 2.50.</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y comportamientos erráticos (posibles fallas de hardware, pérdida de calibración o corrupción de trama) en las mediciones:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes con valores físicamente imposibles (lecturas en negativo como <code>-22.93</code>, <code>-357.76</code> y caídas abruptas a <code>-999.9</code>). Esto apunta a un cortocircuito, fallo en el ADC (conversor analógico-digital) o pérdida de comunicación I2C/SPI en el módulo higrómetro.
-*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Aunque muestran una correlación lógica entre sí, el <code>temp_sensor3</code> presenta consistentemente lecturas entre 1 °C y 2 °C por debajo del sensor principal, lo que sugiere un desfase por mala ubicación o degradación del termistor/sonda.</p>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango (hardware <em>faults</em> / <em>glitches</em>) asociadas específicamente al sensor de <strong>humedad</strong>:
+* <strong>Lecturas negativas erróneas:</strong> El campo <code>humedad</code> reporta de forma intermitente valores negativos imposibles para condiciones atmosféricas normales, tales como <code>-360.92</code>, <code>-578.64</code>, <code>-720.46</code> y un código de error persistente de <strong><code>-999.90</code></strong> (típico valor de máscara por fallo de lectura o desconexión del pin ADC/I2C del sensor). 
+* <strong>Diagnóstico:</strong> El hardware de medición de humedad ambiental requiere revisión de circuitería o reemplazo del módulo, ya que los sensores térmicos (<code>temp_sensor 1, 2 y 3</code>) operan de manera estable.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
