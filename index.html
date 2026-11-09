@@ -14,25 +14,21 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-08 23:14:46
+<p><strong>Última actualización:</strong> 2026-11-09 08:46:40
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Aquí tienes el análisis de los datos de hardware IoT procesados:</p>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos de los registros telemétricos. A continuación, presento el informe estructurado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong> (registró la temperatura máxima absoluta de <code>27.26 °C</code> a las 20:00 UTC en el <code>temp_sensor1</code>).</li>
-<li><strong>Día más frío:</strong> <strong>6 de noviembre de 2026</strong> (registró el valor mínimo más bajo para las horas de menor temperatura, descendiendo hasta los <code>12.03 °C</code> en el <code>temp_sensor1</code>).</li>
+<li><strong>Día más caluroso:</strong> <strong>06 de noviembre de 2026</strong> (Se registraron los picos máximos de temperatura alcanzando los <code>27.29 °C</code> en el sensor principal).</li>
+<li><strong>Día más frío:</strong> <strong>04 de noviembre de 2026</strong> (Se registró la temperatura mínima general del periodo, descendiendo hasta los <code>12.30 °C</code>).</li>
 </ul>
-<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) se concentran invariablemente durante las horas centrales de la tarde solar, registrando sus picos máximos entre las <strong>17:00 y las 19:00 UTC</strong> (con un pico absoluto global a las <strong>18:00 UTC</strong>). 
-* <em>Radiación IR máxima:</em> ~6,504 W/m²
-* <em>Radiación UV máxima:</em> ~2.64 índices UV</p>
-<hr />
-<h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas e inconsistencias físicas evidentes en el <strong>sensor de humedad</strong>, las cuales corresponden a fallas de lectura o desbordamiento de búfer (<em>overflow/corruption</em>):
-* <strong>Lecturas negativas extremas:</strong> Aparecen valores atípicos imposibles en la naturaleza para la humedad relativa, tales como <strong><code>-404.18%</code></strong>, <strong><code>-601.78%</code></strong> y un error crítico persistente de <strong><code>-999.90%</code></strong> (notorio entre el 7 y 8 de noviembre).
-* <strong>Comportamiento:</strong> Estos errores sugieren un fallo intermitente en el circuito de adquisición analógica-digital (ADC) o pérdida de comunicación I2C/SPI en el módulo del sensor ambiental durante dichos bloques horarios.</p>
+<p>Los niveles máximos de radiación (tanto visible, infrarroja como UV) se concentran consistentemente en la franja horaria vespertina de <strong>18:00 a 19:00 UTC</strong>, destacando el pico máximo absoluto a las <strong>18:00 UTC</strong> (con valores de radiación IR superiores a <code>6347 W/m²</code> y UV cercanos a <code>2.57</code>).</p>
+<h3>3. Fallas detectadas en sensores</h3>
+<p>Se identificaron anomalías críticas y lecturas fuera de rango (posibles fallas de hardware, corrupción de búfer o pérdida de calibración) en el sensor de <strong>Humedad</strong>:
+*   <strong>Lecturas negativas anómalas:</strong> El sensor de humedad reporta valores físicamente imposibles como <code>-404.18</code>, <code>-601.78</code>, <code>-999.90</code> y <code>-360.92</code> de forma intermitente (por ejemplo, los días 05, 07, 08 y 09 de noviembre).
+*   <strong>Comportamiento:</strong> Esto indica un fallo intermitente en el circuito de adquisición de datos del higrómetro o un error de lectura en el bus de comunicación del nodo IoT. Los sensores de temperatura y radiación operan dentro de parámetros normales.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
