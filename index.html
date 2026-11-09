@@ -14,21 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-09 08:46:40
+<p><strong>Última actualización:</strong> 2026-11-09 17:23:30
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos de los registros telemétricos. A continuación, presento el informe estructurado:</p>
+<p>Como analista de hardware IoT tras procesar el conjunto de datos, aquí tienes el informe estructurado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>06 de noviembre de 2026</strong> (Se registraron los picos máximos de temperatura alcanzando los <code>27.29 °C</code> en el sensor principal).</li>
-<li><strong>Día más frío:</strong> <strong>04 de noviembre de 2026</strong> (Se registró la temperatura mínima general del periodo, descendiendo hasta los <code>12.30 °C</code>).</li>
+<li><strong>Día más caluroso:</strong> <strong>4 de noviembre de 2026</strong> (registró la temperatura máxima general del periodo con picos de hasta <strong>26.98 °C</strong> en el <code>temp_sensor1</code> a las 19:00).</li>
+<li><strong>Día más frío:</strong> <strong>6 de noviembre de 2026</strong> (registró las temperaturas mínimas más bajas, descendiendo hasta <strong>12.03 °C</strong> en el <code>temp_sensor1</code> y <strong>10.74 °C</strong> en el <code>temp_sensor3</code> al mediodía).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (tanto visible, infrarroja como UV) se concentran consistentemente en la franja horaria vespertina de <strong>18:00 a 19:00 UTC</strong>, destacando el pico máximo absoluto a las <strong>18:00 UTC</strong> (con valores de radiación IR superiores a <code>6347 W/m²</code> y UV cercanos a <code>2.57</code>).</p>
-<h3>3. Fallas detectadas en sensores</h3>
-<p>Se identificaron anomalías críticas y lecturas fuera de rango (posibles fallas de hardware, corrupción de búfer o pérdida de calibración) en el sensor de <strong>Humedad</strong>:
-*   <strong>Lecturas negativas anómalas:</strong> El sensor de humedad reporta valores físicamente imposibles como <code>-404.18</code>, <code>-601.78</code>, <code>-999.90</code> y <code>-360.92</code> de forma intermitente (por ejemplo, los días 05, 07, 08 y 09 de noviembre).
-*   <strong>Comportamiento:</strong> Esto indica un fallo intermitente en el circuito de adquisición de datos del higrómetro o un error de lectura en el bus de comunicación del nodo IoT. Los sensores de temperatura y radiación operan dentro de parámetros normales.</p>
+<p>Los niveles máximos de energía solar se concentran consistentemente en la franja vespertina:
+* <strong>Radiación Visible (vis), Infrarroja (ir) y Ultravioleta (uv):</strong> El pico máximo de radiación ocurre <strong>entre las 17:00 y las 19:00 UTC</strong>, alcanzando valores superiores a <strong>735 W/m² en luz visible</strong>, más de <strong>6,340 W/m² en radiación IR</strong> y hasta <strong>2.57 en índice UV</strong>.</p>
+<h3>3. Fallas en sensores</h3>
+<p>Se detectaron anomalías críticas de hardware y lectura en los registros:
+* <strong>Falla en el sensor de humedad:</strong> El sensor de humedad presenta errores graves de desbordamiento (underflow/overflow) arrojando valores físicamente imposibles como <strong>-404%, -601%, -999.9%</strong> y <strong>-776%</strong> de manera intermitente (por ejemplo, los días 5, 7, 8 y 9 de noviembre), lo que indica un problema de calibración, corrupción en el bus I2C/SPI o falla en el firmware del transductor.
+* <strong>Coherencia térmica:</strong> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) mantienen una correlación lógica descendente según su jerarquía, operando sin fallas aparentes a pesar de las variaciones ambientales.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
