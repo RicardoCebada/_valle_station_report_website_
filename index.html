@@ -14,24 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-10 08:53:58
+<p><strong>Última actualización:</strong> 2026-11-10 15:31:42
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el registro de telemetría (del 4 al 10 de noviembre de 2026). A continuación, presento el reporte técnico basado en los datos:</p>
+<p>Como analista de hardware IoT procesando el lote de datos proporcionado, aquí tienes el informe estructurado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>6 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo en el sensor principal con <strong>27.29 °C</strong> (a las 19:00 UTC), manteniendo promedios altos constantes durante sus horas pico.</li>
-<li><strong>Día más frío:</strong> <strong>6 de noviembre de 2026</strong> (en contraste térmico nocturno/madrugada) / Mínima absoluta en el <strong>8 de noviembre de 2026</strong>, donde el sensor 3 cayó hasta los <strong>10.57 °C</strong> en horas de la madrugada, siendo el registro térmico más bajo del conjunto de datos.</li>
+<li><strong>Día más caluroso:</strong> <strong>6 de noviembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>27.29 °C</strong> a las 19:00 UTC en el sensor principal).</li>
+<li><strong>Día más frío:</strong> <strong>6 de noviembre de 2026</strong> (Curiosamente, este día también experimentó la temperatura mínima más baja del registro, descendiendo hasta los <strong>10.74 °C</strong> en el sensor 3 a las 12:00 UTC, debido a una alta oscilación térmica y una baja caída en los sensores matutinos).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía solar y primeras horas de la tarde, específicamente <strong>entre las 18:00 UTC y las 19:00 UTC</strong> (coincidiendo con las 13:00 - 14:00 hora local aproximada). 
-*   <em>Radiación Visible (VIS):</em> Picos superiores a <strong>735 W/m²</strong>.
-*   <em>Radiación Infrarroja (IR):</em> Picos máximos cercanos a los <strong>6,347 W/m²</strong>.
-*   <em>Radiación Ultravioleta (UV):</em> Niveles máximos de <strong>2.57</strong>.</p>
+<p>Los niveles máximos de energía solar (Visible, Infrarroja y UV) se concentran consistentemente en la franja horaria del mediodía hacia la tarde:
+* <strong>Pico máximo:</strong> Entre las <strong>17:00 y las 19:00 UTC</strong> (Hora local solar).
+* <strong>Valores máximos alcanzados:</strong>
+  * <strong>Radiación IR:</strong> Hasta <strong>6,342.96 W/m²</strong> (Registrado a las 18:00 UTC del 5 de noviembre).
+  * <strong>Radiación Vis:</strong> Hasta <strong>735.20 lx/W</strong> (A las 18:00 UTC del 5 de noviembre).
+  * <strong>Radiación UV:</strong> Hasta <strong>2.57 Índice UV</strong> (A las 18:00 UTC del 5 de noviembre).</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y fallas intermitentes en la telemetría, atribuibles a errores de lectura o fallas de hardware (posible corrupción en el ADC o pérdida de calibración):
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes con valores físicamente imposibles (números negativos extremos como <code>-404.18</code>, <code>-601.78</code>, e incluso lecturas constantes de error de sistema como <strong><code>-999.9</code></strong>). Esto indica un cortocircuito, saturación del pin analógico o fallo en el firmware del sensor de humedad relativa a lo largo de varios días (especialmente evidentes del 7 al 10 de noviembre).
-*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Mantienen una correlación lógica interna (Sensor 1 &gt; Sensor 2 &gt; Sensor 3), lo que descarta fallas fatales en el bus térmico, aunque se aprecian saltos abruptos de temperatura en los cambios de hora que sugieren retardos en el muestreo.</p>
+<p>Se detectaron anomalías críticas y fallas de lectura (probablemente corrupción de trama, pérdida de calibración o fallos en el ADC/bus de comunicación) en el <strong>sensor de humedad</strong>:
+* <strong>Lecturas fuera de rango (Valores negativos anómalos):</strong> El sensor reporta constantemente cifras imposibles como <code>-404.18</code>, <code>-601.78</code>, <code>-776.87</code>, y de forma muy repetitiva el código de error estándar de firmware <strong><code>-999.90</code></strong>.
+* <strong>Diagnóstico:</strong> El sensor de humedad relativa está sufriendo intermitencias eléctricas graves o fallas en el circuito integrado de medición (posiblemente un daño por humedad interna en el encapsulado o problema de tierra flotante), requiriendo reemplazo físico del módulo. Los sensores de temperatura (1, 2 y 3) y radiación operan dentro de parámetros normales y coherentes.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
