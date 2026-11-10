@@ -14,23 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-09 23:12:09
+<p><strong>Última actualización:</strong> 2026-11-10 08:53:58
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
+<p>Como analista de hardware IoT, he procesado el registro de telemetría (del 4 al 10 de noviembre de 2026). A continuación, presento el reporte técnico basado en los datos:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>04 de noviembre de 2026</strong> (Temperatura máxima registrada en <code>temp_sensor1</code> de <strong>27.26 °C</strong> a las 20:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>06 de noviembre de 2026</strong> (Temperatura mínima registrada en <code>temp_sensor3</code> de <strong>10.74 °C</strong> a las 12:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>6 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo en el sensor principal con <strong>27.29 °C</strong> (a las 19:00 UTC), manteniendo promedios altos constantes durante sus horas pico.</li>
+<li><strong>Día más frío:</strong> <strong>6 de noviembre de 2026</strong> (en contraste térmico nocturno/madrugada) / Mínima absoluta en el <strong>8 de noviembre de 2026</strong>, donde el sensor 3 cayó hasta los <strong>10.57 °C</strong> en horas de la madrugada, siendo el registro térmico más bajo del conjunto de datos.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren consistentemente en la franja horaria del mediodía solar y la tarde, específicamente entre las <strong>18:00 UTC y las 19:00 UTC</strong>, alcanzando valores máximos de:
-* <strong>Radiación Visible:</strong> ~735 W/m²
-* <strong>Radiación Infrarroja:</strong> ~6,347 W/m²
-* <strong>Radiación UV:</strong> ~2.57</p>
-<h3>3. Fallas detectadas en sensores</h3>
-<p>Se identificaron anomalías críticas de lectura (valores fuera de rango físico lógico) en el campo de <strong>humedad</strong>:
-* <strong>Lecturas negativas extremas / Errores de hardware:</strong> El sensor reporta múltiples caídas a valores imposibles como <code>-404.18</code>, <code>-601.78</code>, <code>-776.87</code>, <code>-850.89</code> y el código de error estándar de sensor desconectado/dañado <strong><code>-999.90</code></strong>.
-* <strong>Patrón de falla:</strong> Estas fallas se concentran principalmente durante las horas de la madrugada y la mañana (de 01:00 a 11:00 UTC) en los días 5, 7, 8 y 9 de noviembre, lo que sugiere un problema de condensación de rocío afectando el circuito o el bus de comunicación del sensor de humedad.</p>
+<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía solar y primeras horas de la tarde, específicamente <strong>entre las 18:00 UTC y las 19:00 UTC</strong> (coincidiendo con las 13:00 - 14:00 hora local aproximada). 
+*   <em>Radiación Visible (VIS):</em> Picos superiores a <strong>735 W/m²</strong>.
+*   <em>Radiación Infrarroja (IR):</em> Picos máximos cercanos a los <strong>6,347 W/m²</strong>.
+*   <em>Radiación Ultravioleta (UV):</em> Niveles máximos de <strong>2.57</strong>.</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas y fallas intermitentes en la telemetría, atribuibles a errores de lectura o fallas de hardware (posible corrupción en el ADC o pérdida de calibración):
+*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes con valores físicamente imposibles (números negativos extremos como <code>-404.18</code>, <code>-601.78</code>, e incluso lecturas constantes de error de sistema como <strong><code>-999.9</code></strong>). Esto indica un cortocircuito, saturación del pin analógico o fallo en el firmware del sensor de humedad relativa a lo largo de varios días (especialmente evidentes del 7 al 10 de noviembre).
+*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Mantienen una correlación lógica interna (Sensor 1 &gt; Sensor 2 &gt; Sensor 3), lo que descarta fallas fatales en el bus térmico, aunque se aprecian saltos abruptos de temperatura en los cambios de hora que sugieren retardos en el muestreo.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
