@@ -14,24 +14,30 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-11 15:04:16
+<p><strong>Última actualización:</strong> 2026-11-11 20:57:36
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado. A continuación, presento el informe con los hallazgos clave:</p>
-<h3>1. Día más caluroso y más frío</h3>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al período monitoreado. A continuación, presento el reporte estructurado:</p>
+<h3>1. Día Más Caluroso y Más Frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>6 de noviembre de 2026</strong> (Registró el pico máximo de temperatura con <strong>27.29 °C</strong> en el sensor principal durante la hora 19:00, con temperaturas sostenidas por encima de los 26 °C durante gran parte de la tarde).</li>
-<li><strong>Día más frío:</strong> <strong>6 de noviembre de 2026 / 7 de noviembre de 2026</strong> (Las temperaturas mínimas absolutas se registraron en las horas de madrugada del día 6, descendiendo hasta los <strong>10.74 °C</strong> en el sensor 3).</li>
+<li><strong>Día más caluroso:</strong> <strong>6 de noviembre de 2026</strong><ul>
+<li><em>Motivo:</em> Registró las temperaturas máximas más altas del periodo, alcanzando un pico de <strong>27.29 °C</strong> en el <code>temp_sensor1</code> (a las 19:00 UTC).</li>
 </ul>
-<h3>2. Horas de mayor radiación</h3>
-<p>Los niveles pico de radiación se concentran consistentemente en la franja horaria vespertina de <strong>17:00 a 19:00 UTC</strong>, destacándose las siguientes mediciones máximas:
-*   <strong>Radiación Visible:</strong> ~727.44 W/m² (a las 18:00 del 6 de noviembre).
-*   <strong>Radiación Infrarroja (IR):</strong> ~6,297.42 W/m² (a las 18:00 del 6 de noviembre).
-*   <strong>Radiación Ultravioleta (UV):</strong> ~2.50 Índice UV (a las 18:00 del 6 de noviembre).</p>
-<h3>3. Falla en sensores</h3>
-<p>Se detectó una anomalía crítica y sistemática en el <strong>sensor de humedad</strong>:
-*   <strong>Lecturas fuera de rango:</strong> A partir del <strong>7 de noviembre</strong>, el sensor de humedad comenzó a arrojar valores negativos anómalos imposibles en la física ambiental (como <code>-360.92</code>, <code>-776.87</code> y el código de error constante de calibración/hardware <code>-999.90</code>).
-*   <strong>Diagnóstico:</strong> Esto indica una falla en el circuito de adquisición de datos (ADC), un error de lectura en el bus I2C/analógico, o una degradación del elemento sensible del higrómetro que requiere mantenimiento físico o sustitución del módulo. Los sensores de temperatura y radiación operan dentro de parámetros normales.</p>
+</li>
+<li><strong>Día más frío:</strong> <strong>7 de noviembre de 2026</strong><ul>
+<li><em>Motivo:</em> Presentó las temperaturas mínimas absolutas más bajas de la serie, descendiendo hasta los <strong>12.44 °C</strong> en el <code>temp_sensor1</code> y un mínimo de <strong>11.11 °C</strong> en el <code>temp_sensor3</code> (a las 13:00 UTC).</li>
+</ul>
+</li>
+</ul>
+<h3>2. Horas de Mayor Radiación</h3>
+<p>Los niveles máximos de energía solar (Visible, Infrarroja y UV) se concentran de manera consistente en la franja central e inicio de la tarde, específicamente entre las <strong>17:00 y las 19:00 UTC</strong> (pico máximo a las 18:00 UTC):
+*   <strong>Radiación Visible (<code>radiacion_vis</code>):</strong> Hasta <strong>727.44 W/m²</strong>.
+*   <strong>Radiación Infrarroja (<code>radiacion_ir</code>):</strong> Hasta <strong>6,297.42 W/m²</strong>.
+*   <strong>Radiación UV (<code>radiacion_uv</code>):</strong> Hasta <strong>2.50 UV Index</strong>.</p>
+<h3>3. Fallas en Sensores</h3>
+<p>Se detectaron anomalías críticas y lecturas fuera de rango en el sistema:
+*   <strong>Sensor de Humedad (Falla Crítica / Fuera de Rango):</strong> El sensor de humedad presenta fallas graves de calibración o lecturas corruptas de hardware, arrojando valores negativos imposibles y anómalos de forma intermitente (por ejemplo, lecturas de <code>-360.92</code>, <code>-776.88</code> y caídas extremas de hasta <code>-999.90</code>).
+*   <strong>Sensores de Temperatura:</strong> Operan correctamente y muestran una correlación lógica y estable entre sí (<code>sensor1</code> &gt; <code>sensor2</code> &gt; <code>sensor3</code>), sin saltos térmicos anómalos atribuibles a fallas de hardware.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
