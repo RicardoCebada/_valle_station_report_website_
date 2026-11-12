@@ -14,25 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-12 08:55:03
+<p><strong>Última actualización:</strong> 2026-11-12 15:59:41
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT procesando este lote de datos, aquí tienes el informe basado en las lecturas de los sensores:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al período de 2 meses (simulado en el fragmento analizado). A continuación, presento el diagnóstico técnico:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día Más Caluroso:</strong> <strong>10 de noviembre de 2026</strong> (Registró los picos máximos sostenidos de temperatura, alcanzando los <strong>26.29 °C</strong> en el sensor principal a las 19:00 UTC).</li>
-<li><strong>Día Más Frío:</strong> <strong>7 de noviembre de 2026</strong> (Las temperaturas descendieron drásticamente hasta los <strong>12.44 °C</strong> en promedio durante las horas del mediodía, y mínimas de <strong>11.11 °C</strong> en el sensor auxiliar).</li>
+<li><strong>Día más caluroso:</strong> <strong>8 de noviembre de 2026</strong> (Registró los picos máximos de temperatura en <code>temp_sensor1</code> alcanzando hasta los <strong>26.39 °C</strong> en horas de la tarde).</li>
+<li><strong>Día más frío:</strong> <strong>10 de noviembre de 2026</strong> (Mostró las temperaturas mínimas más bajas registradas por el sensor 3, descendiendo hasta los <strong>11.64 °C</strong>).</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los picos máximos de radiación (en todas sus vertientes: Visible, Infrarroja y UV) se concentran invariablemente en la franja horaria de la tarde, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong>. 
-*   <em>Máximo absoluto registrado:</em> 
-    *   <strong>Radiación Vis:</strong> ~727.44 (06 de noviembre, 18:00 UTC)
-    *   <strong>Radiación IR:</strong> ~6,297.42 (06 de noviembre, 18:00 UTC)
-    *   <strong>Radiación UV:</strong> ~2.50 (06 de noviembre, 18:00 UTC)</p>
-<h3>3. Fallas en Sensores Detectadas</h3>
-<p>Se identifican anomalías críticas de hardware e inconsistencias en la telemetría que apuntan a fallas en los sensores:
-*   <strong>Sensor de Humedad (Falla Crítica / Rango Fuera de Escala):</strong> Presenta lecturas negativas imposibles y altamente anómalas (ej. <code>-360.92</code>, <code>-776.88</code>, y picos constantes de <code>-999.90</code>). Esto indica un <strong>cortocircuito, pérdida de calibración o fallo en el ADC</strong> del módulo higrómetro, especialmente notable durante las madrugadas del 7, 8, 9, 10 y 11 de noviembre.
-*   <strong>Sensores de Temperatura (Desviación Térmica):</strong> Hay una diferencia consistente y sistemática entre el <code>temp_sensor1</code>, <code>temp_sensor2</code> y <code>temp_sensor3</code> de aproximadamente <strong>1.5 °C a 2 °C</strong> bajo las mismas condiciones ambientales (siendo el <code>sensor3</code> el más frío). Esto sugiere una <strong>degradación en la tornillería térmica o mal contacto</strong> en la masilla disipadora del sensor 3.</p>
+<h3>2. Horas de mayor radiación</h3>
+<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la ventana central del día, coincidiendo con el cenit solar:
+*   <strong>Franja horaria crítica:</strong> Entre las <strong>17:00 UTC y las 19:00 UTC</strong>.
+*   <em>Pico máximo absoluto:</em> A las <strong>18:00 UTC</strong>, donde la radiación IR supera los <strong>6,180 W/m²</strong> y la UV alcanza picos de <strong>2.47</strong>.</p>
+<h3>3. Falla en sensores (Anomalías detectadas)</h3>
+<p>Se han identificado fallas críticas de hardware y lecturas fuera de rango en el flujo de datos:
+*   <strong>Sensor de Humedad (Falla intermitente grave):</strong> Presenta valores negativos físicamente imposibles (ej. <code>-360.92</code>, <code>-999.90</code>). Esto indica un <strong>cortocircuito en el ADC (Conversor Analógico-Digital)</strong>, pérdida de referencia de voltaje o fallas de comunicación I2C/SPI en el módulo DHT/SHT.
+*   <strong>Sensores de Temperatura (Descalibración):</strong> Se observa una deriva térmica consistente donde <code>temp_sensor1</code> &gt; <code>temp_sensor2</code> &gt; <code>temp_sensor3</code>. Aunque la lógica de gradiente es correcta, el sensor 3 muestra valores atípicos bajos, sugiriendo un <strong>desprendimiento parcial del termistor</strong> o mala disipación térmica en su encapsulado.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
