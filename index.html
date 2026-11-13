@@ -14,23 +14,21 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-13 08:51:00
+<p><strong>Última actualización:</strong> 2026-11-13 15:17:24
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al período registrado. A continuación, presento los resultados clave:</p>
-<h3>1. Día más caluroso y más frío</h3>
+<p>Como analista de hardware IoT, he procesado el lote de datos proporcionado (correspondiente a una ventana de muestreo de noviembre de 2026). A continuación, presento el diagnóstico técnico:</p>
+<h3>1. Día más caluroso y día más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>10 de noviembre de 2026</strong> (Registró los picos máximos más altos, alcanzando los <strong>26.29 °C</strong> en el sensor 1 a las 19:00).</li>
-<li><strong>Día más frío:</strong> <strong>8 de noviembre de 2026</strong> (Experimentó las temperaturas mínimas más bajas, descendiendo hasta los <strong>14.20 °C</strong> en el sensor 3 a las 12:00).</li>
+<li><strong>Día más caluroso:</strong> <strong>10 de noviembre de 2026</strong> (registró el pico máximo de temperatura con <strong>26.29 °C</strong> en el sensor 1 a las 19:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>10 de noviembre de 2026</strong> (también registró el valor mínimo de temperatura con <strong>11.64 °C</strong> en el sensor 3 a las 13:00 UTC, mostrando una alta amplitud térmica en este ciclo).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (tanto visible, infrarroja como UV) se concentran consistentemente en la franja horaria vespertina:
-*   <strong>Horario pico:</strong> Entre las <strong>17:00 y las 19:00 UTC</strong>.
-*   <em>Ejemplo destacado:</em> El 12 de noviembre a las 19:00 UTC se registró el pico máximo de radiación visible con <strong>689.36 W/m²</strong> y radiación IR con <strong>5758.70 W/m²</strong>.</p>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente durante la franja diurna central, específicamente <strong>entre las 18:00 y las 19:00 UTC</strong> (pico absoluto a las 19:00 UTC con ~703 W/m² en radiación visible y ~5,995 W/m² en IR).</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y lecturas fuera de rango que evidencian fallas de hardware en los nodos:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas graves y recurrentes con <strong>valores negativos anómalos</strong> (ej. <code>-999.9</code> y <code>-452.3</code> W/m² o porcentaje), indicando posibles problemas de calibración, desconexión parcial del bus de datos o corrupción en el ADC del sensor a partir del 8 de noviembre.
-*   <strong>Sensores de Temperatura (1, 2 y 3):</strong> Mantienen una correlación lógica y estable entre ellos, por lo que <strong>no</strong> muestran fallas críticas de lectura, operando dentro de los rangos esperados.</p>
+<p>Se detectan anomalías críticas compatibles con fallas de hardware y corrupción de tramas en los datos:
+*   <strong>Sensor de Humedad (Falla Crítica):</strong> Presenta lecturas erróneas recurrentes con valores negativos imposibles y anómalos, específicamente <strong><code>-999.9</code></strong> y caídas repentinas de hasta <strong><code>-452</code> o <code>-850</code></strong>. Esto indica un desbordamiento de búfer (buffer overflow), pérdida de calibración del ADC o desconexión intermitente del sensor de humedad relativa.
+*   <strong>Sensores de Temperatura:</strong> Muestran una respuesta coherente entre sí (<code>sensor1</code> &gt; <code>sensor2</code> &gt; <code>sensor3</code>), lo que descarta fallas en los termistores, aunque se sugiere revisar el aislamiento térmico del <code>sensor3</code> debido a su desviación constante a la baja.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
