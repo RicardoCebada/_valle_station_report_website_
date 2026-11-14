@@ -14,23 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-14 14:04:08
+<p><strong>Última actualización:</strong> 2026-11-14 18:53:29
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el set de datos provisto (correspondiente a una muestra del periodo de monitoreo) y aquí tienes el diagnóstico técnico:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Como analista de hardware IoT, he procesado el lote de datos correspondiente al periodo analizado. A continuación, presento el reporte técnico con los hallazgos solicitados:</p>
+<h3>1. Día más caluroso y día más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>10 de noviembre de 2026</strong> (Registró la temperatura máxima absoluta del set, alcanzando los <strong>26.29 °C</strong> en el <code>temp_sensor1</code> a las 19:00:00Z).</li>
-<li><strong>Día más frío:</strong> <strong>10 de noviembre de 2026</strong> (Irónicamente, el mismo día experimentó los registros térmicos más bajos, cayendo hasta los <strong>11.64 °C</strong> en el <code>temp_sensor3</code> a las 13:00:00Z, debido a una alta fluctuación diurna).</li>
+<li><strong>Día más caluroso:</strong> <strong>10 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo en el <code>temp_sensor1</code> con <strong>25.83 °C</strong> a las 18:00 UTC (y picos sostenidos de más de 26 °C en horas aledañas).</li>
+<li><strong>Día más frío:</strong> <strong>10 de noviembre de 2026 (madrugada)</strong> / <strong>13 de noviembre de 2026</strong>. El registro de temperatura mínima más baja se observó en el <code>temp_sensor3</code> con <strong>11.64 °C</strong> (13 de nov, 13:00 UTC) y mínimos globales cercanos a los 11.83 °C el día 10.</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja vespertina:
-*   <strong>Horario pico:</strong> Entre las <strong>17:00:00Z y las 19:00:00Z</strong>.
-*   <em>Valor máximo registrado:</em> El <strong>13 de noviembre a las 18:00:00Z</strong>, con picos de radiación visible de <code>749.72 W/m²</code>, radiación IR de <code>6478.74 W/m²</code> y radiación UV de <code>2.64</code>.</p>
-<h3>3. Falla en Sensores</h3>
-<p>Se detectaron anomalías críticas y lecturas fuera de rango que indican fallas en el hardware:
-*   <strong>Sensor de Humedad (Falla Crítica / Rango Imposible):</strong> El sensor reporta constantemente valores negativos extremos (ej. <code>-999.9</code>, <code>-850.8</code>, <code>-683.2</code>), lo cual indica un <strong>colapso en el circuito de acondicionamiento de señal</strong>, saturación del ADC (Conversor Analógico-Digital) o una desconexión parcial del elemento sensible.
-*   <strong>Termistores / Sensores de Temperatura (<code>temp_sensor1</code>, <code>2</code> y <code>3</code>):</strong> Funcionan correctamente y muestran una correlación lógica entre ellos (gradiente térmico coherente), aunque el <code>temp_sensor3</code> siempre registra una ligera caída sistemática (aprox. 1°C menos), sugiriendo un <strong>descalibración por deriva térmica</strong>.</p>
+<h3>2. Horas de mayor radiación</h3>
+<p>Los niveles máximos de energía (Visible, Infrarroja y UV) se concentranconsistentemente en la franja horaria central del día, específicamente entre las <strong>17:00 UTC y las 19:00 UTC</strong> (pico absoluto centrado a las <strong>18:00 UTC</strong>). 
+*   <em>Radiación IR:</em> Alcanzó hasta <strong>6,478.74 W/m²</strong> (13 de nov).
+*   <em>Radiación Vis:</em> Registró máximos de <strong>749.72 W/m²</strong>.
+*   <em>Radiación UV:</em> Picos de hasta <strong>2.64</strong>.</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas e intermitencias en la telemetría que apuntan a fallas de hardware:
+*   <strong>Sensor de Humedad (Falla Crítica / Saturación):</strong> Presenta valores negativos recurrentes e imposibles físicamente, destacando lecturas exactas de <strong><code>-999.9</code></strong> de forma repetitiva en varios días (ej. 10, 11, 12 y 13 de noviembre). Esto indica un error de lectura por desbordamiento del buffer, pérdida de comunicación con el transductor o falla en la etapa de alimentación del circuito de humedad.
+*   <strong>Sensores de Temperatura (Deriva Térmica):</strong> Existe una diferencia sistemática y predecible entre <code>temp_sensor1</code>, <code>temp_sensor2</code> y <code>temp_sensor3</code> (siendo el sensor 3 consistentemente menor por ~1.5°C a 2°C). Esto sugiere falta de calibración en sitio o degradación en la soldadura/termistor del sensor 3.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
