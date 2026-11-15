@@ -14,26 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-15 14:40:31
+<p><strong>Última actualización:</strong> 2026-11-15 19:29:26
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT procesando el lote de datos proporcionado, aquí tienes el informe técnico detallado:</p>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo del 10 al 15 de noviembre de 2026. A continuación, presento el análisis estructurado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>13 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>26.01 °C</strong> en el sensor principal a las 19:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo, descendiendo hasta los <strong>9.76 °C</strong> en el sensor 3 a las 12:00 UTC.</li>
+<li><strong>Día más caluroso:</strong> <strong>13 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo con <strong>26.01 °C</strong> (medida por el <code>temp_sensor1</code> a las 19:00 UTC) y una alta estabilidad térmica diurna por encima de los 25 °C en múltiples horas.</li>
+<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta de todo el conjunto de datos con <strong>9.96 °C</strong> (en el <code>temp_sensor3</code> a las 11:00 UTC), mostrando además la media general más baja de las jornadas analizadas.</li>
 </ul>
-<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación en todas sus bandas (visible, infrarroja y ultravioleta) se concentran consistentemente en la franja horaria de <strong>17:00 a 19:00 UTC</strong>. 
-*   <strong>Radiación IR (Infrarroja):</strong> Pico máximo de <strong>6478.74 W/m²</strong> el 13 de noviembre a las 18:00 UTC.
-*   <strong>Radiación Vis (Visible):</strong> Pico máximo de <strong>749.72 W/m²</strong> el 13 de noviembre a las 18:00 UTC.
-*   <strong>Radiación UV:</strong> Pico máximo de <strong>2.64</strong> el 13 de noviembre a las 18:00 UTC.</p>
-<hr />
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja vespertina debido a la posición solar y la menor nubosidad registrada:
+*   <strong>Franja horaria crítica:</strong> Entre las <strong>17:00 UTC y las 19:00 UTC</strong>.
+*   <strong>Pico máximo absoluto:</strong> Registrado el <strong>13 de noviembre a las 18:00 UTC</strong>, alcanzando los valores máximos del periodo:
+    *   <strong>Radiación Vis:</strong> 749.73 W/m²
+    *   <strong>Radiación IR:</strong> 6,478.75 W/m²
+    *   <strong>Radiación UV:</strong> 2.64 Indice UV</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectó una anomalía crítica y sistemática en el <strong>sensor de humedad</strong>:
-*   <strong>Falla:</strong> Lecturas con valores negativos anómalos y constantes (frecuentemente rondando los <strong><code>-999.9</code></strong> o picos negativos extremos como <strong><code>-523.77</code></strong> y <strong><code>-608.73</code></strong>).
-*   <strong>Diagnóstico técnico:</strong> Esto indica un fallo evidente en el transductor de humedad (saturación por condensación de rocío, problema en el circuito analógico-digital o pérdida de calibración del bus I2C/analógico). Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) y los pirómetros/radiómetros operan dentro de parámetros lógicos y estables.</p>
+<p>El análisis de integridad de los datos revela una anomalía crítica y sistemática en el <strong>sensor de humedad</strong>:
+*   <strong>Fallo por valores fuera de rango (Out-of-Range):</strong> El canal de <code>humedad</code> presenta fallos recurrentes y graves, arrojando valores negativos imposibles para la física ambiental (ej. <strong><code>-999.9</code></strong>, <strong><code>-608.73</code></strong>, <strong><code>-176.48</code></strong>). Estos números fijos actúan claramente como un código de error de hardware (lectura nula o buffer desbordado), afectando principalmente a las horas nocturnas y madrugadas de los días 10, 11, 12 y 13 de noviembre.
+*   <strong>Sensores de temperatura:</strong> Operan dentro de rangos lógicos y coherentes (<code>temp_sensor1</code>, <code>2</code> y <code>3</code> muestran una gradiente térmica esperada), descartando fallos masivos en la tornillería térmica, aunque se recomienda calibración por la deriva leve entre sensores.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
