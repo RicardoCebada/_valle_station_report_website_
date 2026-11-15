@@ -14,26 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-15 19:29:26
+<p><strong>Última actualización:</strong> 2026-11-15 23:37:54
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo del 10 al 15 de noviembre de 2026. A continuación, presento el análisis estructurado:</p>
+<p>Como analista de hardware IoT, he procesado el lote de datos correspondiente al periodo analizado. A continuación, presento los resultados clave:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>13 de noviembre de 2026</strong>. Se registró la temperatura máxima global del periodo con <strong>26.01 °C</strong> (medida por el <code>temp_sensor1</code> a las 19:00 UTC) y una alta estabilidad térmica diurna por encima de los 25 °C en múltiples horas.</li>
-<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta de todo el conjunto de datos con <strong>9.96 °C</strong> (en el <code>temp_sensor3</code> a las 11:00 UTC), mostrando además la media general más baja de las jornadas analizadas.</li>
+<li><strong>Día más caluroso:</strong> <strong>10 de noviembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>25.83 °C</strong> en el sensor 1 a las 18:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong> (Registró la temperatura mínima absoluta del periodo con <strong>9.95 °C</strong> en el sensor 3 a las 11:00 UTC).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja vespertina debido a la posición solar y la menor nubosidad registrada:
-*   <strong>Franja horaria crítica:</strong> Entre las <strong>17:00 UTC y las 19:00 UTC</strong>.
-*   <strong>Pico máximo absoluto:</strong> Registrado el <strong>13 de noviembre a las 18:00 UTC</strong>, alcanzando los valores máximos del periodo:
-    *   <strong>Radiación Vis:</strong> 749.73 W/m²
-    *   <strong>Radiación IR:</strong> 6,478.75 W/m²
-    *   <strong>Radiación UV:</strong> 2.64 Indice UV</p>
-<h3>3. Falla en sensores</h3>
-<p>El análisis de integridad de los datos revela una anomalía crítica y sistemática en el <strong>sensor de humedad</strong>:
-*   <strong>Fallo por valores fuera de rango (Out-of-Range):</strong> El canal de <code>humedad</code> presenta fallos recurrentes y graves, arrojando valores negativos imposibles para la física ambiental (ej. <strong><code>-999.9</code></strong>, <strong><code>-608.73</code></strong>, <strong><code>-176.48</code></strong>). Estos números fijos actúan claramente como un código de error de hardware (lectura nula o buffer desbordado), afectando principalmente a las horas nocturnas y madrugadas de los días 10, 11, 12 y 13 de noviembre.
-*   <strong>Sensores de temperatura:</strong> Operan dentro de rangos lógicos y coherentes (<code>temp_sensor1</code>, <code>2</code> y <code>3</code> muestran una gradiente térmica esperada), descartando fallos masivos en la tornillería térmica, aunque se recomienda calibración por la deriva leve entre sensores.</p>
+<p>Los niveles máximos de energía solar (visible, infrarroja y UV) se concentran consistentemente en la franja del mediodía y la tarde temprana:
+*   <strong>Pico máximo de Radiación:</strong> Entre las <strong>17:00 y las 19:00 UTC</strong>.
+*   <em>Valores peak observados:</em> Radiación VIS de hasta ~749 W/m², IR superior a 6,478 W/m² y UV alcanzando los 2.64 de índice.</p>
+<h3>3. Diagnóstico de Falla en Sensores</h3>
+<p>Se detectaron anomalías críticas e intermitencias en los nodos de medición:
+*   <strong>Sensor de Humedad (Falla Crítica):</strong> Presenta lecturas inválidas recurrentes con valores negativos extremos y constantes (ej. <code>-186.97</code>, <code>-596.85</code> y especialmente el código de error <code>-999.90</code>). Esto indica un problema de desbordamiento de búfer, fallo en el ADC (Conversor Analógico-Digital) o pérdida de comunicación I2C/SPI con el transductor de humedad.
+*   <strong>Termistores de Temperatura (Sensor 1, 2 y 3):</strong> Funcionamiento nominal y coherente entre ellos (mantienen un delta térmico lógico de ~1°C a 2°C de diferencia según su ubicación física). No muestran valores colgados.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
