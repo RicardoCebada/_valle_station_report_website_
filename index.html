@@ -14,25 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-15 08:32:01
+<p><strong>Última actualización:</strong> 2026-11-15 14:40:31
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT procesando este conjunto de datos (muestras del 9 al 15 de noviembre de 2026), aquí tienes el reporte estructurado:</p>
+<p>Como analista de hardware IoT procesando el lote de datos proporcionado, aquí tienes el informe técnico detallado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>10 de noviembre de 2026</strong> (registró las temperaturas más altas, alcanzando un pico de <strong>26.29 °C</strong> en el <code>temp_sensor1</code> a las 19:00:00).</li>
-<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong> (presentó las temperaturas más bajas del periodo, descendiendo hasta los <strong>10.89 °C</strong> en el <code>temp_sensor3</code> a las 08:00:00).</li>
+<li><strong>Día más caluroso:</strong> <strong>13 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>26.01 °C</strong> en el sensor principal a las 19:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo, descendiendo hasta los <strong>9.76 °C</strong> en el sensor 3 a las 12:00 UTC.</li>
 </ul>
+<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía y la tarde temprana, específicamente <strong>entre las 17:00:00 y las 19:00:00 UTC</strong>. 
-*   <em>Nota:</em> El valor absoluto máximo registrado en el dataset ocurrió el <strong>13 de noviembre a las 18:00:00 UTC</strong>:
-    *   Radiación Visible: <code>749.72 W/m²</code>
-    *   Radiación Infrarroja (IR): <code>6478.74 W/m²</code>
-    *   Radiación UV: <code>2.64</code></p>
-<h3>3. Falla en sensores (Anomalías detectadas)</h3>
-<p>Se detectaron fallas críticas de lectura (valores fuera de rango físico) en los datos:
-*   <strong>Sensor de Humedad:</strong> Presenta fallas recurrentes y graves de calibración o lecturas corruptas, arrojando valores negativos imposibles para la humedad relativa (ej. <strong><code>-273.71</code></strong>, <strong><code>-523.77</code></strong>, y específicamente el código de error estándar de sensor desconectado/dañado <strong><code>-999.9</code></strong> en múltiples ocasiones a partir del 10 de noviembre).
-*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Funcionan correctamente entre sí, manteniendo una jerarquía lógica coherente (sensor 1 &gt; sensor 2 &gt; sensor 3), lo que descarta fallas en este bloque, operando de manera estable a pesar del fallo en el sensor de humedad.</p>
+<p>Los picos máximos de radiación en todas sus bandas (visible, infrarroja y ultravioleta) se concentran consistentemente en la franja horaria de <strong>17:00 a 19:00 UTC</strong>. 
+*   <strong>Radiación IR (Infrarroja):</strong> Pico máximo de <strong>6478.74 W/m²</strong> el 13 de noviembre a las 18:00 UTC.
+*   <strong>Radiación Vis (Visible):</strong> Pico máximo de <strong>749.72 W/m²</strong> el 13 de noviembre a las 18:00 UTC.
+*   <strong>Radiación UV:</strong> Pico máximo de <strong>2.64</strong> el 13 de noviembre a las 18:00 UTC.</p>
+<hr />
+<h3>3. Falla en sensores</h3>
+<p>Se detectó una anomalía crítica y sistemática en el <strong>sensor de humedad</strong>:
+*   <strong>Falla:</strong> Lecturas con valores negativos anómalos y constantes (frecuentemente rondando los <strong><code>-999.9</code></strong> o picos negativos extremos como <strong><code>-523.77</code></strong> y <strong><code>-608.73</code></strong>).
+*   <strong>Diagnóstico técnico:</strong> Esto indica un fallo evidente en el transductor de humedad (saturación por condensación de rocío, problema en el circuito analógico-digital o pérdida de calibración del bus I2C/analógico). Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) y los pirómetros/radiómetros operan dentro de parámetros lógicos y estables.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
