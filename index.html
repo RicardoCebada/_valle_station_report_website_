@@ -14,29 +14,25 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-14 23:27:57
+<p><strong>Última actualización:</strong> 2026-11-15 08:32:01
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos correspondiente al periodo del <strong>9 al 14 de noviembre de 2026</strong> (muestra representativa del ciclo operativo). A continuación, presento los resultados técnicos obtenidos:</p>
+<p>Como analista de hardware IoT procesando este conjunto de datos (muestras del 9 al 15 de noviembre de 2026), aquí tienes el reporte estructurado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>10 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>26.29 °C</strong> a las 19:00 UTC en el <code>temp_sensor1</code> (con una media general sostenida por encima de los 25 °C durante gran parte de la tarde).</li>
-<li><strong>Día más frío:</strong> <strong>10 de noviembre de 2026</strong> (en contraste térmico nocturno/matutino) y <strong>12 de noviembre de 2026</strong>. El registro de temperatura mínima más baja ocurrió el día 10 a las 12:00 UTC, cayendo hasta los <strong>11.83 °C</strong> en el <code>temp_sensor3</code>.</li>
+<li><strong>Día más caluroso:</strong> <strong>10 de noviembre de 2026</strong> (registró las temperaturas más altas, alcanzando un pico de <strong>26.29 °C</strong> en el <code>temp_sensor1</code> a las 19:00:00).</li>
+<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong> (presentó las temperaturas más bajas del periodo, descendiendo hasta los <strong>10.89 °C</strong> en el <code>temp_sensor3</code> a las 08:00:00).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y Ultravioleta) ocurren de manera consistente en la franja horaria central del día, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong> (coincidiendo con el cenit solar local). 
-*   <em>Pico máximo registrado:</em> A las <strong>18:00 UTC</strong>, con valores extremos de:
-    *   <strong>Radiación IR:</strong> ~5,995.15 W/m²
-    *   <strong>Radiación Vis:</strong> ~705.53 W/m²
-    *   <strong>Radiación UV:</strong> ~2.39 W/m²</p>
+<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía y la tarde temprana, específicamente <strong>entre las 17:00:00 y las 19:00:00 UTC</strong>. 
+*   <em>Nota:</em> El valor absoluto máximo registrado en el dataset ocurrió el <strong>13 de noviembre a las 18:00:00 UTC</strong>:
+    *   Radiación Visible: <code>749.72 W/m²</code>
+    *   Radiación Infrarroja (IR): <code>6478.74 W/m²</code>
+    *   Radiación UV: <code>2.64</code></p>
 <h3>3. Falla en sensores (Anomalías detectadas)</h3>
-<p>Se identificaron fallas críticas y derivas (<em>drift</em>) en la telemetría que sugieren problemas de hardware:</p>
-<ul>
-<li><strong>Sensor de Humedad (Falla Crítica / Saturación negativa):</strong> 
-    El canal de humedad presenta fallas sistemáticas reportando valores físicamente imposibles o códigos de error de búfer. Se observan constantes caídas a <strong><code>-400.34</code>, <code>-981.57</code> y <code>-999.9</code></strong> (este último es claramente un valor centinela o código de error por desconexión/timeout del sensor I2C/analógico).</li>
-<li><strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> 
-    Funcionan correctamente y muestran una correlación lógica (el sensor 1 consistentemente más alto por exposición o ubicación, seguido por el 2 y el 3). No hay cortes de señal, pero sí se recomienda recalibración por offset térmico.</li>
-</ul>
+<p>Se detectaron fallas críticas de lectura (valores fuera de rango físico) en los datos:
+*   <strong>Sensor de Humedad:</strong> Presenta fallas recurrentes y graves de calibración o lecturas corruptas, arrojando valores negativos imposibles para la humedad relativa (ej. <strong><code>-273.71</code></strong>, <strong><code>-523.77</code></strong>, y específicamente el código de error estándar de sensor desconectado/dañado <strong><code>-999.9</code></strong> en múltiples ocasiones a partir del 10 de noviembre).
+*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Funcionan correctamente entre sí, manteniendo una jerarquía lógica coherente (sensor 1 &gt; sensor 2 &gt; sensor 3), lo que descarta fallas en este bloque, operando de manera estable a pesar del fallo en el sensor de humedad.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
