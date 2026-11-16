@@ -14,24 +14,25 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-16 16:56:24
+<p><strong>Última actualización:</strong> 2026-11-16 23:04:54
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado y aquí tienes el diagnóstico correspondiente:</p>
+<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado. A continuación, presento el reporte detallado:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>13 de noviembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>26.01 °C</strong> en el <em>sensor 1</em> a las 19:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong> (Registró la temperatura mínima absoluta con <strong>9.57 °C</strong> en el <em>sensor 3</em> a las 11:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>13 de noviembre de 2026</strong> (Registró la temperatura máxima general de los sensores alcanzando los <strong>26.00 °C</strong> en <code>temp_sensor1</code> a las 19:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong> (Registró la temperatura mínima general del periodo, descendiendo hasta los <strong>9.95 °C</strong> en <code>temp_sensor3</code> a las 11:00 UTC).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía solar y primeras horas de la tarde (<strong>entre las 17:00 y las 19:00 UTC</strong>). Los valores máximos registrados por tipo de radiación son:
-*   <strong>Radiación Infrarroja (IR):</strong> 6,478.75 W/m² (13 de noviembre a las 18:00 UTC).
-*   <strong>Radiación Visible (VIS):</strong> 749.73 W/m² (13 de noviembre a las 18:00 UTC).
-*   <strong>Radiación Ultravioleta (UV):</strong> 2.64 W/m² (13 de noviembre a las 18:00 UTC).</p>
+<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía solar hacia la tarde, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong>. 
+*   <em>Pico máximo registrado:</em> El <strong>13 de noviembre a las 18:00 UTC</strong>, alcanzando:
+    *   Radiación Visible (<code>radiacion_vis</code>): <strong>749.72 W/m²</strong>
+    *   Radiación Infrarroja (<code>radiacion_ir</code>): <strong>6478.74 W/m²</strong>
+    *   Radiación UV (<code>radiacion_uv</code>): <strong>2.64</strong></p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y fallas intermitentes exclusivamente en el <strong>sensor de humedad</strong>:
-*   <strong>Lecturas negativas anómalas:</strong> El sensor de humedad presenta caídas abruptas a valores negativos imposibles en la física ambiental (ej. <code>-329.75</code>, <code>-725.25</code> y hasta <code>-999.9</code>). 
-*   <strong>Diagnóstico:</strong> El valor <code>-999.9</code> es un código de error estándar de firmware para "Sensor Timeout" o "Circuito Abierto", lo que indica que el transductor de humedad está sufriendo fallas de comunicación I2C/analógica o problemas de alimentación eléctrica intermitente. Los sensores de temperatura (<em>sensor 1, 2 y 3</em>) operan de manera estable y coherente entre sí.</p>
+<p>Se detectaron anomalías críticas y comportamientos erráticos en el hardware:
+*   <strong>Sensor de Humedad (Falla Crítica / Rango Fuera de Escala):</strong> El sensor presenta lecturas inválidas recurrentes, con valores negativos imposibles que rondan los <strong><code>-999.9</code></strong> (por ejemplo, el 11 y 12 de noviembre). Esto indica una pérdida de comunicación, descalibración severa o saturación del ADC (Conversor Analógico-Digital).
+*   <strong>Desviación Térmica (Falla de Precisión):</strong> Al comparar <code>temp_sensor1</code>, <code>temp_sensor2</code> y <code>temp_sensor3</code>, se observa una discrepancia constante de aproximadamente <strong>1.5 °C a 2 °C</strong> entre el sensor 1 y el sensor 3. Esto sugiere una degradación en la soldadura de los termistores o una mala compensación de temperatura en el bus I2C/analógico.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
