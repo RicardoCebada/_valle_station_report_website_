@@ -14,25 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-16 23:04:54
+<p><strong>Última actualización:</strong> 2026-11-17 09:49:45
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado. A continuación, presento el reporte detallado:</p>
+<p>Como analista de hardware IoT procesando este segmento temporal (Noviembre 2026), aquí tienes el reporte estructurado de los datos:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>13 de noviembre de 2026</strong> (Registró la temperatura máxima general de los sensores alcanzando los <strong>26.00 °C</strong> en <code>temp_sensor1</code> a las 19:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong> (Registró la temperatura mínima general del periodo, descendiendo hasta los <strong>9.95 °C</strong> en <code>temp_sensor3</code> a las 11:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>12 de noviembre de 2026</strong> (registró los picos máximos del sensor 1 alcanzando los <strong>26.04 °C</strong> a las 19:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong> (marcó la temperatura mínima general del sistema, descendiendo hasta los <strong>9.76 °C</strong> en el sensor 3 a las 12:00 UTC).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación ocurren consistentemente en la franja del mediodía solar hacia la tarde, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong>. 
-*   <em>Pico máximo registrado:</em> El <strong>13 de noviembre a las 18:00 UTC</strong>, alcanzando:
-    *   Radiación Visible (<code>radiacion_vis</code>): <strong>749.72 W/m²</strong>
-    *   Radiación Infrarroja (<code>radiacion_ir</code>): <strong>6478.74 W/m²</strong>
-    *   Radiación UV (<code>radiacion_uv</code>): <strong>2.64</strong></p>
+<p>Los niveles máximos de energía (Visible, Infrarroja y UV) siguen una curva solar estándar y se concentran sistemáticamente entre las <strong>17:00 UTC y las 20:00 UTC</strong>. 
+* <em>Pico máximo registrado:</em> El <strong>13 de noviembre a las 18:00 UTC</strong>, alcanzando <code>749.72 W/m²</code> (Vis), <code>6478.74 W/m²</code> (IR) y <code>2.64</code> (UV).</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas y comportamientos erráticos en el hardware:
-*   <strong>Sensor de Humedad (Falla Crítica / Rango Fuera de Escala):</strong> El sensor presenta lecturas inválidas recurrentes, con valores negativos imposibles que rondan los <strong><code>-999.9</code></strong> (por ejemplo, el 11 y 12 de noviembre). Esto indica una pérdida de comunicación, descalibración severa o saturación del ADC (Conversor Analógico-Digital).
-*   <strong>Desviación Térmica (Falla de Precisión):</strong> Al comparar <code>temp_sensor1</code>, <code>temp_sensor2</code> y <code>temp_sensor3</code>, se observa una discrepancia constante de aproximadamente <strong>1.5 °C a 2 °C</strong> entre el sensor 1 y el sensor 3. Esto sugiere una degradación en la soldadura de los termistores o una mala compensación de temperatura en el bus I2C/analógico.</p>
+<p>Se detectaron anomalías críticas e intermitencias en el <strong>sensor de humedad</strong> (lecturas fuera del rango físico de 0-100%):
+* <strong>Valores negativos anómalos:</strong> Presencia masiva de errores con ceros flotantes negativos profundos (ej. <code>-999.9%</code> el 12 de noviembre y <code>-707%</code> el día 13).
+* <strong>Diagnóstico de hardware:</strong> Esto indica un fallo en la etapa de conversión analógica-digital (ADC) del módulo de humedad o un falso contacto en el bus de comunicación (posiblemente I2C/SPI), provocando desbordamiento de búfer (buffer overflow). Los sensores térmicos (1, 2 y 3) operan dentro de parámetros estables.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
