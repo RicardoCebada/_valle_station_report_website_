@@ -14,26 +14,22 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-18 09:21:49
+<p><strong>Última actualización:</strong> 2026-11-18 16:22:45
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos de telemetría proporcionado y presento las siguientes conclusiones clave en formato Markdown:</p>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo del 13 al 18 de noviembre de 2026. A continuación, presento los resultados clave:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>17 de noviembre de 2026</strong> (Registró la temperatura máxima más alta del periodo, alcanzando los <strong>26.45 °C</strong> en el sensor 1 a las 18:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong> (Registró las temperaturas mínimas más bajas, descendiendo hasta los <strong>9.76 °C</strong> en el sensor 3 a las 12:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>17 de noviembre de 2026</strong>, registrando una temperatura máxima promedio de <strong>26.45 °C</strong> en el sensor principal a las 18:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong>, registrando una temperatura mínima promedio de <strong>11.07 °C</strong> en el sensor principal a las 12:00 UTC (y mínimas puntuales de hasta 9.76 °C en el sensor 3).</li>
 </ul>
-<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de forma consistente durante la tarde, coincidiendo con la máxima exposición solar:
-* <strong>Radiación Visible (VIS):</strong> Entre las <strong>17:00 y las 19:00 UTC</strong> (picos cercanos a los <strong>749.7 W/m²</strong>).
-* <strong>Radiación Infrarroja (IR):</strong> Entre las <strong>17:00 y las 19:00 UTC</strong> (picos máximos de hasta <strong>6478.7 W/m²</strong>).
-* <strong>Radiación UV:</strong> Entre las <strong>17:00 y las 19:00 UTC</strong> (valores pico de hasta <strong>2.64</strong>).</p>
-<hr />
-<h3>3. Falla en sensores</h3>
-<p>Se han detectado anomalías críticas y lecturas fuera de rango que evidencian fallas en el hardware:
-* <strong>Falla en el Sensor de Humedad:</strong> Se registran valores atípicos negativos imposibles físicamente (como <code>-907.21</code>, <code>-999.9</code> y <code>-981.27</code>) entre los días 12 y 16 de noviembre. Esto indica una <strong>pérdida de calibración, saturación del ADC (Conversor Analógico-Digital) o fallo en el bus de comunicación</strong> del higrómetro.
-* <strong>Deriva Térmica:</strong> Los sensores de temperatura (1, 2 y 3) muestran consistencia lógica entre ellos (el sensor 1 siempre es el más cálido y el 3 el más frío debido a su ubicación física), pero el sistema de alimentación o la circuitería del pin de humedad sufre cortes intermitentes que devuelven ceros lógicos o negativos extremos.</p>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente durante la franja horaria solar del mediodía y la tarde:
+*   <strong>Horario pico:</strong> Entre las <strong>17:00 y las 19:00 UTC</strong>, con valores máximos que alcanzan hasta los <strong>749.7 W/m²</strong> en radiación visible y <strong>6,478 W/m²</strong> en radiación infrarroja (IR).</p>
+<h3>3. Falla en sensores (Anomalías detectadas)</h3>
+<p>Se han detectado fallas críticas y lecturas fuera de rango en el nodo de <strong>humedad</strong>:
+*   <strong>Lecturas negativas anómalas:</strong> El sensor de humedad presenta fallas de calibración o errores de lectura intermitentes enviando valores absurdos como <code>-999.9</code>, <code>-981.2</code>, <code>-553.0</code> y <code>-217.9</code> durante varios registros (especialmente en las horas nocturnas y matutinas de los días 13, 14, 15 y 16).
+*   <strong>Diagnóstico:</strong> El sensor de humedad requiere una revisión de firmware o reemplazo físico debido a corrupción en el buffer de datos o saturación del transductor. Los sensores de temperatura (1, 2 y 3) y presión operan dentro de parámetros lógicos y estables.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
