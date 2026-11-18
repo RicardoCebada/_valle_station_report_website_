@@ -14,22 +14,23 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-18 16:22:45
+<p><strong>Última actualización:</strong> 2026-11-18 21:39:20
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo del 13 al 18 de noviembre de 2026. A continuación, presento los resultados clave:</p>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado. A continuación, presento el informe técnico:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>17 de noviembre de 2026</strong>, registrando una temperatura máxima promedio de <strong>26.45 °C</strong> en el sensor principal a las 18:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong>, registrando una temperatura mínima promedio de <strong>11.07 °C</strong> en el sensor principal a las 12:00 UTC (y mínimas puntuales de hasta 9.76 °C en el sensor 3).</li>
+<li><strong>Día más caluroso:</strong> <strong>17 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo en el <code>temp_sensor1</code> con <strong>26.45 °C</strong> a las 18:00 UTC (acompañado de temperaturas consistentemente altas en los tres sensores durante la franja vespertina).</li>
+<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo en el <code>temp_sensor3</code> descendiendo hasta los <strong>9.76 °C</strong> a las 12:00 UTC, con una media general muy baja en las primeras horas de ese día.</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente durante la franja horaria solar del mediodía y la tarde:
-*   <strong>Horario pico:</strong> Entre las <strong>17:00 y las 19:00 UTC</strong>, con valores máximos que alcanzan hasta los <strong>749.7 W/m²</strong> en radiación visible y <strong>6,478 W/m²</strong> en radiación infrarroja (IR).</p>
-<h3>3. Falla en sensores (Anomalías detectadas)</h3>
-<p>Se han detectado fallas críticas y lecturas fuera de rango en el nodo de <strong>humedad</strong>:
-*   <strong>Lecturas negativas anómalas:</strong> El sensor de humedad presenta fallas de calibración o errores de lectura intermitentes enviando valores absurdos como <code>-999.9</code>, <code>-981.2</code>, <code>-553.0</code> y <code>-217.9</code> durante varios registros (especialmente en las horas nocturnas y matutinas de los días 13, 14, 15 y 16).
-*   <strong>Diagnóstico:</strong> El sensor de humedad requiere una revisión de firmware o reemplazo físico debido a corrupción en el buffer de datos o saturación del transductor. Los sensores de temperatura (1, 2 y 3) y presión operan dentro de parámetros lógicos y estables.</p>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de forma consistente en una ventana vespertina debido a la ubicación geográfica de la estación.
+* <strong>Franja horaria pico:</strong> Entre las <strong>17:00 UTC y las 19:00 UTC</strong>.
+* <strong>Valor máximo registrado:</strong> A las 18:00 UTC del 13 de noviembre, la radiación infrarroja (<code>radiacion_ir</code>) alcanzó un pico de <strong>6,478.74 W/m²</strong>, la radiación visible (<code>radiacion_vis</code>) llegó a <strong>749.72 W/m²</strong> y el índice UV (<code>radiacion_uv</code>) marcó <strong>2.64</strong>.</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas y comportamientos erráticos (posiblemente fallas de hardware, corrupción en el bus de datos o problemas de calibración/alimentación) en el <strong>sensor de humedad</strong>:
+* <strong>Lecturas negativas inválidas:</strong> El campo <code>humedad</code> presenta numerosos valores negativos extremos y físicamente imposibles (por ejemplo, <code>-999.9%</code>, <code>-981.5%</code>, <code>-432.0%</code> y <code>-292.3%</code>), lo que indica un desbordamiento de búfer, un error de lectura por código de estado o una falla en el transductor de humedad.
+* <strong>Estabilidad térmica:</strong> Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) y los módulos de radiación muestran lecturas coherentes y curvas de comportamiento normales, descartando fallas generalizadas en la circuitería principal.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
