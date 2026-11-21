@@ -14,23 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-20 21:35:43
+<p><strong>Última actualización:</strong> 2026-11-21 08:55:09
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado. A continuación, presento el informe técnico:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Aquí tienes el análisis de los datos del hardware IoT (correspondientes al periodo de la muestra):</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>17 de noviembre de 2026</strong> (Registró los picos máximos sostenidos de temperatura, alcanzando una media máxima de <strong>26.45 °C</strong> en el sensor principal a las 18:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>15 de noviembre de 2026</strong> (Presentó las temperaturas mínimas globales más bajas del dataset, descendiendo hasta los <strong>9.76 °C</strong> a las 12:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>20 de noviembre de 2026</strong> (Registró las temperaturas máximas promedio más altas, superando los $27.0^\circ\text{C}$ en <code>temp_sensor1</code> a las 19:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>16 de noviembre de 2026</strong> (Presentó las temperaturas mínimas más bajas, descendiendo hasta los $12.2^\circ\text{C}$ en <code>temp_sensor1</code> y valores aún menores en los sensores secundarios).</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja horaria del mediodía solar hacia la tarde:
-*   <strong>Horas pico:</strong> Entre las <strong>17:00 UTC y las 19:00 UTC</strong>.
-*   <em>Nota técnica:</em> Durante estas horas se registran los valores máximos del periodo, alcanzando hasta ~731 W/m² en luz visible, ~6,330 W/m² en IR y ~2.54 W/m² en UV (ej. el 15 de noviembre a las 18:00 UTC).</p>
-<h3>3. Falla en Sensores</h3>
-<p>Se detectaron anomalías críticas y comportamientos erráticos en la telemetría que evidencian fallas de hardware:
-*   <strong>Sensor de Humedad (Falla Crítica):</strong> Presenta lecturas con <strong>números negativos anómalos</strong> imposibles para la física ambiental (ej. <code>-12.50%</code> el 15 de noviembre a las 11:00 UTC y un extremo de <code>-924.05%</code> a las 12:00 UTC, además de valores en <code>-292.32%</code> el 16 de noviembre). Esto indica un desbordamiento de búfer, fallo en el ADC (conversor analógico-digital) o corrupción en la trama I2C/SPI del sensor de humedad.
-*   <strong>Sensores de Temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>):</strong> Mantienen una correlación lógica y lógica térmica adecuada (el sensor 1 consistentemente más alto que el 2 y 3), <strong>sin fallas críticas detectadas</strong>, operando dentro de rangos nominales.</p>
+<hr />
+<h3>2. Horas de mayor radiación</h3>
+<p>Los picos máximos de radiación (tanto visible, infrarroja como UV) se concentran consistentemente entre las <strong>17:00 UTC y las 19:00 UTC</strong> de cada día. 
+*   <em>Ejemplo destacado:</em> El 18 de noviembre a las 18:00 UTC se registró el pico de radiación IR con <strong>5838.65 W/m²</strong> y radiación UV con <strong>2.34</strong>.</p>
+<hr />
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías críticas (valores fuera de rango físico lógico) en el <strong>sensor de humedad</strong>:
+*   <strong>Anomalía 1:</strong> El <strong>2026-11-16 a las 11:00:00Z</strong>, el campo de <code>humedad</code> reportó un valor negativo imposible: <strong><code>-292.32%</code></strong>. Esto indica una falla de lectura, error de saturación o corrupción de trama en el sensor/nodo IoT.
+*   <strong>Anomalía 2:</strong> El <strong>2026-11-16 a las 12:00:00Z</strong>, la humedad cae abruptamente a <strong><code>22.71%</code></strong> en medio de un ambiente que venía registrando &gt;90%, sugiriendo un comportamiento errático intermitente o un reinicio del sensor tras el fallo anterior.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
