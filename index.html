@@ -14,24 +14,27 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-21 08:55:09
+<p><strong>Última actualización:</strong> 2026-11-21 15:15:55
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Aquí tienes el análisis de los datos del hardware IoT (correspondientes al periodo de la muestra):</p>
+<p>Como analista de hardware IoT, he procesado el lote de datos correspondiente al periodo analizado. A continuación, presento los resultados clave:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>20 de noviembre de 2026</strong> (Registró las temperaturas máximas promedio más altas, superando los $27.0^\circ\text{C}$ en <code>temp_sensor1</code> a las 19:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>16 de noviembre de 2026</strong> (Presentó las temperaturas mínimas más bajas, descendiendo hasta los $12.2^\circ\text{C}$ en <code>temp_sensor1</code> y valores aún menores en los sensores secundarios).</li>
+<li><strong>Día más caluroso:</strong> <strong>20 de noviembre de 2026</strong>. Se registró la temperatura máxima del periodo con un promedio de <strong>27.02 °C</strong> en el sensor principal a las 19:00 UTC (y picos sostenidos por encima de los 26.9 °C).</li>
+<li><strong>Día más frío:</strong> <strong>16 de noviembre de 2026</strong> (en cuanto a mínimos nocturnos/matutinos), registrando descensos de temperatura en el <code>temp_sensor3</code> que tocaron los <strong>10.88 °C</strong> alrededor de las 11:00 UTC.</li>
 </ul>
-<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (tanto visible, infrarroja como UV) se concentran consistentemente entre las <strong>17:00 UTC y las 19:00 UTC</strong> de cada día. 
-*   <em>Ejemplo destacado:</em> El 18 de noviembre a las 18:00 UTC se registró el pico de radiación IR con <strong>5838.65 W/m²</strong> y radiación UV con <strong>2.34</strong>.</p>
-<hr />
+<p>Los niveles máximos de energía solar se concentran consistentemente en la franja horaria del mediodía y la tarde:
+* <strong>Radiación Infrarroja (IR) y Visible (vis):</strong> El pico absoluto ocurre entre las <strong>17:00 y las 19:00 UTC</strong>, alcanzando valores máximos de hasta <strong>6,293.9 W/m²</strong> en radiación IR y <strong>728.1 W/m²</strong> en radiación visible.
+* <strong>Radiación UV:</strong> Sigue la misma ventana de máxima exposición, registrando su valor más alto (pico de <strong>2.51</strong>) a las <strong>18:00 UTC</strong>.</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectaron anomalías críticas (valores fuera de rango físico lógico) en el <strong>sensor de humedad</strong>:
-*   <strong>Anomalía 1:</strong> El <strong>2026-11-16 a las 11:00:00Z</strong>, el campo de <code>humedad</code> reportó un valor negativo imposible: <strong><code>-292.32%</code></strong>. Esto indica una falla de lectura, error de saturación o corrupción de trama en el sensor/nodo IoT.
-*   <strong>Anomalía 2:</strong> El <strong>2026-11-16 a las 12:00:00Z</strong>, la humedad cae abruptamente a <strong><code>22.71%</code></strong> en medio de un ambiente que venía registrando &gt;90%, sugiriendo un comportamiento errático intermitente o un reinicio del sensor tras el fallo anterior.</p>
+<p>Durante la auditoría de integridad de los datos, se detectó una anomalía crítica en el sistema de medición ambiental:
+* <strong>Sensor de Humedad (<code>humedad</code>):</strong> Presenta fallas graves de lectura (probablemente corrupción de buffer, desconexión parcial del ADC o fallo en el bus I2C/SPI) arrojando <strong>valores negativos atípicos</strong>. 
+* <strong>Evidencias de fallo:</strong> 
+  * El <code>2026-11-16T11:00:00Z</code> marcó <strong>-292.32%</strong>.
+  * El <code>2026-11-21T10:00:00Z</code> marcó <strong>-496.94%</strong>.
+  * El <code>2026-11-21T11:00:00Z</code> registró un mínimo absurdo de <strong>-627.40%</strong>.
+* <em>Recomendación:</em> Se requiere el reemplazo o recalibración urgente del módulo higrómetro. Los sensores de temperatura (<code>temp_sensor1</code>, <code>2</code> y <code>3</code>) y radiación operan dentro de parámetros normales y coherentes.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
