@@ -14,21 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-22 15:12:52
+<p><strong>Última actualización:</strong> 2026-11-22 20:30:30
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos de los sensores meteorológicos. Aquí están los resultados de la auditoría:</p>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado. A continuación, presento los resultados clave:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>20 de noviembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo analizado con <strong>27.02 °C</strong> en el sensor principal a las 19:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>18 de noviembre de 2026</strong> (Registró la temperatura mínima absoluta del periodo con <strong>10.89 °C</strong> en el sensor secundario a las 11:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>22 de noviembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo con <strong>27.31 °C</strong> en el <code>temp_sensor1</code> a las 18:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>20 de noviembre de 2026</strong> (Registró la temperatura mínima absoluta del periodo con <strong>11.47 °C</strong> en el <code>temp_sensor1</code> a las 12:00 UTC).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>La radiación alcanza sus picos máximos (tanto visible, infrarroja como UV) durante las horas centrales de la tarde solar, específicamente <strong>entre las 17:00 UTC y las 19:00 UTC</strong>. 
-*   <em>Pico máximo registrado:</em> A las 18:00 UTC se alcanzaron valores de radiación IR superiores a <strong>6,290 W/m²</strong> y radiación UV de hasta <strong>2.51</strong>.</p>
+<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) se concentran consistentemente en la franja horaria vespertina de <strong>17:00 a 19:00 UTC</strong>, alcanzando sus picos absolutos alrededor de las <strong>18:00 UTC</strong>:
+*   <strong>Radiación Vis:</strong> ~728.1 W/m²
+*   <strong>Radiación IR:</strong> ~6,293.9 W/m²
+*   <strong>Radiación UV:</strong> ~2.51 Indice UV</p>
 <h3>3. Falla en sensores</h3>
-<p>Se detectó una anomalía crítica en el <strong>sensor de humedad</strong> durante el día <strong>21 de noviembre</strong>:
-*   Entre las <strong>10:00 UTC y las 13:00 UTC</strong>, el sensor de humedad reportó valores negativos imposibles que oscilan entre <strong>-496.94% y -627.40%</strong>. Esto indica un fallo de lectura, corrupción de buffer o desconexión temporal del transductor en dicho nodo.</p>
+<p>Se detectó una anomalía crítica en la lectura de la <strong>humedad</strong> el <strong>21 de noviembre de 2026 entre las 10:00 y las 13:00 UTC</strong>:
+*   Los valores de humedad cayeron drásticamente a rangos negativos imposibles (ej. <strong>-496.94%</strong>, <strong>-627.40%</strong>, <strong>-534.43%</strong> y <strong>-608.73%</strong>).
+*   <strong>Diagnóstico:</strong> Esto indica un fallo temporal de hardware en el circuito de adquisición del sensor de humedad (posible desbordamiento de búfer, fallo en el ADC o pérdida momentánea de calibración del sensor SHT/DHT), el cual se recuperó automáticamente a las 14:00 UTC (volviendo al rango normal de 95%). Los sensores de temperatura funcionaron con normalidad durante este evento.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
