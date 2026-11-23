@@ -14,31 +14,21 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-23 09:55:04
+<p><strong>Última actualización:</strong> 2026-11-23 19:11:15
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado. A continuación, presento el análisis estructurado en formato Markdown:</p>
+<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado. A continuación, presento los resultados clave:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>22 de noviembre de 2026</strong> (registró un pico máximo en el <code>temp_sensor1</code> de <strong>27.30 °C</strong> a las 18:00 UTC).</li>
-<li><strong>Día más frío:</strong> <strong>18 de noviembre de 2026</strong> (registró temperaturas mínimas de <strong>10.89 °C</strong> en el <code>temp_sensor3</code> a las 11:00 UTC).</li>
+<li><strong>Día más caluroso:</strong> <strong>20 de noviembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>27.02 °C</strong> de promedio a las 19:00 UTC, con máximas puntuales en los sensores superando los 27°C).</li>
+<li><strong>Día más frío:</strong> <strong>18 de noviembre de 2026</strong> (Presentó las temperaturas mínimas globales más bajas del set de datos, descendiendo hasta los <strong>10.89 °C</strong> en los sensores auxiliares durante la madrugada).</li>
 </ul>
-<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente durante la franja diurna central, específicamente <strong>entre las 17:00 y las 19:00 UTC</strong> de cada día. 
-* <em>Ejemplo pico (20 de noviembre a las 18:00 UTC):</em>
-  * <strong>Radiación Visible:</strong> ~712.76 W/m²
-  * <strong>Radiación Infrarroja:</strong> ~6093.66 W/m²
-  * <strong>Radiación UV:</strong> ~2.45 Indice UV</p>
-<hr />
+<p>Los niveles máximos de energía (tanto visible, infrarroja como ultravioleta) se concentran consistentemente en la franja horaria central del día, específicamente entre las <strong>17:00 UTC y las 20:00 UTC</strong> (pico máximo absoluto registrado a las 18:00 UTC, con valores de radiación IR superiores a <code>6093 W/m²</code> y UV de <code>2.45</code>). </p>
 <h3>3. Falla en sensores</h3>
-<p>Se han detectado anomalías críticas en la lectura de variables ambientales que indican fallas en el hardware:</p>
-<ul>
-<li><strong>Falla en el sensor de Humedad (Lecturas Negativas Anómalas):</strong></li>
-<li>Entre las <strong>10:00 UTC y las 13:00 UTC del 21 de noviembre de 2026</strong>, el sensor de humedad reportó valores físicamente imposibles (valores negativos extremos que oscilan entre <strong>-496.94 y -627.40</strong>). Esto apunta a un fallo de calibración, corrupción de trama I2C/SPI o desbordamiento de búfer en el firmware del nodo IoT.</li>
-<li><strong>Coherencia térmica:</strong></li>
-<li>Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) muestran una jerarquía lógica estricta (<code>sensor1 &gt; sensor2 &gt; sensor3</code>), lo que indica que están operando correctamente sin deriva térmica anómala, a pesar de la falla detectada en el canal de humedad.</li>
-</ul>
+<p>Se ha detectado una <strong>anomalía crítica en el sensor de humedad</strong> (<code>humedad</code>):
+* <strong>Incidente:</strong> Durante el día <strong>21 de noviembre</strong>, específicamente entre las <strong>10:00 UTC y las 13:00 UTC</strong>, el sensor reportó valores negativos absurdos (llegando hasta <strong><code>-627.4%</code></strong>). 
+* <strong>Diagnóstico:</strong> Esto indica un fallo de lectura por desbordamiento de búfer, desconexión parcial del transductor o corrupción en la trama de datos I2C/analógica del módulo de humedad, requiriendo una revisión física del nodo o un reinicio del firmware.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
