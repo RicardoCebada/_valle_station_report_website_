@@ -14,21 +14,25 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-23 19:11:15
+<p><strong>Última actualización:</strong> 2026-11-24 01:17:59
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el set de datos correspondiente al periodo analizado. A continuación, presento los resultados clave:</p>
+<p>Como analista de hardware IoT, he procesado el lote de datos correspondiente al periodo analizado. A continuación, presento los resultados clave:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>20 de noviembre de 2026</strong> (Registró la temperatura máxima absoluta del periodo analizado, alcanzando los <strong>27.02 °C</strong> de promedio a las 19:00 UTC, con máximas puntuales en los sensores superando los 27°C).</li>
-<li><strong>Día más frío:</strong> <strong>18 de noviembre de 2026</strong> (Presentó las temperaturas mínimas globales más bajas del set de datos, descendiendo hasta los <strong>10.89 °C</strong> en los sensores auxiliares durante la madrugada).</li>
+<li><strong>Día más caluroso:</strong> <strong>23 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo, alcanzando los <strong>27.81 °C</strong> en el sensor principal a las 20:00 UTC (acompañado de una humedad mínima del 34.8%).</li>
+<li><strong>Día más frío:</strong> <strong>20 de noviembre de 2026</strong> (en sus horas matutinas). El registro más bajo se obtuvo a las 12:00 UTC con una temperatura en el <code>temp_sensor3</code> de <strong>10.16 °C</strong> (y un promedio general en sensores rondando los 11°C).</li>
 </ul>
 <h3>2. Horas de mayor radiación</h3>
-<p>Los niveles máximos de energía (tanto visible, infrarroja como ultravioleta) se concentran consistentemente en la franja horaria central del día, específicamente entre las <strong>17:00 UTC y las 20:00 UTC</strong> (pico máximo absoluto registrado a las 18:00 UTC, con valores de radiación IR superiores a <code>6093 W/m²</code> y UV de <code>2.45</code>). </p>
-<h3>3. Falla en sensores</h3>
-<p>Se ha detectado una <strong>anomalía crítica en el sensor de humedad</strong> (<code>humedad</code>):
-* <strong>Incidente:</strong> Durante el día <strong>21 de noviembre</strong>, específicamente entre las <strong>10:00 UTC y las 13:00 UTC</strong>, el sensor reportó valores negativos absurdos (llegando hasta <strong><code>-627.4%</code></strong>). 
-* <strong>Diagnóstico:</strong> Esto indica un fallo de lectura por desbordamiento de búfer, desconexión parcial del transductor o corrupción en la trama de datos I2C/analógica del módulo de humedad, requiriendo una revisión física del nodo o un reinicio del firmware.</p>
+<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja central de la tarde solar:
+* <strong>Horario pico:</strong> Entre las <strong>18:00 UTC y las 19:00 UTC</strong>.
+* <strong>Valores máximos registrados:</strong> 
+  * <em>Radiación IR:</em> ~6,093.6 W/m² (22 de noviembre, 18:00 UTC).
+  * <em>Radiación Visible:</em> ~712.7 W/m² (22 de noviembre, 18:00 UTC).
+  * <em>Radiación UV:</em> ~2.45 W/m² (20 de noviembre, 18:00 UTC).</p>
+<h3>3. Falla en sensores (Anomalías detectadas)</h3>
+<p>Se identificó una falla crítica y evidente en el hardware de medición ambiental:
+* <strong>Falla en el sensor de Humedad (<code>humedad</code>):</strong> Durante el <strong>21 de noviembre entre las 10:00 UTC y las 13:00 UTC</strong>, el sensor de humedad reportó valores negativos absurdos (ej. <strong>-496.94</strong>, <strong>-627.40</strong>, <strong>-534.43</strong> y <strong>-608.73</strong>). Esto indica un fallo intermitente de lectura, corrupción de trama en el bus de datos o un cortocircuito temporal en el transductor de humedad antes de normalizarse a las 14:00 UTC.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
