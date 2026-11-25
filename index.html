@@ -14,26 +14,26 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-24 23:18:26
+<p><strong>Última actualización:</strong> 2026-11-25 10:36:42
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el conjunto de datos proporcionado y aquí tienes el reporte estructurado:</p>
-<h3>1. Día Más Caluroso y Más Frío</h3>
+<p>Como analista de hardware IoT, he procesado el set de datos proporcionado y aquí tienes el diagnóstico correspondiente:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>23 de noviembre de 2026</strong>. Se registró la temperatura máxima promedio más alta del periodo, alcanzando los <strong>27.81 °C</strong> en el <em>sensor 1</em> a las 20:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>20 de noviembre de 2026</strong>. Se registró la temperatura más baja del periodo, descendiendo hasta los <strong>10.16 °C</strong> (en el <em>sensor 3</em>) a las 12:00 UTC, con temperaturas matutinas y diurnas generalizadas por debajo de los 13 °C.</li>
+<li><strong>Día más caluroso:</strong> <strong>23 de noviembre de 2026</strong>. Se registró la temperatura más alta en el sensor principal (<code>temp_sensor1</code>) alcanzando un pico de <strong>27.81 °C</strong> a las 20:00 UTC, con una media general elevada durante toda la franja nocturna/vespertina.</li>
+<li><strong>Día más frío:</strong> <strong>20 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta del periodo en el sensor 3 (<code>temp_sensor3</code>), descendiendo hasta los <strong>10.16 °C</strong> al mediodía (12:00 UTC), manteniendo un promedio general bajo durante las primeras horas.</li>
 </ul>
-<h3>2. Horas de Mayor Radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja horaria de <strong>18:00 a 20:00 UTC</strong> (mediodía solar local aproximado). 
-*   <strong>Radiación IR máxima:</strong> ~6,093 W/m² (Registrada el 20 de noviembre a las 18:00 UTC).
-*   <strong>Radiación Visible máxima:</strong> ~712 W/m² (Registrada el 20 de noviembre a las 18:00 UTC).
-*   <strong>Radiación UV máxima:</strong> ~2.45 Indice UV (Registrada el 20 de noviembre a las 18:00 UTC).</p>
-<h3>3. Falla en Sensores</h3>
-<p>Se detectaron anomalías críticas e inconsistencias físicas en los datos que apuntan a fallas en el hardware (probablemente corrupción de trama, error de lectura en el ADC o fallo en el bus de comunicación I2C/SPI):
-*   <strong>Falla en el Sensor de Humedad (Lecturas Negativas Anómalas):</strong> El sensor reportó valores de humedad físicamente imposibles (negativos) durante los días 21 y 24 de noviembre:
-    *   <em>21 de noviembre (10:00 - 13:00 UTC):</em> Caídas drásticas a valores entre <strong>-496% y -627%</strong>.
-    *   <em>24 de noviembre (12:00 - 13:00 UTC):</em> Lecturas erróneas de <strong>-109% y -161%</strong>.
-*   <strong>Desviación Térmica Consistente:</strong> El <em>sensor 3</em> muestra sistemáticamente una lectura entre 1 °C y 2 °C por debajo del <em>sensor 1</em> y <em>sensor 2</em>, lo que sugiere un problema de calibración o mala ubicación térmica (disipación deficiente) en ese nodo específico.</p>
+<h3>2. Horas de mayor radiación</h3>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) se concentran consistentemente en la franja horaria de <strong>17:00 a 19:00 UTC</strong>. 
+*   <em>Ejemplo crítico:</em> El 20 de noviembre a las <strong>18:00 UTC</strong>, los valores máximos globales alcanzaron:
+    *   <strong>Radiación IR:</strong> ~6,093.66 W/m²
+    *   <strong>Radiación Vis:</strong> ~712.76 W/m²
+    *   <strong>Radiación UV:</strong> ~2.45</p>
+<h3>3. Falla en sensores</h3>
+<p>Se detectaron anomalías severas y lecturas fuera de rango (posible daño en el hardware de medición o corrupción en el bus de datos):
+*   <strong>Falla en el Sensor de Humedad (Lecturas Negativas):</strong> 
+    *   Los días <strong>21 y 24 de noviembre</strong>, el parámetro <code>humedad</code> sufre un fallo crítico reportando valores negativos absurdos (ej. <strong>-496.94%</strong>, <strong>-627.40%</strong> y <strong>-161.79%</strong>), lo que indica un cortocircuito, saturación analógica o pérdida de calibración en el higrómetro durante las horas centrales del día (10:00 a 13:00 UTC).
+*   <strong>Comportamiento térmico coherente:</strong> A pesar del fallo en humedad, los sensores de temperatura (<code>temp_sensor1</code>, <code>2</code> y <code>3</code>) muestran una jerarquía lógica y estable (sensor 1 &gt; sensor 2 &gt; sensor 3), descartando fallas térmicas mayores, aunque se recomienda revisar la integridad física del pin de datos de humedad.</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
