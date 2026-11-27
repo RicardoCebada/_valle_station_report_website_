@@ -14,33 +14,29 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-27 17:24:09
+<p><strong>Última actualización:</strong> 2026-11-27 22:24:06
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el lote de datos proporcionado y aquí tienes el diagnóstico técnico:</p>
-<h3>1. Día más caluroso y día más frío</h3>
+<p>Como analista de hardware IoT, he procesado el registro temporal correspondiente al conjunto de datos provisto. A continuación, presento el reporte técnico en formato Markdown:</p>
+<h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>23 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta en el <code>temp_sensor1</code> alcanzando los <strong>27.81 °C</strong> a las 20:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>22 de noviembre de 2026</strong> (en su inicio). Registró el punto mínimo de temperatura del set de datos en el <code>temp_sensor3</code> con <strong>13.87 °C</strong> a las 12:00 UTC (y valles similares en días posteriores).</li>
+<li><strong>Día más caluroso:</strong> <strong>23 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado en <code>temp_sensor1</code> con <strong>27.81 °C</strong> a las 20:00:00 UTC.</li>
+<li><strong>Día más frío:</strong> <strong>25 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta en <code>temp_sensor3</code> descendiendo hasta los <strong>12.27 °C</strong> a las 12:00:00 UTC.</li>
 </ul>
+<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (Visible, Infrarroja y UV) ocurren de manera consistente en la franja horaria central del día, específicamente <strong>entre las 17:00 y las 19:00 UTC</strong>, donde el sol alcanza su cénit en esta ubicación geográfica:
-* <strong>Radiacion UV Máxima:</strong> <code>2.38</code> (registrada a las 18:00 UTC del 23 de Nov).
-* <strong>Radiacion IR Máxima:</strong> <code>5,854.43</code> W/m² (registrada a las 18:00 UTC del 23 de Nov).
-* <strong>Radiacion Vis Máxima:</strong> <code>701.20</code> W/m² (registrada a las 18:00 UTC del 23 de Nov).</p>
-<h3>3. Fallas en sensores detectadas</h3>
-<p>Se identificaron anomalías críticas e inconsistencias físicas que delatan fallas en el hardware:</p>
+<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente en la franja horaria de la tarde, coincidiendo con la máxima exposición solar:
+* <strong>Radiación Visible e Infrarroja (IR):</strong> Los niveles más altos se registran entre las <strong>17:00:00 y las 19:00:00 UTC</strong>, alcanzando picos superiores a los <code>694 W/m²</code> en visible y más de <code>5,854 W/m²</code> en infrarrojo.
+* <strong>Radiación UV:</strong> El pico máximo se concentra a las <strong>18:00:00 UTC</strong>, alcanzando un valor de hasta <code>2.38 UV</code>.</p>
+<hr />
+<h3>3. Diagnóstico de fallas en sensores</h3>
+<p>Durante la auditoría de integridad de los datos, se detectaron anomalías críticas de hardware que sugieren fallas en los componentes:</p>
 <ul>
-<li><strong>Falla Crítica en Sensor de Humedad (Lecturas Negativas y Fuera de Rango):</strong></li>
-<li>El sensor de humedad presenta <strong>valores negativos masivos</strong> imposibles en la física ambiental. </li>
-<li><em>Ejemplos:</em> <code>-109.45%</code> y <code>-161.79%</code> (24 de Nov), <code>-621.14%</code> y <code>-716.20%</code> (26 de Nov).</li>
-<li>
-<p>A partir del <strong>27 de noviembre</strong>, el sensor de humedad <strong>se congela por completo en un valor estático de <code>-999.9%</code></strong>, lo que indica un fallo total por desconexión del bus, corrupción del ADC (Conversor Analógico-Digital) o saturación permanente del firmware.</p>
-</li>
-<li>
-<p><strong>Desviación térmica nominal:</strong></p>
-</li>
-<li>Los sensores de temperatura (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) muestran una jerarquía constante pero con offset (el sensor 3 siempre marca ~1.5°C por debajo del sensor 1). Si bien operan, el <code>sensor 3</code> requiere una calibración por deriva térmica.</li>
+<li><strong>Falla Crítica en Sensor de Humedad (Lecturas Erróneas / Negativas):</strong></li>
+<li>Se identificaron valores físicamente imposibles en la variable <code>humedad</code> (por ejemplo, <code>-109.45%</code>, <code>-161.79%</code>, <code>-621.14%</code> y un código de error persistente de <code>-999.9%</code> a partir del 27 de noviembre). </li>
+<li><strong>Causa probable:</strong> Corrupción en el bus de comunicación del sensor ambiental (posible fallo en el sensor SHT/DHT), descalibración del ADC, o pérdida de la referencia de tierra.</li>
+<li><strong>Coherencia en los Sensores de Temperatura:</strong></li>
+<li>Los sensores térmicos (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) muestran una gradiente lógica y continua sin saltos abruptos de voltaje, operando dentro de los parámetros esperados, descartando fallas en la red de temperatura principal.</li>
 </ul>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
