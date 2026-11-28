@@ -14,30 +14,24 @@
     <body>
         <div class="container">
             <h1>📡 Reporte de Anomalías y Tendencias IoT</h1>
-<p><strong>Última actualización:</strong> 2026-11-27 22:24:06
+<p><strong>Última actualización:</strong> 2026-11-28 09:32:13
 <strong>Estaciones:</strong> Zona Tláhuac - Chalco</p>
 <hr />
-<p>Como analista de hardware IoT, he procesado el registro temporal correspondiente al conjunto de datos provisto. A continuación, presento el reporte técnico en formato Markdown:</p>
+<p>Como analista de hardware IoT y procesando el conjunto de datos proporcionado, aquí tienes el informe técnico resumido:</p>
 <h3>1. Día más caluroso y más frío</h3>
 <ul>
-<li><strong>Día más caluroso:</strong> <strong>23 de noviembre de 2026</strong>. Se registró la temperatura máxima absoluta del periodo analizado en <code>temp_sensor1</code> con <strong>27.81 °C</strong> a las 20:00:00 UTC.</li>
-<li><strong>Día más frío:</strong> <strong>25 de noviembre de 2026</strong>. Se registró la temperatura mínima absoluta en <code>temp_sensor3</code> descendiendo hasta los <strong>12.27 °C</strong> a las 12:00:00 UTC.</li>
+<li><strong>Día más caluroso:</strong> <strong>23 de noviembre de 2026</strong> (Registró las temperaturas pico más altas, alcanzando los ~27.8 °C en el <code>temp_sensor1</code> a las 20:00 UTC).</li>
+<li><strong>Día más frío:</strong> <strong>28 de noviembre de 2026</strong> (Registró las temperaturas mínimas más bajas, descendiendo hasta los ~8.3 °C en el <code>temp_sensor3</code> a las 09:00 UTC).</li>
 </ul>
-<hr />
 <h3>2. Horas de mayor radiación</h3>
-<p>Los picos máximos de radiación (visible, infrarroja y UV) ocurren de manera consistente en la franja horaria de la tarde, coincidiendo con la máxima exposición solar:
-* <strong>Radiación Visible e Infrarroja (IR):</strong> Los niveles más altos se registran entre las <strong>17:00:00 y las 19:00:00 UTC</strong>, alcanzando picos superiores a los <code>694 W/m²</code> en visible y más de <code>5,854 W/m²</code> en infrarrojo.
-* <strong>Radiación UV:</strong> El pico máximo se concentra a las <strong>18:00:00 UTC</strong>, alcanzando un valor de hasta <code>2.38 UV</code>.</p>
-<hr />
-<h3>3. Diagnóstico de fallas en sensores</h3>
-<p>Durante la auditoría de integridad de los datos, se detectaron anomalías críticas de hardware que sugieren fallas en los componentes:</p>
-<ul>
-<li><strong>Falla Crítica en Sensor de Humedad (Lecturas Erróneas / Negativas):</strong></li>
-<li>Se identificaron valores físicamente imposibles en la variable <code>humedad</code> (por ejemplo, <code>-109.45%</code>, <code>-161.79%</code>, <code>-621.14%</code> y un código de error persistente de <code>-999.9%</code> a partir del 27 de noviembre). </li>
-<li><strong>Causa probable:</strong> Corrupción en el bus de comunicación del sensor ambiental (posible fallo en el sensor SHT/DHT), descalibración del ADC, o pérdida de la referencia de tierra.</li>
-<li><strong>Coherencia en los Sensores de Temperatura:</strong></li>
-<li>Los sensores térmicos (<code>temp_sensor1</code>, <code>temp_sensor2</code>, <code>temp_sensor3</code>) muestran una gradiente lógica y continua sin saltos abruptos de voltaje, operando dentro de los parámetros esperados, descartando fallas en la red de temperatura principal.</li>
-</ul>
+<p>Los niveles máximos de radiación (Visible, Infrarroja y UV) ocurren consistentemente en la franja horaria de <strong>18:00 a 20:00 UTC</strong>, destacando el pico máximo global registrado el <strong>23 de noviembre a las 18:00 UTC</strong>:
+* <strong>Radiación IR:</strong> ~5,854.4 W/m²
+* <strong>Radiación Visible:</strong> ~701.2 W/m²
+* <strong>Radiación UV:</strong> ~2.38</p>
+<h3>3. Fallas en sensores (Anomalías detectadas)</h3>
+<p>Se identificaron fallas críticas en la telemetría debido a lecturas fuera de rango físico (posible desconexión, daño en el ADC o fallo de alimentación):
+* <strong>Sensor de Humedad:</strong> Presenta múltiples fallas críticas con valores negativos imposibles (ej. <code>-109.4%</code>, <code>-161.7%</code>, <code>-621.1%</code>, y bloqueos totales en <code>-999.9%</code> a partir del 27 de noviembre), lo que indica un <strong>colapso total o saturación del higrómetro</strong>.
+* <strong>Sensores de Temperatura (<code>sensor1</code>, <code>sensor2</code>, <code>sensor3</code>):</strong> Mantienen una correlación lógica interna (el sensor 3 siempre es ligeramente menor), pero se detecta ruido y fluctuaciones extrañas durante los picos de fallo de humedad, sugiriendo un <strong>problema común en el bus de datos (I2C/SPI)</strong> o en la tarjeta de adquisición central (DAQ).</p>
 <h2>Análisis Gráfico de Tendencias</h2>
 <p><img alt="Gráfico de Temperaturas" src="grafico_temperaturas.png" /></p>
 <p><img alt="Gráfico de Humedad" src="grafico_humedad.png" /></p>
